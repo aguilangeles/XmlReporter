@@ -10,6 +10,7 @@ import Entidades.Total;
 import Entidades.Volumen;
 import Inserciones.Conexion;
 import Inserciones.InsertarStrings;
+import clases.GetSede;
 import helper.Directorios;
 import java.io.File;
 import java.io.IOException;
@@ -39,15 +40,24 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   private Total t;
   private Directorios directorio;
   int papelTotal = 0, validos = 0, invalidos = 0, imagenes = 0, anversos = 0, reversos = 0, campos = 0, cvalidos = 0, cinvalidos = 0, cinvalidDb = 0;
+  private SortedMap getNombre;
+  private SortedMap getRuta;
+  private GetSede gsede;
 
-  public MyWorker(JButton iniciar, JButton finalizar, JTextArea progreso, String pathname, JLabel conectadoA, File[] listOfFiles) {
+  public MyWorker(JButton iniciar, JButton finalizar, JTextArea progreso,
+          String pathname, JLabel conectadoA, File[] listOfFiles) {
     this.iniciar = iniciar;
     this.finalizar = finalizar;
     this.progreso = progreso;
     this.pathname = pathname;
     this.conectadoA = conectadoA;
     this.listOfFiles = listOfFiles;
+    // traera una lista de los idc ordenados ascendentemente
 
+    this.directorio = new Directorios(pathname, listOfFiles);
+    this.getNombre = directorio.getIdcMaps();
+    this.getRuta = directorio.getPathsMaps();
+    this.gsede = directorio.getIdentificarSede();
   }
 
   public MyWorker() {
@@ -55,20 +65,17 @@ public class MyWorker extends SwingWorker<Void, Integer> {
 
   @Override
   protected Void doInBackground() throws UnsupportedEncodingException, IOException, SQLException {
+    //todo refactor conexion;
     conexion = new Conexion(conectadoA, progreso);
     conexion.conectar();
     int contador = 0;
     int idVolumen = conexion.volumen();
     int idIdc = conexion.idc();
     InsertarStrings insert = null;
-    directorio = new Directorios(pathname, progreso, listOfFiles);
-    //
-    SortedMap getNombre = directorio.getNombreSorted();
-    SortedMap getRuta = directorio.getMapaS();
     Iterator it = getNombre.keySet().iterator();
-    String nombreVolumen = directorio.getNombreVolumen();
-    String siglaSede = directorio.getSedes();
-    int cantidadIDC = directorio.getContador();
+    String nombreVolumen = gsede.getVolumen();
+    String siglaSede = gsede.getSigla();
+    int cantidadIDC = directorio.getQuatyIDC();
     while (it.hasNext())
       {
       contador++;
@@ -97,7 +104,9 @@ public class MyWorker extends SwingWorker<Void, Integer> {
         conexion.executeUpdate(insert.gnd_metadatos());
         } else if (v.getIdSede() == 2)
         {
+          System.out.println(insert.osn_crt());
         conexion.executeUpdate(insert.osn_crt());
+
         conexion.executeUpdate(insert.osn_metadatos());
         }
       conexion.executeUpdate(insert.campos());
@@ -105,6 +114,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
     conexion.executeUpdate(insert.volumen());
     t = new Total(papelTotal, validos, invalidos, imagenes,
             anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
+    System.out.println(t.toString());
     conexion.executeUpdate(insert.totales(t));
     conexion.desconectar();
     return null;

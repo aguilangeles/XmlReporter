@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class GetSede {
   private String nombreCompleto;
   private String sigla;
-  private String volumen;
+  private  String volumen;
   private String endString;
   private static String path;
   private static int idsede;
@@ -60,6 +60,10 @@ public class GetSede {
 
   public int getIdsede() {
     return idsede;
+  }
+
+  public static int getOrden() {
+    return orden;
   }
 
   public String getSigla() {

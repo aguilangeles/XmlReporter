@@ -6,15 +6,8 @@ package helper;
 
 import clases.GetSede;
 import java.io.File;
-import java.io.FileFilter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
-import javax.swing.SwingWorker;
 
 /**
  *
@@ -22,90 +15,41 @@ import javax.swing.SwingWorker;
  */
 public class Directorios {
 
-  private File[] listOfFiles;
-  private String pathname;
-  private JTextArea mensaje;
-  private static Map<Integer, String> mapa;
-  private static SortedMap mapaS = new TreeMap();
-  private static SortedMap nombresS = new TreeMap();
-  private String nombreSede;
-  private String nombreVolumen;
-  private String sedes;
-  private int contador = 0;
-  private SwingWorker integrador;
-  private static FileFilter fileFilter;
-  private GetSede sg;
+  private static SortedMap pathsMap = new TreeMap();
+  private static SortedMap idcMaps = new TreeMap();
+  private int quantIDC = 0;
+  private GetSede identificarSede;
 
-  public Directorios(String ruta, JTextArea mensaje, File[] listOfFiles) {
-    this.pathname = ruta;
-    this.mensaje = mensaje;
-    this.listOfFiles = listOfFiles;
-    directorio();
+  public Directorios(String pathname, File[] listOfFiles) {
+    directorioOrdenado(pathname,listOfFiles);
   }
 
-  private SortedMap directorio() {
-    int id = 0;
+  private void directorioOrdenado(String pathname, File[] listOfFiles) {
     for (File f : listOfFiles)
       {
-      contador++;
-      nombreSede = f.getName();
+      quantIDC++;
+      String name = f.getName();
       String[] spl = f.getName().split("#");
-      sedes = spl[0];
-      nombreVolumen = spl[1];
-      String finCadena = spl[3];
-
-      sg = new GetSede(nombreSede, spl[0], spl[1], pathname, spl[3]);
-
-      switch (sedes)
-        {
-        case "OSN":
-          id = Integer.parseInt(finCadena);
-          break;
-        case "GND":
-          String sinSl = finCadena.substring(2);
-          id = Integer.parseInt(sinSl);
-          break;
-        }
-      mapaS.put(id, sg.getPath());
-      nombresS.put(id, nombreSede);
-      System.out.println(sg);
+      identificarSede = new GetSede(name, spl[0], spl[1], pathname, spl[3]);
+      int id = GetSede.getOrden();
+      pathsMap.put(id, identificarSede.getPath());
+      idcMaps.put(id, identificarSede.getNombreCompleto());
       }
-    return (SortedMap) mapa;
   }
 
-
-
-  public SortedMap getNombreSorted() {
-    return nombresS;
+  public SortedMap getIdcMaps() {
+    return idcMaps;
   }
 
-  public void setNombreSorted(SortedMap nombreSorted) {
-    this.nombresS = nombreSorted;
+  public SortedMap getPathsMaps() {
+    return pathsMap;
   }
 
-  public String getNombreVolumen() {
-    return nombreVolumen;
+  public int getQuatyIDC() {
+    return quantIDC;
   }
 
-  public String getSedes() {
-    return sedes;
-  }
-
-  public SortedMap getMapaS() {
-    return mapaS;
-  }
-
-  public int getContador() {
-    return contador;
-  }
-
-  @Override
-  public String toString() {
-    return "Directorios{" + "mapa=" + mapa + ", mapaS=" + mapaS
-            + ", nombresS=" + nombresS + ", ruta=" + pathname
-            + ", fileFilter=" + fileFilter + ", nombreSede=" + nombreSede
-            + ", nombreVolumen=" + nombreVolumen + ", sedes=" + sedes
-            + ", contador=" + contador + ", mensaje=" + mensaje
-            + ", integrador=" + integrador + '}';
+  public GetSede getIdentificarSede() {
+    return identificarSede;
   }
 }
