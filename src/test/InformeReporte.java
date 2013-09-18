@@ -134,16 +134,6 @@ public class InformeReporte extends javax.swing.JFrame {
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
       System.exit(0);
     }//GEN-LAST:event_jBCerrarActionPerformed
-//  public void actionPerformed(ActionEvent e) {
-//    switch (e.getActionCommand())
-//      {
-//      case "Informar":
-//        this.reporte = new MyWorker(jbBuscar, jBCerrar, jtaMensaje,
-//                jTRuta, conectadoA);
-//        this.reporte.execute();
-//
-//      }
-//  }
 
   private String getPathname() {
     return jTRuta.getText().trim();
@@ -152,6 +142,7 @@ public class InformeReporte extends javax.swing.JFrame {
   private void listarFiles() {
     File folder = new File(getPathname());
     java.io.FileFilter filefilter = new java.io.FileFilter() {
+      @Override
       public boolean accept(File file) {
         return file.isDirectory();
       }
@@ -159,9 +150,8 @@ public class InformeReporte extends javax.swing.JFrame {
     if (folder.exists())
       {
       File[] listOfFiles = folder.listFiles(filefilter);
-
-      this.reporte = new MyWorker(jbBuscar, jBCerrar, jtaMensaje,
-              jTRuta, conectadoA, listOfFiles);
+      reporte = new MyWorker(jbBuscar, jBCerrar, jtaMensaje,
+              getPathname(), conectadoA, listOfFiles);
       this.reporte.execute();
 
       } else

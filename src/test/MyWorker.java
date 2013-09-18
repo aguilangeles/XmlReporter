@@ -20,7 +20,6 @@ import java.util.SortedMap;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
 /**
@@ -32,7 +31,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   private JButton iniciar;
   private JButton finalizar;
   private JTextArea progreso;
-  private JTextField insertRuta;
+  private String pathname;
   private JLabel conectadoA;
   //
   private File[] listOfFiles;
@@ -41,11 +40,11 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   private Directorios directorio;
   int papelTotal = 0, validos = 0, invalidos = 0, imagenes = 0, anversos = 0, reversos = 0, campos = 0, cvalidos = 0, cinvalidos = 0, cinvalidDb = 0;
 
-  public MyWorker(JButton iniciar, JButton finalizar, JTextArea progreso, JTextField ruta, JLabel conectadoA, File[] listOfFiles) {
+  public MyWorker(JButton iniciar, JButton finalizar, JTextArea progreso, String pathname, JLabel conectadoA, File[] listOfFiles) {
     this.iniciar = iniciar;
     this.finalizar = finalizar;
     this.progreso = progreso;
-    this.insertRuta = ruta;
+    this.pathname = pathname;
     this.conectadoA = conectadoA;
     this.listOfFiles = listOfFiles;
 
@@ -56,16 +55,14 @@ public class MyWorker extends SwingWorker<Void, Integer> {
 
   @Override
   protected Void doInBackground() throws UnsupportedEncodingException, IOException, SQLException {
-    String rutaIngresada = insertRuta.getText();
     conexion = new Conexion(conectadoA, progreso);
     conexion.conectar();
     int contador = 0;
     int idVolumen = conexion.volumen();
     int idIdc = conexion.idc();
     InsertarStrings insert = null;
-    directorio = new Directorios(rutaIngresada, progreso, listOfFiles);
+    directorio = new Directorios(pathname, progreso, listOfFiles);
     //
-    //  algo(directorio.getEntrada());
     SortedMap getNombre = directorio.getNombreSorted();
     SortedMap getRuta = directorio.getMapaS();
     Iterator it = getNombre.keySet().iterator();
@@ -113,32 +110,11 @@ public class MyWorker extends SwingWorker<Void, Integer> {
     return null;
   }
 
-  public void algo(int numero) {
-    switch (numero)
-      {
-      case 0:
-
-        break;
-      case 1:
-        progreso.setText("escriba una nueva ruta");
-      }
-
-  }
-
   @Override
   protected void done() {
     String resultado = "";
     String finalizado = "\nReporte Finalizado. "
             + "\nDatos ingresados en:\n"
             + conexion.getInfo() + "";
-//    if (!isCancelled())
-//      {
-//      resultado = (directorio.getEntrada() == 1) ? "Ingrese ruta correcta" : finalizado;
-//      progreso.setText(resultado);
-//      }
-//    if (resultado.equals("Ingrese ruta correcta"))
-//      {
-//      this.insertRuta.setText("");
-//      }
   }
 }
