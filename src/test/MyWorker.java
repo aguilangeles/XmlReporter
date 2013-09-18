@@ -39,7 +39,10 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   private Conexion conexion;
   private Total t;
   private Directorios directorio;
-  int papelTotal = 0, validos = 0, invalidos = 0, imagenes = 0, anversos = 0, reversos = 0, campos = 0, cvalidos = 0, cinvalidos = 0, cinvalidDb = 0;
+  int papelTotal = 0, validos = 0, invalidos = 0, imagenes = 0, anversos = 0,
+          reversos = 0, campos = 0, cvalidos = 0, cinvalidos = 0, cinvalidDb = 0;
+
+
   private SortedMap getNombre;
   private SortedMap getRuta;
   private GetSede gsede;
@@ -78,11 +81,14 @@ public class MyWorker extends SwingWorker<Void, Integer> {
     int cantidadIDC = directorio.getQuatyIDC();
     while (it.hasNext())
       {
+
       contador++;
       Object key = it.next();
       String rutaProcesada = (String) getRuta.get(key);
       String idcs = (String) getNombre.get(key);
-      Resultados resultados = new Resultados(rutaProcesada, idcs, contador, nombreVolumen, siglaSede, cantidadIDC);
+      Resultados resultados = new Resultados(rutaProcesada,
+              idcs, contador, nombreVolumen, siglaSede,
+              cantidadIDC);
       Volumen v = resultados.getVolumen();
       insert = new InsertarStrings(v, idVolumen, v.getIdSede(), idIdc, contador);
       papelTotal += resultados.getPapelTotal();
@@ -114,7 +120,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
     conexion.executeUpdate(insert.volumen());
     t = new Total(papelTotal, validos, invalidos, imagenes,
             anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
-    System.out.println(t.toString());
+
     conexion.executeUpdate(insert.totales(t));
     conexion.desconectar();
     return null;

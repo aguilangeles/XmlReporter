@@ -161,6 +161,7 @@ public class InformeReporte extends javax.swing.JFrame {
       jTRuta.setText("");
       }
   }
+  
   /**
    * @param args the command line arguments
    */
