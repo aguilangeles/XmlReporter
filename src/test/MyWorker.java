@@ -90,7 +90,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       //
       Resultados resultados = new Resultados(rutaProcesada,
               idcs, contador, gsede.getVolumen(), gsede.getSigla(),
-              directorio.getQuatyIDC());
+              directorio.getQuatyIDC(), gsede.getIdsede());
       //
 
       Volumen v = resultados.getVolumen();

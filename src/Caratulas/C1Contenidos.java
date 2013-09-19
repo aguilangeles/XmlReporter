@@ -41,7 +41,7 @@ public class C1Contenidos {
 
   private ContenidoGND gndC1() {
     List<String> lista = mapeoC1.getListaValorC1();
-    List<String> caratulasC1 = reporteCaratula.getStatusToCrt1(lista);
+    List<String> caratulasC1 = reporteCaratula.getEstadoDeC1(lista);
     for (int i = 0; i < caratulasC1.size(); i++)
       {
       String metadato = caratulasC1.get(i);
