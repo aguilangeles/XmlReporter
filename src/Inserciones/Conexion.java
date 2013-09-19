@@ -29,7 +29,6 @@ public class Conexion {
   public ResultSet resultado;
   public PreparedStatement prepareStatement;
   private JTextArea progreso;
-//  private FileInputStream fileInputStream = null;
   private JLabel mensaje;
   private String url, user, passw, info, server;
 
@@ -106,40 +105,6 @@ public class Conexion {
       }
   }
 
-  public int volumen() {
-    int ret = 0;
-    try
-      {
-      declaracion = (Statement) conexion.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      resultado = declaracion.executeQuery("select max(id) from volumen");
-      while (resultado.next())
-        {
-        ret = resultado.getInt(1);
-        }
-      } catch (SQLException ex)
-      {
-      Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-      }
-    return ret;
-  }
-
-  public int idc() {
-    int ret = 0;
-    try
-      {
-      declaracion = (Statement) conexion.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      resultado = declaracion.executeQuery("select max(id) from idc");
-      while (resultado.next())
-        {
-        ret = resultado.getInt(1);
-        }
-      } catch (SQLException ex)
-      {
-      Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-      }
-    return ret;
-  }
-
   public void executeUpdate(String sql) {
     try
       {
@@ -168,8 +133,8 @@ public class Conexion {
     try
       {
       conexion.close();
-      String data = "Desconectado de: " + getInfo();
-      mensaje.setText(data);
+//      String data = "Desconectado de: " + getInfo();
+//      mensaje.setText(data);
       return true;
       } catch (SQLException ex)
       {
@@ -178,15 +143,15 @@ public class Conexion {
       }
   }
 
-  public String getInfo() {
-    String ret = "";
-    String nombre = url;
-    String[] split = nombre.split(":");
-    for (int i = 0; i < split.length; i++)
-      {
-      ret = split[i];
-      }
-    info = ret.substring(2).replace("/", ",  ");
-    return info;
-  }
+//  public String getInfo() {
+//    String ret = "";
+//    String nombre = url;
+//    String[] split = nombre.split(":");
+//    for (int i = 0; i < split.length; i++)
+//      {
+//      ret = split[i];
+//      }
+//    info = ret.substring(2).replace("/", ",  ");
+//    return info;
+//  }
 }

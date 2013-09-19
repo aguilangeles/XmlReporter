@@ -5,8 +5,6 @@
 package Inserciones;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -15,16 +13,13 @@ import java.util.logging.Logger;
 public class GetLastID {
 
   private Conexion conexion;
-  private String nombreTabla;
   private static int id;
 
-  public GetLastID(Conexion conexion, String nombreTabla) {
+  public GetLastID(Conexion conexion) {
     this.conexion = conexion;
-    this.nombreTabla = nombreTabla;
-
   }
 
-  private void getLastIdFromTable() {
+  public int getLastIdFromTable(String nombreTabla) {
     try
       {
       conexion.Execute("Select max(id) from " + nombreTabla);
@@ -36,6 +31,6 @@ public class GetLastID {
       {
       System.out.println("ex get last id" + ex.getMessage());
       }
-
+    return id;
   }
 }

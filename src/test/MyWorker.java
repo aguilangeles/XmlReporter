@@ -9,6 +9,7 @@ import Caratulas.Resultados;
 import Entidades.Total;
 import Entidades.Volumen;
 import Inserciones.Conexion;
+import Inserciones.GetLastID;
 import Inserciones.InsertarStrings;
 import clases.GetSede;
 import helper.Directorios;
@@ -41,8 +42,6 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   private Directorios directorio;
   int papelTotal = 0, validos = 0, invalidos = 0, imagenes = 0, anversos = 0,
           reversos = 0, campos = 0, cvalidos = 0, cinvalidos = 0, cinvalidDb = 0;
-
-
   private SortedMap getNombre;
   private SortedMap getRuta;
   private GetSede gsede;
@@ -71,9 +70,11 @@ public class MyWorker extends SwingWorker<Void, Integer> {
     //todo refactor conexion;
     conexion = new Conexion(conectadoA, progreso);
     conexion.conectar();
+    GetLastID lastId = new GetLastID(conexion);
+
     int contador = 0;
-    int idVolumen = conexion.volumen();
-    int idIdc = conexion.idc();
+    int idVolumen = lastId.getLastIdFromTable("volumen");
+    int idIdc = lastId.getLastIdFromTable("idc");
     InsertarStrings insert = null;
     Iterator it = getNombre.keySet().iterator();
     String nombreVolumen = gsede.getVolumen();
@@ -110,7 +111,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
         conexion.executeUpdate(insert.gnd_metadatos());
         } else if (v.getIdSede() == 2)
         {
-          System.out.println(insert.osn_crt());
+        System.out.println(insert.osn_crt());
         conexion.executeUpdate(insert.osn_crt());
 
         conexion.executeUpdate(insert.osn_metadatos());
@@ -131,6 +132,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
     String resultado = "";
     String finalizado = "\nReporte Finalizado. "
             + "\nDatos ingresados en:\n"
-            + conexion.getInfo() + "";
+//            + conexion.getInfo() + ""
+            ;
   }
 }
