@@ -13,7 +13,7 @@ import parsers.ReporteXMlCaratula;
  *
  * @author MUTNPROD003
  */
-public class C2_Contenidos {
+public class GetContenidoCrt2 {
 
   private Object objetoC2;
   private c2ContenidoGND gndC2;
@@ -22,17 +22,11 @@ public class C2_Contenidos {
   private String nombre;
   private ReporteXMlCaratula reporteCaratula;
 
-  public C2_Contenidos(String nombre, GetValuesFromCrtToMapeo mapeoC1, ReporteXMlCaratula reporteCaratula) {
+  public GetContenidoCrt2(GetValuesFromCrtToMapeo mapeoC1, ReporteXMlCaratula reporteCaratula, int idSede) {
     this.nombre = nombre;
     this.getValuesFromCrt = mapeoC1;
     this.reporteCaratula = reporteCaratula;
-    if (nombre.startsWith("GND"))
-      {
-      this.objetoC2 = gndC2();
-      } else if (nombre.startsWith("OSN"))
-      {
-      this.objetoC2 = osnC2();
-      }
+    setContenidoFromSede(idSede);
   }
 
   private c2ContenidoOSN osnC2() {
@@ -69,5 +63,15 @@ public class C2_Contenidos {
 
   public Object getObjetoC2() {
     return objetoC2;
+  }
+
+  private void setContenidoFromSede(int idSede) {
+    if (idSede == 1)
+      {
+      this.objetoC2 = gndC2();
+      } else if (idSede == 2)
+      {
+      this.objetoC2 = osnC2();
+      }
   }
 }

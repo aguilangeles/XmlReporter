@@ -7,7 +7,7 @@ package Inserciones;
 import Entidades.c2ContenidoGND;
 import Entidades.c2ContenidoOSN;
 import Entidades.CamposSedes;
-import Entidades.CaratulasSedes;
+import Entidades.GetCrtForSede;
 import Entidades.ContenidoGND;
 import Entidades.ContenidoOSN;
 import Entidades.GND_sede;
@@ -166,7 +166,7 @@ public class InsertarStrings {
   public String caratulas() {
     int id = idIdc + contador;
     int idvol = idVolumen + 1;
-    CaratulasSedes c = v.getCrt_sedes();
+    GetCrtForSede c = v.getCrt_sedes();
     c.getC1().getObject();
     String ce = "";
     String ce2 = "";

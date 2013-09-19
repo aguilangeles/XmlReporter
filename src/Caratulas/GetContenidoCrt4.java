@@ -11,13 +11,13 @@ import parsers.ReporteXMlCaratula;
  *
  * @author MUTNPROD003
  */
-public class C4Contenido {
+public class GetContenidoCrt4 {
 
   private String retC4;
   private GetValuesFromCrtToMapeo getValuesFromCrt;
   private ReporteXMlCaratula reporteCaratula;
 
-  public C4Contenido(GetValuesFromCrtToMapeo MapeoC1, ReporteXMlCaratula reporteCaratula) {
+  public GetContenidoCrt4(GetValuesFromCrtToMapeo MapeoC1, ReporteXMlCaratula reporteCaratula) {
     this.getValuesFromCrt = MapeoC1;
     this.reporteCaratula = reporteCaratula;
     getC4();

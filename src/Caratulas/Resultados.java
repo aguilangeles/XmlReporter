@@ -6,7 +6,7 @@ package Caratulas;
 
 import Campos.PapelesyCampos;
 import Entidades.CamposSedes;
-import Entidades.CaratulasSedes;
+import Entidades.GetCrtForSede;
 import Entidades.Idc;
 import Entidades.PapelIdc;
 import Entidades.Volumen;
@@ -56,7 +56,7 @@ public class Resultados {
 
     CaratulasMetadata caratulaMeta = new CaratulasMetadata(rutaProcesada, idsede);
 
-    CaratulasSedes caratulasSedes = caratulaMeta.getSedesCrt();
+    GetCrtForSede caratulasSedes = caratulaMeta.getSedesCrt();
 
     PapelesyCampos papelesCampos = new PapelesyCampos(rutaProcesada, idcs, caratulaMeta.isIsEjercicio(), contador);
     Idc idc = papelesCampos.getIdece();

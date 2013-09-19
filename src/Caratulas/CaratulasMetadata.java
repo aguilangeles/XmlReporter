@@ -6,9 +6,7 @@ package Caratulas;
 
 import Entidades.Contenido;
 import Entidades.NoContenido;
-import Entidades.C4;
-import Entidades.CaratulasSedes;
-import Inserciones.Conexion;
+import Entidades.GetCrtForSede;
 import clases.Caratula;
 import clases.Metadato;
 import java.io.IOException;
@@ -31,11 +29,11 @@ public class CaratulasMetadata {
   private String rootIDC;
   private GetValuesFromCrtToMapeo getValuesFromCrtS;
   private boolean isEjercicio;
-  private CaratulasSedes sedesCrt;
+  private GetCrtForSede sedesCrt;
   private Contenido nuevoContenidoParaC1;
   private Contenido nuevoContenidoParaC2;
   private NoContenido nuevoC3;
-  private C4 nuevoC4;
+  private NoContenido nuevoC4;
   private int idsede;
 
   public CaratulasMetadata(String pathname, int idsede) {
@@ -44,7 +42,7 @@ public class CaratulasMetadata {
     setCaratulas();
   }
 
-  private CaratulasSedes setCaratulas() {
+  private GetCrtForSede setCaratulas() {
     String status = "";
     try
       {
@@ -71,18 +69,17 @@ public class CaratulasMetadata {
         }
       //
       GetContenidoCrt1 c1 = new GetContenidoCrt1(getValuesFromCrtS, reporteCaratula, idsede);
-
       nuevoContenidoParaC1 = new Contenido(c1.getObject());
       //
-      C2_Contenidos c2 = new C2_Contenidos(rootIDC, getValuesFromCrtS, reporteCaratula);
+      GetContenidoCrt2 c2 = new GetContenidoCrt2(getValuesFromCrtS, reporteCaratula, idsede);
       nuevoContenidoParaC2 = new Contenido(c2.getObjetoC2());
       //
-      C3Contenido c3 = new C3Contenido(getValuesFromCrtS, reporteCaratula);
+      GetContenidoCrt3 c3 = new GetContenidoCrt3(getValuesFromCrtS, reporteCaratula);
       nuevoC3 = new NoContenido(c3.getRetC3());
 
-      C4Contenido c4 = new C4Contenido(getValuesFromCrtS, reporteCaratula);
-      nuevoC4 = new C4(c4.getRetC4());
-      sedesCrt = new CaratulasSedes(status, tipo, subtipo, nuevoContenidoParaC1, nuevoContenidoParaC2, nuevoC3, nuevoC4);
+      GetContenidoCrt4 c4 = new GetContenidoCrt4(getValuesFromCrtS, reporteCaratula);
+      nuevoC4 = new NoContenido(c4.getRetC4());
+      sedesCrt = new GetCrtForSede(status, tipo, subtipo, nuevoContenidoParaC1, nuevoContenidoParaC2, nuevoC3, nuevoC4);
 
       } catch (SAXException ex)
       {
@@ -110,7 +107,7 @@ public class CaratulasMetadata {
     return isEjercicio;
   }
 
-  public CaratulasSedes getSedesCrt() {
+  public GetCrtForSede getSedesCrt() {
     return sedesCrt;
   }
 }

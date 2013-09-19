@@ -20,12 +20,12 @@ public class Volumen {
     private int cantidad_idc;
     private String fecha_reporte;
     private Idc idc;
-    private CaratulasSedes crt_sedes;
+    private GetCrtForSede crt_sedes;
     private PapelIdc papeles;
 
     public Volumen(int id, String vol_nombre, String sede,
             int cantidad_idc,
-            Idc idc, PapelIdc papeles, CaratulasSedes crt_sedes) {
+            Idc idc, PapelIdc papeles, GetCrtForSede crt_sedes) {
         this.id = id;
         this.vol_nombre = vol_nombre;
         this.sede = sede;
@@ -105,11 +105,11 @@ public class Volumen {
         this.idc = idc;
     }
 
-    public CaratulasSedes getCrt_sedes() {
+    public GetCrtForSede getCrt_sedes() {
         return crt_sedes;
     }
 
-    public void setCrt_sedes(CaratulasSedes crt_sedes) {
+    public void setCrt_sedes(GetCrtForSede crt_sedes) {
         this.crt_sedes = crt_sedes;
     }
 
