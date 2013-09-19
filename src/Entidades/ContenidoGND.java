@@ -9,84 +9,82 @@ package Entidades;
  * @author MUTNPROD003
  */
 public class ContenidoGND {
-    private String id;
-    private String caja;
-    private String anio;
-    private String mes;
-    private String liquidacion;
-    private String unidad;
 
-    public ContenidoGND() {
-    }
+  private String id;
+  private String caja;
+  private String anio;
+  private String mes;
+  private String liquidacion;
+  private String unidad;
 
-    public ContenidoGND(String id, String caja, String anio, String mes, String liquidacion, String unidad) {
-        this.id = id;
-        this.caja = caja;
-        this.anio = anio;
-        this.mes = mes;
-        this.liquidacion = liquidacion;
-        this.unidad = unidad;
-    }
+  public ContenidoGND() {
+  }
 
-    public String getId() {
-        return id;
-    }
+  public ContenidoGND(String id, String caja, String anio, String mes,
+          String liquidacion, String unidad) {
+    this.id = id;
+    this.caja = caja;
+    this.anio = anio;
+    this.mes = mes;
+    this.liquidacion = liquidacion;
+    this.unidad = unidad;
+  }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public String getCaja() {
-        return caja;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public void setCaja(String caja) {
-        this.caja = caja;
-    }
+  public String getCaja() {
+    return caja;
+  }
 
-    public String getAnio() {
-        return anio;
-    }
+  public void setCaja(String caja) {
+    this.caja = caja;
+  }
 
-    public void setAnio(String anio) {
-        this.anio = anio;
-    }
+  public String getAnio() {
+    return anio;
+  }
 
-    public String getMes() {
-        return mes;
-    }
+  public void setAnio(String anio) {
+    this.anio = anio;
+  }
 
-    public void setMes(String mes) {
-        this.mes = mes;
-    }
+  public String getMes() {
+    return mes;
+  }
 
-    public String getLiquidacion() {
-        return liquidacion;
-    }
+  public void setMes(String mes) {
+    this.mes = mes;
+  }
 
-    public void setLiquidacion(String liquidacion) {
-        this.liquidacion = liquidacion;
-    }
+  public String getLiquidacion() {
+    return liquidacion;
+  }
 
-    public String getUnidad() {
-        return unidad;
-    }
+  public void setLiquidacion(String liquidacion) {
+    this.liquidacion = liquidacion;
+  }
 
-    public void setUnidad(String unidad) {
-        this.unidad = unidad;
-    }
+  public String getUnidad() {
+    return unidad;
+  }
 
-    @Override
-    public String toString() {
-        return
-                 id
-                + ", " + caja
-                + ", "+ anio
-                + ", " + mes
-                + ", " + liquidacion
-                + ", " + unidad ;
-    }
+  public void setUnidad(String unidad) {
+    this.unidad = unidad;
+  }
 
-
-
+  @Override
+  public String toString() {
+    return id
+            + ", " + caja
+            + ", " + anio
+            + ", " + mes
+            + ", " + liquidacion
+            + ", " + unidad;
+  }
 }

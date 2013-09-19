@@ -25,6 +25,7 @@ import parsers.ReporteXMlCaratula;
  * @author Administrador
  */
 public class CaratulasMetadata  {
+
     private String rutaProcesada;
     private String rootIDC;
     private MapeosC mapeoC1;
@@ -80,6 +81,7 @@ public class CaratulasMetadata  {
         }
         return sedesCrt;
     }
+
 
     private String tipoDeDocumento(String root, ReporteXMlCaratula reporteCaratula, Caratula caratula ){
         String ret="";

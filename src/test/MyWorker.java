@@ -60,6 +60,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
     this.getNombre = directorio.getIdcMaps();
     this.getRuta = directorio.getPathsMaps();
     this.gsede = directorio.getIdentificarSede();
+    this.conexion = new Conexion(conectadoA, progreso);
   }
 
   public MyWorker() {
@@ -67,29 +68,30 @@ public class MyWorker extends SwingWorker<Void, Integer> {
 
   @Override
   protected Void doInBackground() throws UnsupportedEncodingException, IOException, SQLException {
-    //todo refactor conexion;
-    conexion = new Conexion(conectadoA, progreso);
     conexion.conectar();
+    //todo refactor conexion;
     GetLastID lastId = new GetLastID(conexion);
 
     int contador = 0;
+
     int idVolumen = lastId.getLastIdFromTable("volumen");
     int idIdc = lastId.getLastIdFromTable("idc");
+
     InsertarStrings insert = null;
     Iterator it = getNombre.keySet().iterator();
-    String nombreVolumen = gsede.getVolumen();
-    String siglaSede = gsede.getSigla();
-    int cantidadIDC = directorio.getQuatyIDC();
     while (it.hasNext())
       {
-
       contador++;
       Object key = it.next();
+
       String rutaProcesada = (String) getRuta.get(key);
       String idcs = (String) getNombre.get(key);
+      //
       Resultados resultados = new Resultados(rutaProcesada,
-              idcs, contador, nombreVolumen, siglaSede,
-              cantidadIDC);
+              idcs, contador, gsede.getVolumen(), gsede.getSigla(),
+              directorio.getQuatyIDC());
+      //
+
       Volumen v = resultados.getVolumen();
       insert = new InsertarStrings(v, idVolumen, v.getIdSede(), idIdc, contador);
       papelTotal += resultados.getPapelTotal();
@@ -131,8 +133,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   protected void done() {
     String resultado = "";
     String finalizado = "\nReporte Finalizado. "
-            + "\nDatos ingresados en:\n"
-//            + conexion.getInfo() + ""
+            + "\nDatos ingresados en:\n" //            + conexion.getInfo() + ""
             ;
   }
 }
