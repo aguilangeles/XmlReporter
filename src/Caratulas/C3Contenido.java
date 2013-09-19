@@ -24,8 +24,8 @@ public class C3Contenido {
     }
     private String getC3() {
         List<String> lista = MapeoC1.getListaValorC3();
-        reporteCaratula.getEstadoDeC3(lista);
-        List<String> caratulasC3 = reporteCaratula.getListaValorC3();
+
+        List<String> caratulasC3 = reporteCaratula.getEstadoDeC3(lista);;
         for (int i = 0; i < caratulasC3.size(); i++) {
             retC3 = caratulasC3.get(i);
         }

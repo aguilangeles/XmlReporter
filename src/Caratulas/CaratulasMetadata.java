@@ -25,7 +25,10 @@ import parsers.ReporteXMlCaratula;
  */
 public class CaratulasMetadata {
 
-  private String rutaProcesada;
+  private String tipo;
+  private int subtipo;
+  private String pathname;
+
   private String rootIDC;
   private MapeosC mapeoC1;
   private boolean isEjercicio;
@@ -34,21 +37,21 @@ public class CaratulasMetadata {
   private C2 nuevoC2;
   private C3 nuevoC3;
   private C4 nuevoC4;
+  private int idsede;
 
-  public CaratulasMetadata(String rutaProcesada) {
-    this.rutaProcesada = rutaProcesada;
+  public CaratulasMetadata(String pathname, int idsede) {
+    this.pathname = pathname;
+    this.idsede = idsede;
     setCaratulas();
   }
 
   private CaratulasSedes setCaratulas() {
     String status = "";
-    int subTipo = 0;
-    String tipoDoc = "";
     try
       {
-      CaratulaParser caratulaParser = new CaratulaParser(rutaProcesada);
+      CaratulaParser caratulaParser = new CaratulaParser(pathname);
       //todo
-      mapeoC1 = new MapeosC(rutaProcesada);
+      mapeoC1 = new MapeosC(pathname);
       //parser
       ReporteXMlCaratula reporteCaratula = caratulaParser.getReporte();
       NamedNodeMap caratulaNodeMap = caratulaParser.getCaratulas();
@@ -65,11 +68,7 @@ public class CaratulasMetadata {
         status = caratula.getStatus();
 
         isEjercicio = reporteCaratula.isEjercicios();
-
-        tipoDoc = tipoDeDocumento(rootIDC, reporteCaratula, caratula);
-
-        subTipo = subTipoDocumento(rootIDC, reporteCaratula, caratula);
-
+        getTipoYSubtipoDocumento(reporteCaratula, caratula);
         }
       //
       C1Contenidos c1 = new C1Contenidos(rootIDC, mapeoC1, reporteCaratula);
@@ -83,7 +82,8 @@ public class CaratulasMetadata {
 
       C4Contenido c4 = new C4Contenido(mapeoC1, reporteCaratula);
       nuevoC4 = new C4(c4.getRetC4());
-      sedesCrt = new CaratulasSedes(status, tipoDoc, subTipo, nuevoC1, nuevoC2, nuevoC3, nuevoC4);
+      sedesCrt = new CaratulasSedes(status, tipo, subtipo, nuevoC1, nuevoC2, nuevoC3, nuevoC4);
+
       } catch (SAXException ex)
       {
       System.out.println(ex.getMessage());
@@ -94,28 +94,16 @@ public class CaratulasMetadata {
     return sedesCrt;
   }
 
-  private String tipoDeDocumento(String root, ReporteXMlCaratula reporteCaratula, Caratula caratula) {
-    String ret = "";
-    if (root.startsWith("OSN"))
+  private void getTipoYSubtipoDocumento(ReporteXMlCaratula reporteCaratula, Caratula caratula) {
+    if (idsede == 2)
       {
-      ret = reporteCaratula.getTipo();
-      } else if (root.startsWith("GND"))
+      tipo = reporteCaratula.getTipo();
+      subtipo = reporteCaratula.getSubTipo();
+      } else if (idsede == 1)
       {
-      ret = caratula.getDocType();
+      subtipo = caratula.getSubTypeCode();
+      tipo = caratula.getDocType();
       }
-    return ret;
-  }
-
-  private int subTipoDocumento(String root, ReporteXMlCaratula reporteCaratula, Caratula caratula) {
-    int ret = 0;
-    if (root.startsWith("OSN"))
-      {
-      ret = reporteCaratula.getSubTipo();
-      } else if (root.startsWith("GND"))
-      {
-      ret = caratula.getSubTypeCode();
-      }
-    return ret;
   }
 
   public boolean isIsEjercicio() {

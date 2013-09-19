@@ -35,15 +35,16 @@ public class Resultados {
   private String nombreVolumen;
   private String siglaSede;
   private int cantidadIDC;
+  private int idsede;
 
-  public Resultados(String rutaProcesada, String idcs, int contador,
-          String nombreVolumen, String siglaSede, int cantidadIDC) throws IOException {
+  public Resultados(String rutaProcesada, String idcs, int contador, String nombreVolumen, String siglaSede, int cantidadIDC, int idSede) throws IOException {
     this.rutaProcesada = rutaProcesada;
     this.idcs = idcs;
     this.contador = contador;
     this.nombreVolumen = nombreVolumen;
     this.siglaSede = siglaSede;
     this.cantidadIDC = cantidadIDC;
+    this.idsede=idSede;
     volumenResultado();
   }
 
@@ -53,7 +54,7 @@ public class Resultados {
 
   private Volumen volumenResultado() throws IOException {
 
-    CaratulasMetadata caratulaMeta = new CaratulasMetadata(rutaProcesada);
+    CaratulasMetadata caratulaMeta = new CaratulasMetadata(rutaProcesada, idsede);
 
     CaratulasSedes caratulasSedes = caratulaMeta.getSedesCrt();
 
