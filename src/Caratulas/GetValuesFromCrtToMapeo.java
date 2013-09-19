@@ -18,21 +18,20 @@ import parsers.XmlMapeoParser;
  *
  * @author Administrador
  */
-public class MapeosC {
+public class GetValuesFromCrtToMapeo {
 
-  private List<String> listaValorC1;
-  private List<String> listaValorC2;
-  private List<String> listaValorC3;
-  private List<String> listaValorC4;
+  private List<String> valuesFromCrt1;
+  private List<String> valuesFromCrt2;
+  private List<String> valuesFromCrt3;
+  private List<String> valuesFromCrt4;
   private String pathname;
-  private int papeles;
 
-  public MapeosC(String ruta) {
+  public GetValuesFromCrtToMapeo(String ruta) {
     this.pathname = ruta.replace("Carat.xml", "Mapeo.xml");
-    setValorC1();
+    getValuesCrtFromMapeo();
   }
 
-  private void setValorC1() {
+  private void getValuesCrtFromMapeo() {
 
     ReporteXMLMapeo reporteMapeo = null;
     try
@@ -48,10 +47,10 @@ public class MapeosC {
         MapeoList mapeoList = new MapeoList(mapeoChildren);
         reporteMapeo = mapeoParser.getReporte();
         //lista de  contenido de c1 y
-        listaValorC1 = reporteMapeo.getMapeoGetC1List();
-        listaValorC2 = reporteMapeo.getMapeoGetC2List();
-        listaValorC3 = reporteMapeo.getMapeoGetC3List();
-        listaValorC4 = reporteMapeo.getMapeoGetC4List();
+        valuesFromCrt1 = reporteMapeo.getMapeoGetC1List();
+        valuesFromCrt2 = reporteMapeo.getMapeoGetC2List();
+        valuesFromCrt3 = reporteMapeo.getMapeoGetC3List();
+        valuesFromCrt4 = reporteMapeo.getMapeoGetC4List();
         }
       } catch (IOException ex)
       {
@@ -64,19 +63,21 @@ public class MapeosC {
       }
   }
 
-  public List<String> getListaValorC1() {
-    return listaValorC1;
+  public List<String> getValuesFromCrt1() {
+    return valuesFromCrt1;
   }
 
-  public List<String> getListaValorC2() {
-    return listaValorC2;
+  public List<String> getValuesFromCrt2() {
+    return valuesFromCrt2;
   }
 
-  public List<String> getListaValorC3() {
-    return listaValorC3;
+  public List<String> getValuesFromCrt3() {
+    return valuesFromCrt3;
   }
 
-  public List<String> getListaValorC4() {
-    return listaValorC4;
+  public List<String> getValuesFromCrt4() {
+    return valuesFromCrt4;
   }
+
+
 }

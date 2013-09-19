@@ -22,12 +22,12 @@ public class C1Contenidos {
   private ContenidoGND contenidoGnd;
   private ContenidoOSN contenidoOSN;
   private String nombre;
-  private MapeosC mapeoC1;
+  private GetValuesFromCrtToMapeo getValuesCrt;
   private ReporteXMlCaratula reporteCaratula;
 
-  public C1Contenidos(String nombre, MapeosC mapeoC1, ReporteXMlCaratula reporteCaratula) {
+  public C1Contenidos(String nombre, GetValuesFromCrtToMapeo mapeoC1, ReporteXMlCaratula reporteCaratula) {
     this.nombre = nombre;
-    this.mapeoC1 = mapeoC1;
+    this.getValuesCrt = mapeoC1;
     this.reporteCaratula = reporteCaratula;
     if (nombre.startsWith("OSN"))
       {
@@ -40,8 +40,7 @@ public class C1Contenidos {
   }
 
   private ContenidoGND gndC1() {
-    List<String> lista = mapeoC1.getListaValorC1();
-    List<String> caratulasC1 = reporteCaratula.getEstadoDeC1(lista);
+    List<String> caratulasC1 = reporteCaratula.getEstadoDeC1(getValuesCrt.getValuesFromCrt1());
     for (int i = 0; i < caratulasC1.size(); i++)
       {
       String metadato = caratulasC1.get(i);

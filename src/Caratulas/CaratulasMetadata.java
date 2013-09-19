@@ -30,7 +30,7 @@ public class CaratulasMetadata {
   private String pathname;
 
   private String rootIDC;
-  private MapeosC mapeoC1;
+  private GetValuesFromCrtToMapeo mapeoC1;
   private boolean isEjercicio;
   private CaratulasSedes sedesCrt;
   private C1 nuevoC1;
@@ -51,7 +51,7 @@ public class CaratulasMetadata {
       {
       CaratulaParser caratulaParser = new CaratulaParser(pathname);
       //todo
-      mapeoC1 = new MapeosC(pathname);
+      mapeoC1 = new GetValuesFromCrtToMapeo(pathname);
       //parser
       ReporteXMlCaratula reporteCaratula = caratulaParser.getReporte();
       NamedNodeMap caratulaNodeMap = caratulaParser.getCaratulas();
