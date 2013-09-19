@@ -98,7 +98,7 @@ public class CaratulasMetadata {
     if (idsede == 2)
       {
       tipo = reporteCaratula.getTipo();
-      subtipo = reporteCaratula.getSubTipo();
+      subtipo = reporteCaratula.getSubtipo();
       } else if (idsede == 1)
       {
       subtipo = caratula.getSubTypeCode();
