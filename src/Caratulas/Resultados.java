@@ -54,7 +54,9 @@ public class Resultados {
   private Volumen volumenResultado() throws IOException {
 
     CaratulasMetadata caratulaMeta = new CaratulasMetadata(rutaProcesada);
+
     CaratulasSedes caratulasSedes = caratulaMeta.getSedesCrt();
+
     PapelesyCampos papelesCampos = new PapelesyCampos(rutaProcesada, idcs, caratulaMeta.isIsEjercicio(), contador);
     Idc idc = papelesCampos.getIdece();
     Papeles papeles = new Papeles(rutaProcesada, caratulaMeta.isIsEjercicio());

@@ -6,7 +6,6 @@ package clases;
  */
 
 
-import clases.Campo;
 import org.w3c.dom.NamedNodeMap;
 
 /**

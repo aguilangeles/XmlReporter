@@ -79,6 +79,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
 
     InsertarStrings insert = null;
     Iterator it = getNombre.keySet().iterator();
+
     while (it.hasNext())
       {
       contador++;
