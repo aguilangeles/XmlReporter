@@ -4,7 +4,6 @@
  */
 package Caratulas;
 
-import Entidades.C1;
 import Entidades.ContenidoGND;
 import Entidades.ContenidoOSN;
 import java.util.List;
@@ -15,31 +14,20 @@ import parsers.ReporteXMlCaratula;
  *
  * @author MUTNPROD003
  */
-public class C1Contenidos {
+public class GetContenidoCrt1 {
 
-  private C1 cUno;
   private Object object;
-  private ContenidoGND contenidoGnd;
-  private ContenidoOSN contenidoOSN;
-  private String nombre;
   private GetValuesFromCrtToMapeo getValuesCrt;
   private ReporteXMlCaratula reporteCaratula;
 
-  public C1Contenidos(String nombre, GetValuesFromCrtToMapeo mapeoC1, ReporteXMlCaratula reporteCaratula) {
-    this.nombre = nombre;
-    this.getValuesCrt = mapeoC1;
+  public GetContenidoCrt1(GetValuesFromCrtToMapeo getvaluesCrt, ReporteXMlCaratula reporteCaratula, int idSede) {
+    this.getValuesCrt = getvaluesCrt;
     this.reporteCaratula = reporteCaratula;
-    if (nombre.startsWith("OSN"))
-      {
-      contenidoOSN = new ContenidoOSN(reporteCaratula.getCantidadSumarias());
-      object = contenidoOSN;
-      } else if (nombre.startsWith("GND"))
-      {
-      object = gndC1();
-      }
+    setContenidoForSede(idSede, reporteCaratula);
   }
 
-  private ContenidoGND gndC1() {
+  private ContenidoGND getContenidoGND() {
+    ContenidoGND contenidoGnd = null;
     List<String> caratulasC1 = reporteCaratula.getEstadoDeC1(getValuesCrt.getValuesFromCrt1());
     for (int i = 0; i < caratulasC1.size(); i++)
       {
@@ -61,5 +49,15 @@ public class C1Contenidos {
 
   public Object getObject() {
     return object;
+  }
+
+  private void setContenidoForSede(int idSede, ReporteXMlCaratula reporteCaratula) {
+    if (idSede == 2)
+      {
+      object = new ContenidoOSN(reporteCaratula.getCantidadSumarias());
+      } else if (idSede == 1)
+      {
+      object = getContenidoGND();
+      }
   }
 }

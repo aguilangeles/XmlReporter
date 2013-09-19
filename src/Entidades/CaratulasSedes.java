@@ -12,12 +12,12 @@ public class CaratulasSedes {
     private String estado;
     private String tipo_doc;
     private int subtipo_doc;
-    private C1 c1;
-    private C2 c2;
-    private C3 c3;
+    private Contenido c1;
+    private Contenido c2;
+    private NoContenido c3;
     private C4 c4;
 
-    public CaratulasSedes(String estado, String tipo_doc, int subtipo_doc, C1 c1, C2 c2, C3 c3, C4 c4) {
+    public CaratulasSedes(String estado, String tipo_doc, int subtipo_doc, Contenido c1, Contenido c2, NoContenido c3, C4 c4) {
         this.estado = estado;
         this.tipo_doc = tipo_doc;
         this.subtipo_doc = subtipo_doc;
@@ -61,27 +61,20 @@ public class CaratulasSedes {
         this.subtipo_doc = subtipo_doc;
     }
 
-    public C1 getC1() {
-        return c1;
-    }
+  public Contenido getC1() {
+    return c1;
+  }
 
-    public void setC1(C1 c1) {
-        this.c1 = c1;
-    }
+  public Contenido getC2() {
+    return c2;
+  }
 
-    public C2 getC2() {
-        return c2;
-    }
 
-    public void setC2(C2 c2) {
-        this.c2 = c2;
-    }
-
-    public C3 getC3() {
+    public NoContenido getC3() {
         return c3;
     }
 
-    public void setC3(C3 c3) {
+    public void setC3(NoContenido c3) {
         this.c3 = c3;
     }
 

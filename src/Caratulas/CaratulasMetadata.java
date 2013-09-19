@@ -4,11 +4,11 @@
  */
 package Caratulas;
 
-import Entidades.C1;
-import Entidades.C2;
-import Entidades.C3;
+import Entidades.Contenido;
+import Entidades.NoContenido;
 import Entidades.C4;
 import Entidades.CaratulasSedes;
+import Inserciones.Conexion;
 import clases.Caratula;
 import clases.Metadato;
 import java.io.IOException;
@@ -28,14 +28,13 @@ public class CaratulasMetadata {
   private String tipo;
   private int subtipo;
   private String pathname;
-
   private String rootIDC;
-  private GetValuesFromCrtToMapeo mapeoC1;
+  private GetValuesFromCrtToMapeo getValuesFromCrtS;
   private boolean isEjercicio;
   private CaratulasSedes sedesCrt;
-  private C1 nuevoC1;
-  private C2 nuevoC2;
-  private C3 nuevoC3;
+  private Contenido nuevoContenidoParaC1;
+  private Contenido nuevoContenidoParaC2;
+  private NoContenido nuevoC3;
   private C4 nuevoC4;
   private int idsede;
 
@@ -51,7 +50,7 @@ public class CaratulasMetadata {
       {
       CaratulaParser caratulaParser = new CaratulaParser(pathname);
       //todo
-      mapeoC1 = new GetValuesFromCrtToMapeo(pathname);
+      getValuesFromCrtS = new GetValuesFromCrtToMapeo(pathname);
       //parser
       ReporteXMlCaratula reporteCaratula = caratulaParser.getReporte();
       NamedNodeMap caratulaNodeMap = caratulaParser.getCaratulas();
@@ -71,18 +70,19 @@ public class CaratulasMetadata {
         getTipoYSubtipoDocumento(reporteCaratula, caratula);
         }
       //
-      C1Contenidos c1 = new C1Contenidos(rootIDC, mapeoC1, reporteCaratula);
-      nuevoC1 = new C1(c1.getObject());
-      //
-      C2_Contenidos c2 = new C2_Contenidos(rootIDC, mapeoC1, reporteCaratula);
-      nuevoC2 = new C2(c2.getObjetoC2());
-      //
-      C3Contenido c3 = new C3Contenido(mapeoC1, reporteCaratula);
-      nuevoC3 = new C3(c3.getRetC3());
+      GetContenidoCrt1 c1 = new GetContenidoCrt1(getValuesFromCrtS, reporteCaratula, idsede);
 
-      C4Contenido c4 = new C4Contenido(mapeoC1, reporteCaratula);
+      nuevoContenidoParaC1 = new Contenido(c1.getObject());
+      //
+      C2_Contenidos c2 = new C2_Contenidos(rootIDC, getValuesFromCrtS, reporteCaratula);
+      nuevoContenidoParaC2 = new Contenido(c2.getObjetoC2());
+      //
+      C3Contenido c3 = new C3Contenido(getValuesFromCrtS, reporteCaratula);
+      nuevoC3 = new NoContenido(c3.getRetC3());
+
+      C4Contenido c4 = new C4Contenido(getValuesFromCrtS, reporteCaratula);
       nuevoC4 = new C4(c4.getRetC4());
-      sedesCrt = new CaratulasSedes(status, tipo, subtipo, nuevoC1, nuevoC2, nuevoC3, nuevoC4);
+      sedesCrt = new CaratulasSedes(status, tipo, subtipo, nuevoContenidoParaC1, nuevoContenidoParaC2, nuevoC3, nuevoC4);
 
       } catch (SAXException ex)
       {
