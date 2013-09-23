@@ -12,9 +12,9 @@ public class Idc {
     private String nombre;
     private int validos;
     private int invalidos;
-    private CamposSedes campoSede;
+    private CamposPorSedes campoSede;
 
-    public Idc(String nombre, int validos, int invalidos, CamposSedes campoSede) {
+    public Idc(String nombre, int validos, int invalidos, CamposPorSedes campoSede) {
         this.nombre = nombre;
         this.validos = validos;
         this.invalidos = invalidos;
@@ -48,10 +48,10 @@ public class Idc {
         this.invalidos = invalidos;
     }
 
-    public CamposSedes getCampoSede() {
+    public CamposPorSedes getCampoSede() {
         return campoSede;
     }
-    public void setCampoSede(CamposSedes campoSede) {
+    public void setCampoSede(CamposPorSedes campoSede) {
         this.campoSede = campoSede;
     }
 

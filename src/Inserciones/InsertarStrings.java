@@ -6,7 +6,7 @@ package Inserciones;
 
 import Entidades.c2ContenidoGND;
 import Entidades.c2ContenidoOSN;
-import Entidades.CamposSedes;
+import Entidades.CamposPorSedes;
 import Entidades.GetCrtForSede;
 import Entidades.ContenidoGND;
 import Entidades.ContenidoOSN;
@@ -64,7 +64,7 @@ public class InsertarStrings {
 
   public String campos() {
     int id = idIdc + contador;// generar la constante de id, para sumarle los acontecimientos
-    CamposSedes s = v.getIdc().getCampoSede();
+    CamposPorSedes s = v.getIdc().getCampoSede();
     String ret = "INSERT INTO `reporteocr_1`.`campos`(`idSede`,`idIdc`"
             + ",`campos`,`campos_valid`,`campos_invalid`,`campos_invalidDB`)"
             + "VALUES("

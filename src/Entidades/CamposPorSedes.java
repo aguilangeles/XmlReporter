@@ -4,18 +4,11 @@
  */
 package Entidades;
 
-
-
-
-
-
-
-
 /**
  *
  * @author MUTNPROD003
  */
-public class CamposSedes {
+public class CamposPorSedes {
 
     private String nombreSede;
     private int size;
@@ -25,7 +18,8 @@ public class CamposSedes {
     private Object object;
 
 
-    public CamposSedes(String nombreSede, Object object,int size,int campos_valid, int campos_invalid, int campos_invalidDB) {
+    public CamposPorSedes(String nombreSede, Object object,int size,int campos_valid,
+            int campos_invalid, int campos_invalidDB) {
         this.nombreSede=nombreSede;
         this.size=size;
         this.campos_valid = campos_valid;

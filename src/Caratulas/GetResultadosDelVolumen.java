@@ -5,12 +5,10 @@
 package Caratulas;
 
 import Campos.GetPapelesYCamporForSede;
-import Entidades.CamposSedes;
 import Entidades.GetCrtForSede;
 import Entidades.Idc;
 import Entidades.PapelesPorIDC;
 import Entidades.Volumen;
-import java.io.IOException;
 
 /**
  *
@@ -25,6 +23,7 @@ public class GetResultadosDelVolumen {
 
   public GetResultadosDelVolumen(String pathname, String idcName, int contador,
           String nombreVolumen, String siglaSede, int cantidadIDC, int idSede) {
+
     this.volumen = setValuesFromVolumen(pathname, idcName, contador, nombreVolumen,
             siglaSede, cantidadIDC, idSede);
   }
@@ -45,7 +44,8 @@ public class GetResultadosDelVolumen {
     GetPapeles papeles = new GetPapeles(pathname, caratulaMeta.isIsEjercicio());
 
     papelIDC = papeles.getPapelesPorIdc();
-    setvolumen = new Volumen(contador, nombreVolumen, siglaSede, cantidadIDC, idc, papelIDC, caratulasSedes);
+
+    setvolumen = new Volumen(contador, nombreVolumen, cantidadIDC, idc, papelIDC, caratulasSedes, idSede);
 
     return setvolumen;
   }

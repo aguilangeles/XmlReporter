@@ -94,7 +94,9 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       //
 
       Volumen v = resultados.getVolumen();
+
       insert = new InsertarStrings(v, idVolumen, v.getIdSede(), idIdc, contador);
+
       papelTotal += resultados.getPapelTotal();
       validos += resultados.getValidos();
       invalidos += resultados.getInvalidos();

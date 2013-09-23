@@ -4,16 +4,13 @@
  */
 package Campos;
 
-import Entidades.CamposSedes;
+import Entidades.CamposPorSedes;
 import Entidades.GND_sede;
 import Entidades.Idc;
 import Entidades.OSN_sede;
 import clases.Meta;
-import helper.MensajeTxt;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -30,31 +27,29 @@ public class GetPapelesYCamporForSede {
 
   private boolean ejercicio;
   private String ruta;
-  private String idcName;
-  private int pvv;
-  private int piv;
-  private int size;
-  private int valid;
-  private int invalid;
-  private int invalidDB;
-  private GND_sede nGnd;
-  private OSN_sede nOsn;
-  private CamposSedes cmpSdes;
-  private Idc idece;
   private Object object;
   private int idSede;
-
+  //
+  private String idcName;
+  private static int pvv;
+  private static int piv;
+  private static int size;
+  private static int valid;
+  private static int invalid;
+  private static int invalidDB;
+  private Idc idece;
   private static Escritor error = new Escritor("Detalle_errores.txt");
 
-  public GetPapelesYCamporForSede(String ruta, String idcName, boolean ejercicio, int contador, int idSede)  {
+  public GetPapelesYCamporForSede(String ruta, String idcName, boolean ejercicio, int contador, int idSede) {
     this.ruta = ruta.replace("Carat.xml", "Meta.xml");
     this.idcName = idcName;
     this.ejercicio = ejercicio;
     this.idSede = idSede;
-    setIdc();
+    this.idece = setIdc();
   }
 
   private Idc setIdc() {
+    Idc setidc = null;
     try
       {
       MetaParser metaParser = new MetaParser(ruta);
@@ -72,33 +67,30 @@ public class GetPapelesYCamporForSede {
             pvv = reporteMeta.getCantidadValidMeta();
             piv = reporteMeta.getCantidadInvalidMeta();
             //
-            setCamposBySede(metaParser, reporteMeta, meta);
+            object = setCamposBySede(metaParser, reporteMeta, meta);
             //
             size = reporteMeta.getCantidadCampos();
             valid = reporteMeta.getCampoStatus("valid");
             invalid = reporteMeta.getCampoStatus("invalid");
             invalidDB = reporteMeta.getCampoStatus("invalidDB");
             }
+
           setMetaImageNull(meta, error, ejercicio, idSede);
-          cmpSdes = new CamposSedes(idcName, object, size, valid, invalid, invalidDB);
-          idece = new Idc(idcName, pvv, piv, cmpSdes);
+          CamposPorSedes camposForSedes = new CamposPorSedes(idcName, object, size, valid, invalid, invalidDB);
+          setidc = new Idc(idcName, pvv, piv, camposForSedes);
           }
         }
 
       } catch (SAXException ex)
       {
-        System.out.println("--");
+      System.out.println("--");
       Logger.getLogger(GetPapelesYCamporForSede.class.getName()).log(Level.SEVERE, null, ex);
       }
-    return idece;
+    return setidc;
   }
 
   public Idc getIdece() {
     return idece;
-  }
-
-  public CamposSedes getCmpSdes() {
-    return cmpSdes;
   }
 
   public int getSize() {
@@ -117,16 +109,9 @@ public class GetPapelesYCamporForSede {
     return invalidDB;
   }
 
-  private void setCamposBySede(MetaParser metaParser, ReporteXMLMetas reporteMeta, Meta meta) {
-    if (idSede == 2)
-      {
-      Campos_OSN osn = new Campos_OSN(metaParser, reporteMeta);
-      object = osn.getOsn();
-      } else if (idSede == 1)
-      {
-      Campos_GND gnd = new Campos_GND(metaParser, reporteMeta, meta);
-      object = gnd.getGnd();
-      }
+  private Object setCamposBySede(MetaParser metaParser, ReporteXMLMetas reporteMeta, Meta meta) {
+    SetCamposBySede setCamposBySede = new SetCamposBySede(metaParser, reporteMeta, meta, idSede);
+    return setCamposBySede.getObject();
   }
 
   private void setMetaImageNull(Meta meta, Escritor error, boolean ejercicio, int idSede) {
