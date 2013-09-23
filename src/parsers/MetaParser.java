@@ -6,6 +6,7 @@ import helper.XmlHelper;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -14,73 +15,76 @@ import org.xml.sax.SAXException;
 
 /**
  *
- * Date: 10/15/12
- * Time: 11:50 AM
+ * Date: 10/15/12 Time: 11:50 AM
  */
 public class MetaParser {
-    private DOMParser parser = new DOMParser();
-    private String fileLocation="";
-    private Document doc;
-    private NodeList root;
-    private Node xmlMeta;
-    private NamedNodeMap metas;
-    private ReporteXMLMetas reporte;
 
-    public MetaParser(String fileLocation) throws SAXException{
-            this.fileLocation = fileLocation;
-      try
-        {
-        parser.parse(this.fileLocation);
-        } catch (IOException ex)
-        {
-          System.out.println(ex.getMessage());
-//        Logger.getLogger(MetaParser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            this.doc = parser.getDocument();
-            this.root = doc.getChildNodes();
-            this.xmlMeta = XmlHelper.getNode("XmlMetas", root);
-            this.metas = XmlHelper.getNodesByName("Meta", xmlMeta.getChildNodes());
-            this.reporte = new ReporteXMLMetas(this.metas);
-    }
+  private DOMParser parser = new DOMParser();
+  private String fileLocation = "";
+  private Document doc;
+  private NodeList root;
+  private Node xmlMeta;
+  private NamedNodeMap metas;
+  private ReporteXMLMetas reporte;
 
-    public DOMParser getParser() {
-        return parser;
-    }
+  public MetaParser(String fileLocation) throws SAXException {
+    try
+      {
+      this.fileLocation = fileLocation;
 
-    public String getFileLocation() {
-        return fileLocation;
-    }
+      parser.parse(this.fileLocation);
 
-    public Document getDoc() {
-        return doc;
-    }
+      this.doc = parser.getDocument();
+      this.root = doc.getChildNodes();
+      this.xmlMeta = XmlHelper.getNode("XmlMetas", root);
+      this.metas = XmlHelper.getNodesByName("Meta", xmlMeta.getChildNodes());
+      this.reporte = new ReporteXMLMetas(this.metas);
+      } catch (IOException ex)
+      {
+      JOptionPane.showMessageDialog(null, ex.getMessage(), "El xml Meta no existe", JOptionPane.ERROR_MESSAGE);
+      System.exit(0);
+      }
+  }
 
-    public NodeList getRoot() {
-        return root;
-    }
+  public DOMParser getParser() {
+    return parser;
+  }
 
-    public Node getXmlMeta() {
-        return xmlMeta;
-    }
+  public String getFileLocation() {
+    return fileLocation;
+  }
 
-    public NamedNodeMap getMetas() {
-        return metas;
-    }
+  public Document getDoc() {
+    return doc;
+  }
 
-    public ReporteXMLMetas getReporte() {
-        return reporte;
-    }
+  public NodeList getRoot() {
+    return root;
+  }
 
-    public void setReporte(ReporteXMLMetas reporte) {
-        this.reporte = reporte;
-    }
+  public Node getXmlMeta() {
+    return xmlMeta;
+  }
 
-    public void parse(){
-        for(int i=0;i<metas.getLength();i++){
-            Node metaNode = metas.item(i);
-            NodeList metaChildren = metaNode.getChildNodes();
-            Meta meta = new Meta(metaChildren);
-            System.out.println(meta.toString());
-        }
-    }
+  public NamedNodeMap getMetas() {
+    return metas;
+  }
+
+  public ReporteXMLMetas getReporte() {
+    return reporte;
+  }
+
+  public void setReporte(ReporteXMLMetas reporte) {
+    this.reporte = reporte;
+  }
+
+  public void parse() {
+    for (int i = 0; i < metas.getLength(); i++)
+      {
+      Node metaNode = metas.item(i);
+      NodeList metaChildren = metaNode.getChildNodes();
+      Meta meta = new Meta(metaChildren);
+      System.out.println(meta.toString());
+      }
+  }
 }

@@ -8,7 +8,7 @@ package Entidades;
  *
  * @author MUTNPROD003
  */
-public class PapelIdc {
+public class PapelesPorIDC {
     private int papeles;
     private int caratulas;
     private int imagenes;
@@ -16,7 +16,7 @@ public class PapelIdc {
     private int reversos;
     private String estado;
 
-    public PapelIdc(int papeles, int caratulas, int imagenes, int anversos, int reversos, String estado) {
+    public PapelesPorIDC(int papeles, int caratulas, int imagenes, int anversos, int reversos, String estado) {
         this.papeles = papeles;
         this.caratulas = caratulas;
         this.imagenes = imagenes;
@@ -25,7 +25,7 @@ public class PapelIdc {
         this.estado = estado;
     }
 
-    public PapelIdc() {
+    public PapelesPorIDC() {
     }
 
     public int getPapeles() {

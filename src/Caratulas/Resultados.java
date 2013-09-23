@@ -4,11 +4,11 @@
  */
 package Caratulas;
 
-import Campos.PapelesyCampos;
+import Campos.GetPapelesYCamporForSede;
 import Entidades.CamposSedes;
 import Entidades.GetCrtForSede;
 import Entidades.Idc;
-import Entidades.PapelIdc;
+import Entidades.PapelesPorIDC;
 import Entidades.Volumen;
 import java.io.IOException;
 
@@ -52,20 +52,19 @@ public class Resultados {
     return volumen;
   }
 
-  private Volumen volumenResultado() throws IOException {
+  private Volumen volumenResultado() {
 
     CaratulasMetadata caratulaMeta = new CaratulasMetadata(rutaProcesada, idsede);
 
     GetCrtForSede caratulasSedes = caratulaMeta.getSedesCrt();
 
-    PapelesyCampos papelesCampos = new PapelesyCampos(rutaProcesada, idcName, caratulaMeta.isIsEjercicio(), contador, idsede);
+    GetPapelesYCamporForSede papelesCampos = new GetPapelesYCamporForSede(rutaProcesada, idcName, caratulaMeta.isIsEjercicio(), contador, idsede);
    //
-
     Idc idc = papelesCampos.getIdece();
 
-    Papeles papeles = new Papeles(rutaProcesada, caratulaMeta.isIsEjercicio());
+    GetPapeles papeles = new GetPapeles(rutaProcesada, caratulaMeta.isIsEjercicio());
 
-    PapelIdc papelIDC = papeles.getPapel_idc();
+    PapelesPorIDC papelIDC = papeles.getPapelesPorIdc();
     CamposSedes camposSedes = idc.getCampoSede();
 
     papelTotal = papelIDC.getPapeles();

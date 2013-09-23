@@ -13,7 +13,7 @@ import Entidades.ContenidoOSN;
 import Entidades.GND_sede;
 import Entidades.Idc;
 import Entidades.OSN_sede;
-import Entidades.PapelIdc;
+import Entidades.PapelesPorIDC;
 import Entidades.Total;
 import Entidades.Volumen;
 
@@ -215,7 +215,7 @@ public class InsertarStrings {
   public String idc() {
     int idvol = idVolumen + 1;//sumarle uno al ultimovolumen
     Idc i = v.getIdc();
-    PapelIdc p = v.getPapeles();
+    PapelesPorIDC p = v.getPapeles();
     String insertar = "INSERT INTO `reporteocr_1`.`idc`("
             + "`idVolumen`,`idSede`,`nombre_idc`,`papeles`,`pap_validos`"
             + ",`pap_invalidos`,`cant_caratulas`,`imagenes`,`anversos`"

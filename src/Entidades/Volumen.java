@@ -21,11 +21,11 @@ public class Volumen {
     private String fecha_reporte;
     private Idc idc;
     private GetCrtForSede crt_sedes;
-    private PapelIdc papeles;
+    private PapelesPorIDC papeles;
 
     public Volumen(int id, String vol_nombre, String sede,
             int cantidad_idc,
-            Idc idc, PapelIdc papeles, GetCrtForSede crt_sedes) {
+            Idc idc, PapelesPorIDC papeles, GetCrtForSede crt_sedes) {
         this.id = id;
         this.vol_nombre = vol_nombre;
         this.sede = sede;
@@ -96,7 +96,7 @@ public class Volumen {
         return idc;
     }
 
-    public PapelIdc getPapeles() {
+    public PapelesPorIDC getPapeles() {
         return papeles;
     }
 

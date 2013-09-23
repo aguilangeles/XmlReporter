@@ -26,16 +26,13 @@ import txt.Escritor;
  *
  * @author MUTNPROD003
  */
-public class PapelesyCampos {
+public class GetPapelesYCamporForSede {
 
-  private static final String NOTFOUND = "(El sistema no puede encontrar el archivo especificado)";
   private boolean ejercicio;
   private String ruta;
   private String idcName;
   private int pvv;
   private int piv;
-  private String rutaError = "InformeErrores1.txt";
-  Escritor error = new Escritor(rutaError);
   private int size;
   private int valid;
   private int invalid;
@@ -45,10 +42,11 @@ public class PapelesyCampos {
   private CamposSedes cmpSdes;
   private Idc idece;
   private Object object;
-  private int excepcion, idSede;
+  private int idSede;
 
-  public PapelesyCampos(String ruta, String idcName, boolean ejercicio, int contador, int idSede) throws IOException {
+  private static Escritor error = new Escritor("Detalle_errores.txt");
 
+  public GetPapelesYCamporForSede(String ruta, String idcName, boolean ejercicio, int contador, int idSede)  {
     this.ruta = ruta.replace("Carat.xml", "Meta.xml");
     this.idcName = idcName;
     this.ejercicio = ejercicio;
@@ -69,7 +67,6 @@ public class PapelesyCampos {
           NodeList metaChildren = metaNode.getChildNodes();
           Meta meta = new Meta(metaChildren);
           ReporteXMLMetas reporteMeta = metaParser.getReporte();
-
           if (meta != null)
             {
             pvv = reporteMeta.getCantidadValidMeta();
@@ -82,7 +79,6 @@ public class PapelesyCampos {
             invalid = reporteMeta.getCampoStatus("invalid");
             invalidDB = reporteMeta.getCampoStatus("invalidDB");
             }
-
           setMetaImageNull(meta, error, ejercicio, idSede);
           cmpSdes = new CamposSedes(idcName, object, size, valid, invalid, invalidDB);
           idece = new Idc(idcName, pvv, piv, cmpSdes);
@@ -91,7 +87,8 @@ public class PapelesyCampos {
 
       } catch (SAXException ex)
       {
-      Logger.getLogger(PapelesyCampos.class.getName()).log(Level.SEVERE, null, ex);
+        System.out.println("--");
+      Logger.getLogger(GetPapelesYCamporForSede.class.getName()).log(Level.SEVERE, null, ex);
       }
     return idece;
   }
@@ -123,12 +120,10 @@ public class PapelesyCampos {
   private void setCamposBySede(MetaParser metaParser, ReporteXMLMetas reporteMeta, Meta meta) {
     if (idSede == 2)
       {
-      excepcion = 1;
       Campos_OSN osn = new Campos_OSN(metaParser, reporteMeta);
       object = osn.getOsn();
       } else if (idSede == 1)
       {
-      excepcion = 2;
       Campos_GND gnd = new Campos_GND(metaParser, reporteMeta, meta);
       object = gnd.getGnd();
       }
