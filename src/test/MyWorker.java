@@ -5,7 +5,7 @@
 package test;
 
 /*import Campos.PorcentajePapeles;*/
-import Caratulas.Resultados;
+import Caratulas.GetResultadosDelVolumen;
 import Entidades.Total;
 import Entidades.Volumen;
 import Inserciones.Conexion;
@@ -88,7 +88,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       String rutaProcesada = (String) getRuta.get(key);
       String idcName = (String) getNombre.get(key);
       //
-      Resultados resultados = new Resultados(rutaProcesada,
+      GetResultadosDelVolumen resultados = new GetResultadosDelVolumen(rutaProcesada,
               idcName, contador, gsede.getVolumen(), gsede.getSigla(),
               directorio.getQuatyIDC(), gsede.getIdsede());
       //
