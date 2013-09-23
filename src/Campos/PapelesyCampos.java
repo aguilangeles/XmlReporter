@@ -11,10 +11,6 @@ import Entidades.OSN_sede;
 import clases.Meta;
 import helper.MensajeTxt;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -32,6 +28,7 @@ import txt.Escritor;
  */
 public class PapelesyCampos {
 
+  private static final String NOTFOUND = "(El sistema no puede encontrar el archivo especificado)";
   private boolean ejercicio;
   private String ruta;
   private String idcName;
@@ -60,8 +57,6 @@ public class PapelesyCampos {
   }
 
   private Idc setIdc() {
-
-
     try
       {
       MetaParser metaParser = new MetaParser(ruta);
@@ -93,30 +88,10 @@ public class PapelesyCampos {
           idece = new Idc(idcName, pvv, piv, cmpSdes);
           }
         }
+
       } catch (SAXException ex)
       {
       Logger.getLogger(PapelesyCampos.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (IOException ex)
-      {
-      System.out.println("aca va el escritor");
-      System.out.println(ex.getMessage());
-//      String mensaje = ex.getMessage().toString();
-//      if (mensaje.contains("El sistema no puede encontrar el archivo especificado"))
-//        {
-//        String proc = mensaje.substring(40, mensaje.length() - 1).replace("(", "\t");
-//        try
-//          {
-//          error.salida(proc + "\n");
-//          } catch (IOException ex1)
-//          {
-//          System.out.println("no se pudo escribir el informe");
-//          Logger.getLogger(PapelesyCampos.class.getName()).log(Level.SEVERE, null, ex1);
-//          }
-//        } else
-//        {
-//        JOptionPane.showMessageDialog(null, ex);
-//        }
-
       }
     return idece;
   }
@@ -159,7 +134,7 @@ public class PapelesyCampos {
       }
   }
 
-  private void setMetaImageNull(Meta meta, Escritor error, boolean ejercicio, int idSede) throws IOException {
+  private void setMetaImageNull(Meta meta, Escritor error, boolean ejercicio, int idSede) {
     if (meta.getImage() == null)
       {
       GetImageNull imageNull = new GetImageNull(meta, error, ejercicio, idSede);

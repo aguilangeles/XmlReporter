@@ -8,10 +8,6 @@ import Entidades.GND_sede;
 import Entidades.OSN_sede;
 import clases.Meta;
 import helper.MensajeTxt;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import txt.Escritor;
 
 /**
@@ -41,6 +37,27 @@ public class GetImageNull {
       }
     MensajeTxt message = new MensajeTxt(meta.getIdIDC(), descripcion);
     getError.salida(message);
+  }
+
+  public GetImageNull(String path, String descripcion, Escritor getError, int idSede) {
+    setMetaNotFound(path, descripcion, getError, idSede);
+  }
+
+  private void setMetaNotFound(String path, String descripcion, Escritor getError, int idSede) {
+    switch (idSede)
+      {
+      case 2:
+        OSN_sede o = new OSN_sede(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        object = o;
+        break;
+      case 1:
+        GND_sede g = new GND_sede(0, 0, 0, 0, 0, 0);
+        object = g;
+        break;
+      }
+    MensajeTxt message = new MensajeTxt(path, descripcion);
+    getError.salida(message);
+
   }
 
   public Object getObject() {

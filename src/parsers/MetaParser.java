@@ -4,6 +4,8 @@ import clases.Meta;
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import helper.XmlHelper;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -11,7 +13,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- * 
+ *
  * Date: 10/15/12
  * Time: 11:50 AM
  */
@@ -24,9 +26,16 @@ public class MetaParser {
     private NamedNodeMap metas;
     private ReporteXMLMetas reporte;
 
-    public MetaParser(String fileLocation) throws SAXException, IOException{
+    public MetaParser(String fileLocation) throws SAXException{
             this.fileLocation = fileLocation;
-            parser.parse(this.fileLocation);
+      try
+        {
+        parser.parse(this.fileLocation);
+        } catch (IOException ex)
+        {
+          System.out.println(ex.getMessage());
+//        Logger.getLogger(MetaParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
             this.doc = parser.getDocument();
             this.root = doc.getChildNodes();
             this.xmlMeta = XmlHelper.getNode("XmlMetas", root);
