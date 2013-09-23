@@ -62,7 +62,9 @@ public class Resultados {
    //
 
     Idc idc = papelesCampos.getIdece();
+
     Papeles papeles = new Papeles(rutaProcesada, caratulaMeta.isIsEjercicio());
+
     PapelIdc papelIDC = papeles.getPapel_idc();
     CamposSedes camposSedes = idc.getCampoSede();
 

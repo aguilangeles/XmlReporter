@@ -9,6 +9,7 @@ import Entidades.GND_sede;
 import Entidades.Idc;
 import Entidades.OSN_sede;
 import clases.Meta;
+import helper.MensajeTxt;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,7 +37,8 @@ public class PapelesyCampos {
   private String idcName;
   private int pvv;
   private int piv;
-  private String rutaError = "InformeErrores.txt";
+  private String rutaError = "InformeErrores1.txt";
+  Escritor error = new Escritor(rutaError);
   private int size;
   private int valid;
   private int invalid;
@@ -58,7 +60,8 @@ public class PapelesyCampos {
   }
 
   private Idc setIdc() {
-    Escritor error = new Escritor(rutaError);
+
+
     try
       {
       MetaParser metaParser = new MetaParser(ruta);
@@ -76,33 +79,16 @@ public class PapelesyCampos {
             {
             pvv = reporteMeta.getCantidadValidMeta();
             piv = reporteMeta.getCantidadInvalidMeta();
+            //
             setCamposBySede(metaParser, reporteMeta, meta);
+            //
             size = reporteMeta.getCantidadCampos();
             valid = reporteMeta.getCampoStatus("valid");
             invalid = reporteMeta.getCampoStatus("invalid");
             invalidDB = reporteMeta.getCampoStatus("invalidDB");
             }
-          if (meta.getImage() == null)
-            {
-            SimpleDateFormat formateador = new SimpleDateFormat("yyyy'-'MM'-'dd", Locale.ENGLISH);
-            Date fecha = new java.util.Date();
-            String date = formateador.format(fecha);
 
-            String ejer = (ejercicio) ? "Es ejercicio" : "no posee meta";
-            switch (excepcion)
-              {
-              case 1:
-                OSN_sede o = new OSN_sede(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-                object = o;
-                break;
-              case 2:
-                GND_sede g = new GND_sede(0, 0, 0, 0, 0, 0);
-                object = g;
-                break;
-
-              }
-            error.salida(meta.getIdIDC() + "\t" + ejer + "\t" + date + "\n");
-            }
+          setMetaImageNull(meta, error, ejercicio, idSede);
           cmpSdes = new CamposSedes(idcName, object, size, valid, invalid, invalidDB);
           idece = new Idc(idcName, pvv, piv, cmpSdes);
           }
@@ -112,22 +98,24 @@ public class PapelesyCampos {
       Logger.getLogger(PapelesyCampos.class.getName()).log(Level.SEVERE, null, ex);
       } catch (IOException ex)
       {
-      String mensaje = ex.getMessage().toString();
-      if (mensaje.contains("El sistema no puede encontrar el archivo especificado"))
-        {
-        String proc = mensaje.substring(40, mensaje.length() - 1).replace("(", "\t");
-        try
-          {
-          error.salida(proc + "\n");
-          } catch (IOException ex1)
-          {
-          System.out.println("no se pudo escribir el informe");
-          Logger.getLogger(PapelesyCampos.class.getName()).log(Level.SEVERE, null, ex1);
-          }
-        } else
-        {
-        JOptionPane.showMessageDialog(null, ex);
-        }
+      System.out.println("aca va el escritor");
+      System.out.println(ex.getMessage());
+//      String mensaje = ex.getMessage().toString();
+//      if (mensaje.contains("El sistema no puede encontrar el archivo especificado"))
+//        {
+//        String proc = mensaje.substring(40, mensaje.length() - 1).replace("(", "\t");
+//        try
+//          {
+//          error.salida(proc + "\n");
+//          } catch (IOException ex1)
+//          {
+//          System.out.println("no se pudo escribir el informe");
+//          Logger.getLogger(PapelesyCampos.class.getName()).log(Level.SEVERE, null, ex1);
+//          }
+//        } else
+//        {
+//        JOptionPane.showMessageDialog(null, ex);
+//        }
 
       }
     return idece;
@@ -169,5 +157,13 @@ public class PapelesyCampos {
       Campos_GND gnd = new Campos_GND(metaParser, reporteMeta, meta);
       object = gnd.getGnd();
       }
+  }
+
+  private void setMetaImageNull(Meta meta, Escritor error, boolean ejercicio, int idSede) throws IOException {
+    if (meta.getImage() == null)
+      {
+      GetImageNull imageNull = new GetImageNull(meta, error, ejercicio, idSede);
+      object = imageNull.getObject();
+      }//fin if
   }
 }
