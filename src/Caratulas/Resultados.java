@@ -30,16 +30,16 @@ public class Resultados {
   private int cinvalidDb;
   private Volumen volumen;
   private String rutaProcesada;
-  private String idcs;
+  private String idcName;
   private int contador;
   private String nombreVolumen;
   private String siglaSede;
   private int cantidadIDC;
   private int idsede;
 
-  public Resultados(String rutaProcesada, String idcs, int contador, String nombreVolumen, String siglaSede, int cantidadIDC, int idSede) throws IOException {
+  public Resultados(String rutaProcesada, String idcName, int contador, String nombreVolumen, String siglaSede, int cantidadIDC, int idSede) throws IOException {
     this.rutaProcesada = rutaProcesada;
-    this.idcs = idcs;
+    this.idcName = idcName;
     this.contador = contador;
     this.nombreVolumen = nombreVolumen;
     this.siglaSede = siglaSede;
@@ -58,7 +58,9 @@ public class Resultados {
 
     GetCrtForSede caratulasSedes = caratulaMeta.getSedesCrt();
 
-    PapelesyCampos papelesCampos = new PapelesyCampos(rutaProcesada, idcs, caratulaMeta.isIsEjercicio(), contador);
+    PapelesyCampos papelesCampos = new PapelesyCampos(rutaProcesada, idcName, caratulaMeta.isIsEjercicio(), contador, idsede);
+   //
+
     Idc idc = papelesCampos.getIdece();
     Papeles papeles = new Papeles(rutaProcesada, caratulaMeta.isIsEjercicio());
     PapelIdc papelIDC = papeles.getPapel_idc();

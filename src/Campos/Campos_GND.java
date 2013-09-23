@@ -16,7 +16,7 @@ import parsers.ReporteXMLMetas;
  * @author MUTNPROD003
  */
 public class Campos_GND {
-
+/*NO ESTA ENTRANDO A ESTE LUGAR*/
     private static String v = "Valid";
     private static String i = "Invalid";
     private static String idb = "InvalidDB";
@@ -50,9 +50,12 @@ public class Campos_GND {
         for (int x = 0; x < nombreCampoList.size(); x++) {
             String nombreOriginal = nombreCampoList.get(x);
             for (int l = 0; l < nombreList.size(); l++) {
+
                 String nombreHarC = nombreList.get(l);
                 if (nombreOriginal.equals(nombreHarC)) {
+                  System.out.println(nombreOriginal.equals(nombreHarC));
                     if (!nombreOriginal.equalsIgnoreCase("Id Imagen")) {
+                      System.out.println(!nombreOriginal.equalsIgnoreCase("Id Imagen"));
                         List<Campo> campos = reporteMeta.getCamposByName(nombreOriginal);
                         gradoValid += cantidadPorEstadoYNombre(nombreOriginal, "Grado", v);
                         gradoInvalid += cantidadPorEstadoYNombre(nombreOriginal, "Grado", i);

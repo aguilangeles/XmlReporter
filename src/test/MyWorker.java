@@ -86,10 +86,10 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       Object key = it.next();
 
       String rutaProcesada = (String) getRuta.get(key);
-      String idcs = (String) getNombre.get(key);
+      String idcName = (String) getNombre.get(key);
       //
       Resultados resultados = new Resultados(rutaProcesada,
-              idcs, contador, gsede.getVolumen(), gsede.getSigla(),
+              idcName, contador, gsede.getVolumen(), gsede.getSigla(),
               directorio.getQuatyIDC(), gsede.getIdsede());
       //
 
@@ -105,7 +105,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       cvalidos += resultados.getCvalidos();
       cinvalidos += resultados.getCinvalidos();
       cinvalidDb += resultados.getCinvalidDb();
-      progreso.setText("\n\t" + "Analizando el idc:\n" + idcs);
+      progreso.setText("\n\t" + "Analizando el idc:\n" + idcName);
       conexion.executeUpdate(insert.idc());
       conexion.executeUpdate(insert.caratulas());
       if (v.getIdSede() == 1)

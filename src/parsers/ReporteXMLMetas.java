@@ -7,7 +7,6 @@ package parsers;
 import clases.Campo;
 import clases.Image;
 import clases.Meta;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -39,7 +38,6 @@ private List<String> statuses;
             meta = new Meta(metaChildren);
             metas.add(meta);
         }
-
         setDistinctCampos();
         setDistinctStatuses();
         setNombresCampos();
