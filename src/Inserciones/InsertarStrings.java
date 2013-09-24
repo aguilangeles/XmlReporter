@@ -14,7 +14,6 @@ import Entidades.GND_sede;
 import Entidades.Idc;
 import Entidades.OSN_sede;
 import Entidades.PapelesPorIDC;
-import Entidades.Total;
 import Entidades.Volumen;
 
 /**
@@ -37,28 +36,28 @@ public class InsertarStrings {
     this.contador = contador;
   }
 
-  public String totales(Total t) {
-    int id = idVolumen + 1;
-    String ret = "INSERT INTO `reporteocr_1`.`totales`(`idVolumen`,`idSede`"
-            + ",`papeles`,`pap_validos`,`pap_invalidos`,`imagenes`,`anversos`"
-            + ",`reversos`,`campos`,`campos_valid`,`campos_invalid`"
-            + ",`campos_invalidDb`,`estado_validacion`)VALUES("
-            + id + ", "
-            + idSede + ", "
-            + t.getPapeles() + ", "
-            + t.getValidos() + ", "
-            + t.getInvalidos() + ", "
-            + t.getImagenes() + ", "
-            + t.getAnversos() + ", "
-            + t.getReversos() + ", "
-            + t.getCampos() + ", "
-            + t.getcValidos() + ", "
-            + t.getcInvalidos() + ", "
-            + t.getcInvalidDB() + ", '"
-            + "no- Validado'"
-            + ");\n";
-    return ret;
-  }
+//  public String totales(Total t) {
+//    int id = idVolumen + 1;
+//    String ret = "INSERT INTO `reporteocr_1`.`totales`(`idVolumen`,`idSede`"
+//            + ",`papeles`,`pap_validos`,`pap_invalidos`,`imagenes`,`anversos`"
+//            + ",`reversos`,`campos`,`campos_valid`,`campos_invalid`"
+//            + ",`campos_invalidDb`,`estado_validacion`)VALUES("
+//            + id + ", "
+//            + idSede + ", "
+//            + t.getPapeles() + ", "
+//            + t.getValidos() + ", "
+//            + t.getInvalidos() + ", "
+//            + t.getImagenes() + ", "
+//            + t.getAnversos() + ", "
+//            + t.getReversos() + ", "
+//            + t.getCampos() + ", "
+//            + t.getcValidos() + ", "
+//            + t.getcInvalidos() + ", "
+//            + t.getcInvalidDB() + ", '"
+//            + "no- Validado'"
+//            + ");\n";
+//    return ret;
+//  }
 
   public String campos() {
     int id = idIdc + contador;// generar la constante de id, para sumarle los acontecimientos
@@ -183,7 +182,7 @@ public class InsertarStrings {
         ce2 = c2osn.getId();
         break;
       }
-    // es el id volumen que ya se inserto, no colocar +1
+    // es el id setVolumen que ya se inserto, no colocar +1
     String ret = "INSERT INTO `reporteocr_1`.`caratulas`(`idIdc`,`idVolumen`"
             + ",`idSede`,`estado`,`tipo_doc`,`subtipo_doc`,`id_c1`,`id_c2`,`id_c3`,`id_c4`)VALUES("
             + id + ", "

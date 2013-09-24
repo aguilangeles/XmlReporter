@@ -12,6 +12,7 @@ import Inserciones.Conexion;
 import Inserciones.GetLastID;
 import Inserciones.InsertarStrings;
 import Inserciones.InsertarTotales;
+import Inserciones.InsertarVolumen;
 import clases.GetSede;
 import helper.Directorios;
 import java.io.File;
@@ -39,13 +40,14 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   //
   private File[] listOfFiles;
   private Conexion conexion;
-  private Total t;
+//  private Total t;
   private Directorios directorio;
   int papelTotal = 0, validos = 0, invalidos = 0, imagenes = 0, anversos = 0,
           reversos = 0, campos = 0, cvalidos = 0, cinvalidos = 0, cinvalidDb = 0;
   private SortedMap getNombre;
   private SortedMap getRuta;
   private GetSede gsede;
+  private Volumen vol;
 
   public MyWorker(JButton iniciar, JButton finalizar, JTextArea progreso,
           String pathname, JLabel conectadoA, File[] listOfFiles) {
@@ -94,9 +96,10 @@ public class MyWorker extends SwingWorker<Void, Integer> {
               directorio.getQuatyIDC(), gsede.getIdsede());
       //
 
-      Volumen volumen = resultados.getVolumen();
+      vol = resultados.getVolumen();
 
-      insertResultados = new InsertarStrings(volumen, idVolumen, volumen.getIdSede(), idIdc, contador);
+      //
+      insertResultados = new InsertarStrings(vol, idVolumen, vol.getIdSede(), idIdc, contador);
 
       papelTotal += resultados.getPapelTotal();
       validos += resultados.getValidos();
@@ -113,28 +116,26 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       //
       conexion.executeUpdate(insertResultados.idc());
       conexion.executeUpdate(insertResultados.caratulas());
-      if (volumen.getIdSede() == 1)
+      if (vol.getIdSede() == 1)
         {
         conexion.executeUpdate(insertResultados.gnd_crt());
         conexion.executeUpdate(insertResultados.gnd_metadatos());
-        } else if (volumen.getIdSede() == 2)
+        } else if (vol.getIdSede() == 2)
         {
-        System.out.println(insertResultados.osn_crt());
         conexion.executeUpdate(insertResultados.osn_crt());
 
         conexion.executeUpdate(insertResultados.osn_metadatos());
         }
       conexion.executeUpdate(insertResultados.campos());
       }
-    conexion.executeUpdate(insertResultados.volumen());
-    //
-    t = new Total(papelTotal, validos, invalidos, imagenes,
-            anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
-    //
 
-    //conexion.executeUpdate(insertResultados.totales(t));
+    InsertarVolumen volumen = new InsertarVolumen(vol, gsede.getIdsede());
+
     //
-    InsertarTotales insertarTotales = new InsertarTotales(idVolumen, gsede.getIdsede() , idIdc, t);
+    Total totales = new Total(papelTotal, validos, invalidos, imagenes,
+            anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
+
+    InsertarTotales insertarTotales = new InsertarTotales(idVolumen, gsede.getIdsede(), idIdc, totales);
     //
     conexion.desconectar();
     return null;

@@ -403,3 +403,328 @@ Ruta: GND#201111L06V02#GEN_00000002#SL000190
 Descripcion: Es ejercicio
 
 
+Fecha: 24-09-2013 10:12
+Ruta: GND#201111L06V02#GEN_00000002#SL000133
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:12
+Ruta: GND#201111L06V02#GEN_00000002#SL000134
+Descripcion: No posee Meta
+
+
+Fecha: 24-09-2013 10:12
+Ruta: GND#201111L06V02#GEN_00000002#SL000178
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:12
+Ruta: GND#201111L06V02#GEN_00000002#SL000181
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:12
+Ruta: GND#201111L06V02#GEN_00000002#SL000183
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:12
+Ruta: GND#201111L06V02#GEN_00000002#SL000186
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:12
+Ruta: GND#201111L06V02#GEN_00000002#SL000188
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:12
+Ruta: GND#201111L06V02#GEN_00000002#SL000190
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000133
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000134
+Descripcion: No posee Meta
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000178
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000181
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000183
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000186
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000188
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000190
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000133
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000134
+Descripcion: No posee Meta
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000178
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000181
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000183
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000186
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000188
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:15
+Ruta: GND#201111L06V02#GEN_00000002#SL000190
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000133
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000134
+Descripcion: No posee Meta
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000178
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000181
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000183
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000186
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000188
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000190
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000133
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000133
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000134
+Descripcion: No posee Meta
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000178
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000181
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000183
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000186
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000188
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:32
+Ruta: GND#201111L06V02#GEN_00000002#SL000190
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:34
+Ruta: GND#201111L06V02#GEN_00000002#SL000133
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:34
+Ruta: GND#201111L06V02#GEN_00000002#SL000134
+Descripcion: No posee Meta
+
+
+Fecha: 24-09-2013 10:34
+Ruta: GND#201111L06V02#GEN_00000002#SL000178
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:34
+Ruta: GND#201111L06V02#GEN_00000002#SL000181
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:34
+Ruta: GND#201111L06V02#GEN_00000002#SL000183
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:34
+Ruta: GND#201111L06V02#GEN_00000002#SL000186
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:34
+Ruta: GND#201111L06V02#GEN_00000002#SL000188
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:34
+Ruta: GND#201111L06V02#GEN_00000002#SL000190
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:35
+Ruta: GND#201111L06V02#GEN_00000002#SL000133
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:35
+Ruta: GND#201111L06V02#GEN_00000002#SL000134
+Descripcion: No posee Meta
+
+
+Fecha: 24-09-2013 10:35
+Ruta: GND#201111L06V02#GEN_00000002#SL000178
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:35
+Ruta: GND#201111L06V02#GEN_00000002#SL000181
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:35
+Ruta: GND#201111L06V02#GEN_00000002#SL000183
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:35
+Ruta: GND#201111L06V02#GEN_00000002#SL000186
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:35
+Ruta: GND#201111L06V02#GEN_00000002#SL000188
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:36
+Ruta: GND#201111L06V02#GEN_00000002#SL000190
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:36
+Ruta: GND#201111L06V02#GEN_00000002#SL000133
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:36
+Ruta: GND#201111L06V02#GEN_00000002#SL000134
+Descripcion: No posee Meta
+
+
+Fecha: 24-09-2013 10:36
+Ruta: GND#201111L06V02#GEN_00000002#SL000178
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:36
+Ruta: GND#201111L06V02#GEN_00000002#SL000181
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:36
+Ruta: GND#201111L06V02#GEN_00000002#SL000183
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:36
+Ruta: GND#201111L06V02#GEN_00000002#SL000186
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:36
+Ruta: GND#201111L06V02#GEN_00000002#SL000188
+Descripcion: Es ejercicio
+
+
+Fecha: 24-09-2013 10:36
+Ruta: GND#201111L06V02#GEN_00000002#SL000190
+Descripcion: Es ejercicio
+
+
