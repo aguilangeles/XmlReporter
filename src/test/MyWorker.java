@@ -11,6 +11,7 @@ import Entidades.Volumen;
 import Inserciones.Conexion;
 import Inserciones.GetLastID;
 import Inserciones.InsertarStrings;
+import Inserciones.InsertarTotales;
 import clases.GetSede;
 import helper.Directorios;
 import java.io.File;
@@ -68,7 +69,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
 
   @Override
   protected Void doInBackground() throws UnsupportedEncodingException, IOException, SQLException {
-    conexion.conectar();
+    conexion.isConexion();
     //todo refactor conexion;
     GetLastID lastId = new GetLastID(conexion);
 
@@ -77,7 +78,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
     int idVolumen = lastId.getLastIdFromTable("volumen");
     int idIdc = lastId.getLastIdFromTable("idc");
 
-    InsertarStrings insert = null;
+    InsertarStrings insertResultados = null;
     Iterator it = getNombre.keySet().iterator();
 
     while (it.hasNext())
@@ -93,9 +94,9 @@ public class MyWorker extends SwingWorker<Void, Integer> {
               directorio.getQuatyIDC(), gsede.getIdsede());
       //
 
-      Volumen v = resultados.getVolumen();
+      Volumen volumen = resultados.getVolumen();
 
-      insert = new InsertarStrings(v, idVolumen, v.getIdSede(), idIdc, contador);
+      insertResultados = new InsertarStrings(volumen, idVolumen, volumen.getIdSede(), idIdc, contador);
 
       papelTotal += resultados.getPapelTotal();
       validos += resultados.getValidos();
@@ -107,27 +108,34 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       cvalidos += resultados.getCvalidos();
       cinvalidos += resultados.getCinvalidos();
       cinvalidDb += resultados.getCinvalidDb();
+      //
       progreso.setText("\n\t" + "Analizando el idc:\n" + idcName);
-      conexion.executeUpdate(insert.idc());
-      conexion.executeUpdate(insert.caratulas());
-      if (v.getIdSede() == 1)
+      //
+      conexion.executeUpdate(insertResultados.idc());
+      conexion.executeUpdate(insertResultados.caratulas());
+      if (volumen.getIdSede() == 1)
         {
-        conexion.executeUpdate(insert.gnd_crt());
-        conexion.executeUpdate(insert.gnd_metadatos());
-        } else if (v.getIdSede() == 2)
+        conexion.executeUpdate(insertResultados.gnd_crt());
+        conexion.executeUpdate(insertResultados.gnd_metadatos());
+        } else if (volumen.getIdSede() == 2)
         {
-        System.out.println(insert.osn_crt());
-        conexion.executeUpdate(insert.osn_crt());
+        System.out.println(insertResultados.osn_crt());
+        conexion.executeUpdate(insertResultados.osn_crt());
 
-        conexion.executeUpdate(insert.osn_metadatos());
+        conexion.executeUpdate(insertResultados.osn_metadatos());
         }
-      conexion.executeUpdate(insert.campos());
+      conexion.executeUpdate(insertResultados.campos());
       }
-    conexion.executeUpdate(insert.volumen());
+    conexion.executeUpdate(insertResultados.volumen());
+    //
     t = new Total(papelTotal, validos, invalidos, imagenes,
             anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
+    //
 
-    conexion.executeUpdate(insert.totales(t));
+    //conexion.executeUpdate(insertResultados.totales(t));
+    //
+    InsertarTotales insertarTotales = new InsertarTotales(idVolumen, gsede.getIdsede() , idIdc, t);
+    //
     conexion.desconectar();
     return null;
   }

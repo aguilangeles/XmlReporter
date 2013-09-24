@@ -39,8 +39,6 @@ public class InsertarStrings {
 
   public String totales(Total t) {
     int id = idVolumen + 1;
-    //falta definir el valor de estado de validacion
-    // Total t = v.getTotal();
     String ret = "INSERT INTO `reporteocr_1`.`totales`(`idVolumen`,`idSede`"
             + ",`papeles`,`pap_validos`,`pap_invalidos`,`imagenes`,`anversos`"
             + ",`reversos`,`campos`,`campos_valid`,`campos_invalid`"

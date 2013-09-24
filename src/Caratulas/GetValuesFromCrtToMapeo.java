@@ -52,9 +52,6 @@ public class GetValuesFromCrtToMapeo {
         valuesFromCrt3 = reporteMapeo.getMapeoGetC3List();
         valuesFromCrt4 = reporteMapeo.getMapeoGetC4List();
         }
-      } catch (IOException ex)
-      {
-      System.out.println(ex.getMessage());
       //Logger.getLogger(IDCXCaratula.class.getName()).log(Level.SEVERE, null, ex);
       } catch (SAXException ex)
       {
