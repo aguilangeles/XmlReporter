@@ -116,15 +116,15 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       conexion.executeUpdate(insertResultados.caratulas());
       if (vol.getIdSede() == 1)
         {
-        conexion.executeUpdate(insertResultados.gnd_crt());
+        conexion.executeUpdate(insertResultados.setCaratulasForGnd());
         conexion.executeUpdate(insertResultados.gnd_metadatos());
         } else if (vol.getIdSede() == 2)
         {
-        conexion.executeUpdate(insertResultados.osn_crt());
+        conexion.executeUpdate(insertResultados.setCaratulasforOSN());
 
         conexion.executeUpdate(insertResultados.osn_metadatos());
         }
-      conexion.executeUpdate(insertResultados.campos());
+      conexion.executeUpdate(insertResultados.setCampos());
       }
 
     InsertarVolumen volumen = new InsertarVolumen(vol, gsede.getIdsede());

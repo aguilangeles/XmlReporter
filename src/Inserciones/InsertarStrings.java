@@ -6,14 +6,10 @@ package Inserciones;
 
 import Entidades.c2ContenidoGND;
 import Entidades.c2ContenidoOSN;
-import Entidades.CamposPorSedes;
 import Entidades.GetCrtForSede;
 import Entidades.ContenidoGND;
-import Entidades.ContenidoOSN;
 import Entidades.GND_sede;
-import Entidades.Idc;
 import Entidades.OSN_sede;
-import Entidades.PapelesPorIDC;
 import Entidades.Volumen;
 
 /**
@@ -36,63 +32,16 @@ public class InsertarStrings {
     this.contador = contador;
   }
 
-  public String campos() {
-    int id = idIdc + contador;// generar la constante de id, para sumarle los acontecimientos
-    System.out.println("id de campos " + id);
-    CamposPorSedes s = v.getIdc().getCampoSede();
-    String ret = "INSERT INTO `reporteocr_1`.`campos`(`idSede`,`idIdc`"
-            + ",`campos`,`campos_valid`,`campos_invalid`,`campos_invalidDB`)"
-            + "VALUES("
-            + idSede + ", "
-            + id + ", "
-            + s.getSize() + ", "
-            + s.getCampos_valid() + ", "
-            + s.getCampos_invalid() + ", "
-            + s.getCampos_invalidDB()
-            + ");\n";
-    return ret;
+  public String setCampos() {
+    return new InsertarCampos().campos(idIdc, contador, v, idSede);
   }
 
-  public String gnd_crt() {
-    int id = idIdc + contador;
-    ContenidoGND g = (ContenidoGND) v.getCrt_sedes().getC1().getObject();
-    String ret = "INSERT INTO `reporteocr_1`.`gnd_crt`(`idSede`,"
-            + "`idIdc`,`id_c1`,`caja`,`anio`,`mes`,`liquidacion`,`unidad`"
-            + ",`id_c2`,`id_c3`,`id_c4`)VALUES("
-            + idSede + ", "
-            + id + ", '"
-            + g.getId() + "', '"
-            + g.getCaja() + "', '"
-            + g.getAnio() + "', '"
-            + g.getMes() + "', '"
-            + g.getLiquidacion() + "', '"
-            + g.getUnidad() + "', '"
-            + v.getCrt_sedes().getC2() + "', '"
-            + v.getCrt_sedes().getC3() + "', '"
-            + v.getCrt_sedes().getC4() + "'"
-            + ");\n";
-    return ret;
+  public String setCaratulasForGnd() {
+    return new InsertarCaratulasParaGND().gnd_crt(idIdc, contador, v, idSede);
   }
 
-  public String osn_crt() {
-    int id = idIdc + contador;
-    ContenidoOSN o = (ContenidoOSN) v.getCrt_sedes().getC1().getObject();
-    c2ContenidoOSN c2 = (c2ContenidoOSN) v.getCrt_sedes().getC2().getObject();
-    String ret = "INSERT INTO `reporteocr_1`.`osn_crt`"
-            + "(`idSede`,`idIdc`,`sumarias`,`id_c2`,`caja`"
-            + ",`banco`,`sucursal`,`fecha_presentacion`,`id_c3`,`id_c4`)VALUES("
-            + idSede + ", "
-            + id + ", "
-            + o.getSumaria() + ", '"
-            + c2.getId() + "', '"
-            + c2.getCaja() + "', '"
-            + c2.getBanco() + "', '"
-            + c2.getSucursal() + "', '"
-            + c2.getFecha_pres() + "', '"
-            + v.getCrt_sedes().getC3() + "', '"
-            + v.getCrt_sedes().getC4()
-            + "');";
-    return ret;
+  public String setCaratulasforOSN() {
+    return new InsertarCaratulasParaOSN().osn_crt(idIdc, contador, v, idSede);
   }
 
   public String gnd_metadatos() {
