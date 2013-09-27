@@ -27,13 +27,11 @@ public class Conexion {
   public Statement declaracion;
   public ResultSet resultado;
   public PreparedStatement prepareStatement;
-  private JTextArea progreso;
-  private JLabel mensaje;
+  private JLabel  infoJLabel;
   private String url, user, passw, info, server;
 
-  public Conexion(JLabel mensaje, JTextArea progreso) {
-    this.mensaje = mensaje;
-    this.progreso = progreso;
+  public Conexion(JLabel infoJLabel) {
+    this.infoJLabel = infoJLabel;
   }
 
   public Conexion() {
@@ -92,12 +90,12 @@ public class Conexion {
         String msj = ex.getMessage();
 
         String sep = msj.substring(17);
-        progreso.setText("\nEntrada duplicada:\n" + sep + "\n");
+        infoJLabel.setText("\nEntrada duplicada:\n" + sep + "\n");
         } else if (ex.getMessage().contains("Update Cannot add or "
               + "update a child row: a foreign key constraint fails"))
         {
         JOptionPane.showMessageDialog(null, ex.getMessage());
-        progreso.setText("\n" + ex.getMessage() + "\n");
+        infoJLabel.setText("\n" + ex.getMessage() + "\n");
         String error = "error en resultados/executeUpdate" + ex.getMessage();
         }
       }

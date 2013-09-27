@@ -9,9 +9,6 @@ import Entidades.GetCrtForSede;
 import Entidades.Volumen;
 import Entidades.c2ContenidoGND;
 import Entidades.c2ContenidoOSN;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +19,7 @@ public class InsertarCaratulas {
   public InsertarCaratulas() {
   }
 
-  public String setcaratulas(int idIdc, int contador, int idVolumen, Volumen v, int idSede) {
+  public static String setcaratulas(int idIdc, int contador, int idVolumen, Volumen v, int idSede) {
     int id = idIdc + contador;
     int idvol = idVolumen + 1;
     GetCrtForSede c = v.getCrt_sedes();

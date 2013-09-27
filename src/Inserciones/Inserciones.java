@@ -27,30 +27,30 @@ public class Inserciones {
   }
 
   public String setCampos() {
-    return new InsertarCampos().campos(idIdc, contador, volumen, idSede);
+    return InsertarCampos.campos(idIdc, contador, volumen, idSede);
   }
 
   public String setCaratulasForGnd() {
-    return new InsertarCaratulasParaGND().gnd_crt(idIdc, contador, volumen, idSede);
+    return InsertarCaratulasParaGND.gnd_crt(idIdc, contador, volumen, idSede);
   }
 
   public String setCaratulasforOSN() {
-    return new InsertarCaratulasParaOSN().osn_crt(idIdc, contador, volumen, idSede);
+    return InsertarCaratulasParaOSN.setcrtforosn(idIdc, contador, volumen, idSede);
   }
 
   public String gnd_metadatos() {
-    return new InsertaraMetadatosEnGND().setmetadatos(idIdc, contador, idSede, volumen);
+    return InsertaraMetadatosEnGND.setmetadatos(idIdc, contador, idSede, volumen);
   }
 
   public String osn_metadatos() {
-    return new InsertarMetadatosEnOSN().setmetadatos(idIdc, contador, idSede, volumen);
+    return InsertarMetadatosEnOSN.setmetadatos(idIdc, contador, idSede, volumen);
   }
 
   public String caratulas() {
-    return new InsertarCaratulas().setcaratulas(idIdc, contador, idVolumen, volumen, idSede);
+    return InsertarCaratulas.setcaratulas(idIdc, contador, idVolumen, volumen, idSede);
   }
 
   public String setIDC() {
-    return new InsertarIDC().insertarEnIDc(idVolumen, volumen, idSede);
+    return InsertarIDC.insertarEnIDc(idVolumen, volumen, idSede);
   }
 }

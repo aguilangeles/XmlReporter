@@ -17,7 +17,7 @@ public class InsertarCaratulasParaOSN {
   public InsertarCaratulasParaOSN() {
   }
 
-  public String osn_crt(int idIdc, int contador, Volumen v, int idSede) {
+  public static  String setcrtforosn(int idIdc, int contador, Volumen v, int idSede) {
     int id = idIdc + contador;
     ContenidoOSN o = (ContenidoOSN) v.getCrt_sedes().getC1().getObject();
     c2ContenidoOSN c2 = (c2ContenidoOSN) v.getCrt_sedes().getC2().getObject();

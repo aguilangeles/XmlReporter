@@ -14,7 +14,9 @@ import parsers.ReporteXMLMetas;
  */
 class GetCampoBySede {
   private Object object;
-  public GetCampoBySede(MetaParser metaParser, ReporteXMLMetas reporteMeta, Meta meta, int idsede) {
+
+  public GetCampoBySede(MetaParser metaParser, ReporteXMLMetas reporteMeta,
+          Meta meta, int idsede) {
     this.object = setCamposBySede(metaParser, reporteMeta, meta, idsede);
   }
 

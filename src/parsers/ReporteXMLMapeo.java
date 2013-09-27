@@ -55,7 +55,7 @@ public class ReporteXMLMapeo {
       }
   }
 
-  public int getCantidadPorFace(String face) {
+  public  int getCantidadPorFace(String face) {
     int ret = 0;
     Iterator<MapeoList> it = this.listaMapeoLists.iterator();
     while (it.hasNext())

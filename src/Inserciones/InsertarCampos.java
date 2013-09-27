@@ -16,7 +16,7 @@ public class InsertarCampos {
   public InsertarCampos() {
   }
 
-  public String campos(int idIdc, int contador, Volumen v, int idSede) {
+  public static String campos(int idIdc, int contador, Volumen v, int idSede) {
     int id = idIdc + contador;// generar la constante de id, para sumarle los acontecimientos
     CamposPorSedes s = v.getIdc().getCampoSede();
     String ret = "INSERT INTO `reporteocr_1`.`campos`"

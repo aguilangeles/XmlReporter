@@ -37,9 +37,10 @@ import javax.swing.SwingWorker;
 public class MyWorker extends SwingWorker<Void, Integer> {
 
   private JButton finalizar;
-  private JTextArea progreso;
+//  private JTextArea progreso;
   private String pathname;
   private JLabel conectadoA;
+  private JLabel infoJLabel;
   //
   private File[] listOfFiles;
   private Conexion conexion;
@@ -52,10 +53,10 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   private GetSede gsede;
   private Volumen vol;
 
-  public MyWorker(JButton finalizar, JTextArea progreso, String pathname,
-          JLabel conectadoA, File[] listOfFiles) {
+  public MyWorker(JButton finalizar, String pathname, File[] listOfFiles, JLabel infoJLabel) {
     this.finalizar = finalizar;
-    this.progreso = progreso;
+//    this.progreso = progreso;
+    this.infoJLabel=infoJLabel;
     this.pathname = pathname;
     this.conectadoA = conectadoA;
     this.listOfFiles = listOfFiles;
@@ -63,7 +64,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
     this.getNombre = directorio.getIdcMaps();
     this.getRuta = directorio.getPathsMaps();
     this.gsede = directorio.getIdentificarSede();
-    this.conexion = new Conexion(conectadoA, progreso);
+    this.conexion = new Conexion(infoJLabel);
   }
 
   public MyWorker() {
@@ -113,7 +114,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
           cinvalidos += GetPapelesYCamporForSede.getInvalid();
           cinvalidDb += GetPapelesYCamporForSede.getInvalidDB();
 
-          progreso.setText("\n\t" + "Analizando el idc:\n" + idcName);
+          infoJLabel.setText("\n\t" + "Analizando el idc:\n" + idcName);
 
           conexion.executeUpdate(insertResultados.setIDC());
           conexion.executeUpdate(insertResultados.caratulas());
@@ -152,7 +153,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       String finalizado = "\nReporte Finalizado. "
               + "\nDatos ingresados en:\n" //            + conexion.getInfo() + ""
               ;
-      progreso.setText(finalizado);
+      infoJLabel.setText(finalizado);
       }
   }
 }

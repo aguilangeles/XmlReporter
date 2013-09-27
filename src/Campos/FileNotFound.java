@@ -18,7 +18,7 @@ public class FileNotFound {
   public FileNotFound(String mensaje, Escritor error) {
   }
 
-  private void fileNotFounc(String mensaje,Escritor error) {
+  private void fileNotFound(String mensaje,Escritor error) {
     String path = mensaje.substring(0, mensaje.length() - NOTFOUND.length());
     MensajeTxt message = new MensajeTxt(path, NOTFOUND);
     error.salida(message);

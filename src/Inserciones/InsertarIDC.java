@@ -14,10 +14,9 @@ import Entidades.Volumen;
  */
 public final class InsertarIDC {
 
-  private Conexion conexion = new Conexion();
-  private int id = 1;
+  private static int id = 1;
 
-  public String insertarEnIDc(int idVolumen, Volumen v, int idSede) {
+  public static String insertarEnIDc(int idVolumen, Volumen v, int idSede) {
     id += idVolumen;//sumarle uno al ultimovolumen
     Idc getIdc = v.getIdc();
     PapelesPorIDC papelesporIdc = v.getPapeles();

@@ -4,7 +4,6 @@
  */
 package test;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
 import javax.swing.JOptionPane;
 
@@ -37,9 +36,8 @@ public class InformeReporte extends javax.swing.JFrame {
     jTRuta = new javax.swing.JTextField();
     jbBuscar = new javax.swing.JButton();
     jScrollPane1 = new javax.swing.JScrollPane();
-    jtaMensaje = new javax.swing.JTextArea();
-    conectadoA = new javax.swing.JLabel();
     jBCerrar = new javax.swing.JButton();
+    infoJLabel = new javax.swing.JLabel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("XMLOcrStats_v_1.0.04");
@@ -60,21 +58,14 @@ public class InformeReporte extends javax.swing.JFrame {
       }
     });
 
-    jtaMensaje.setColumns(20);
-    jtaMensaje.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    jtaMensaje.setRows(5);
-    jScrollPane1.setViewportView(jtaMensaje);
-
-    conectadoA.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-    conectadoA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    conectadoA.setText("Conectado a:");
-
     jBCerrar.setText("Cerrar");
     jBCerrar.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         jBCerrarActionPerformed(evt);
       }
     });
+
+    infoJLabel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información del Proceso", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 51, 51)));
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
@@ -83,13 +74,15 @@ public class InformeReporte extends javax.swing.JFrame {
       .addGroup(jPanel2Layout.createSequentialGroup()
         .addContainerGap()
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel2Layout.createSequentialGroup()
+            .addComponent(infoJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))
           .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
           .addComponent(jTRuta)
-          .addComponent(conectadoA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addGroup(jPanel2Layout.createSequentialGroup()
             .addGap(28, 28, 28)
             .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
             .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(24, 24, 24))
           .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -101,15 +94,15 @@ public class InformeReporte extends javax.swing.JFrame {
         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(7, 7, 7)
         .addComponent(jTRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(conectadoA, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGap(36, 36, 36)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(14, Short.MAX_VALUE))
+        .addGap(66, 66, 66)
+        .addComponent(infoJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(25, Short.MAX_VALUE))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,14 +113,13 @@ public class InformeReporte extends javax.swing.JFrame {
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-//      actionPerformed(evt);
       listarFiles();
     }//GEN-LAST:event_jbBuscarActionPerformed
 
@@ -150,8 +142,8 @@ public class InformeReporte extends javax.swing.JFrame {
     if (folder.exists())
       {
       File[] listOfFiles = folder.listFiles(filefilter);
-      reporte = new MyWorker(jBCerrar, jtaMensaje,
-              getPathname(), conectadoA, listOfFiles);
+      reporte = new MyWorker(jBCerrar,
+              getPathname(), listOfFiles, infoJLabel);
       this.reporte.execute();
 
       } else
@@ -197,13 +189,12 @@ public class InformeReporte extends javax.swing.JFrame {
 //        });
 //    }
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JLabel conectadoA;
+  private javax.swing.JLabel infoJLabel;
   private javax.swing.JButton jBCerrar;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JPanel jPanel2;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JTextField jTRuta;
   private javax.swing.JButton jbBuscar;
-  private javax.swing.JTextArea jtaMensaje;
   // End of variables declaration//GEN-END:variables
 }

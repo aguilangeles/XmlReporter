@@ -15,7 +15,7 @@ public class InsertaraMetadatosEnGND {
 
   public InsertaraMetadatosEnGND() {
   }
-    public String setmetadatos(int idIdc, int contador, int idSede, Volumen v) {
+    public static  String setmetadatos(int idIdc, int contador, int idSede, Volumen v) {
     //sin verificar hasta que ingrese datos GDN
     int id = idIdc + contador;
     GND_sede g = (GND_sede) v.getIdc().getCampoSede().getObject();

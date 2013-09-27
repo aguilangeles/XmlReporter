@@ -5,9 +5,7 @@
 package Campos;
 
 import Entidades.CamposPorSedes;
-import Entidades.GND_sede;
 import Entidades.Idc;
-import Entidades.OSN_sede;
 import clases.Meta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -109,25 +107,6 @@ public class GetPapelesYCamporForSede {
     return idece;
   }
 
-//  public Idc getIdece() {
-//    return idece;
-//  }
-//
-//  public int getSize() {
-//    return size;
-//  }
-//
-//  public int getValid() {
-//    return valid;
-//  }
-//
-//  public int getInvalid() {
-//    return invalid;
-//  }
-//
-//  public int getInvalidDB() {
-//    return invalidDB;
-//  }
 
   private Object setCamposBySede(MetaParser metaParser, ReporteXMLMetas reporteMeta, Meta meta) {
     GetCampoBySede setCamposBySede = new GetCampoBySede(metaParser, reporteMeta, meta, idSede);
