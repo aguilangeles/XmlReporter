@@ -37,7 +37,7 @@ public class GetPapelesYCamporForSede {
   private static int valid;
   private static int invalid;
   private static int invalidDB;
-  private Idc idece;
+  private static Idc idece;
   private static Escritor error = new Escritor("Detalle_errores.txt");
 
   public GetPapelesYCamporForSede(String ruta, String idcName, boolean ejercicio, int contador, int idSede) {
@@ -45,7 +45,7 @@ public class GetPapelesYCamporForSede {
     this.idcName = idcName;
     this.ejercicio = ejercicio;
     this.idSede = idSede;
-    this.idece = setIdc();
+    idece = setIdc();
   }
 
   private Idc setIdc() {
@@ -89,25 +89,45 @@ public class GetPapelesYCamporForSede {
     return setidc;
   }
 
-  public Idc getIdece() {
-    return idece;
-  }
-
-  public int getSize() {
+  public static int getSize() {
     return size;
   }
 
-  public int getValid() {
+  public static int getValid() {
     return valid;
   }
 
-  public int getInvalid() {
+  public static int getInvalid() {
     return invalid;
   }
 
-  public int getInvalidDB() {
+  public static int getInvalidDB() {
     return invalidDB;
   }
+
+  public static Idc getIdece() {
+    return idece;
+  }
+
+//  public Idc getIdece() {
+//    return idece;
+//  }
+//
+//  public int getSize() {
+//    return size;
+//  }
+//
+//  public int getValid() {
+//    return valid;
+//  }
+//
+//  public int getInvalid() {
+//    return invalid;
+//  }
+//
+//  public int getInvalidDB() {
+//    return invalidDB;
+//  }
 
   private Object setCamposBySede(MetaParser metaParser, ReporteXMLMetas reporteMeta, Meta meta) {
     SetCamposBySede setCamposBySede = new SetCamposBySede(metaParser, reporteMeta, meta, idSede);

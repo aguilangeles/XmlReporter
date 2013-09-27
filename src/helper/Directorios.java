@@ -18,6 +18,7 @@ public class Directorios {
   private static SortedMap pathsMap = new TreeMap();
   private static SortedMap idcMaps = new TreeMap();
   private int quantIDC = 0;
+
   private GetSede identificarSede;
 
   public Directorios(String pathname, File[] listOfFiles) {

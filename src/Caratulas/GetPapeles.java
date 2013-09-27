@@ -6,9 +6,6 @@ package Caratulas;
 
 import Entidades.PapelesPorIDC;
 import clases.XmlMapeo;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

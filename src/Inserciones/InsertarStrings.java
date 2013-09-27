@@ -38,6 +38,7 @@ public class InsertarStrings {
 
   public String campos() {
     int id = idIdc + contador;// generar la constante de id, para sumarle los acontecimientos
+    System.out.println("id de campos " + id);
     CamposPorSedes s = v.getIdc().getCampoSede();
     String ret = "INSERT INTO `reporteocr_1`.`campos`(`idSede`,`idIdc`"
             + ",`campos`,`campos_valid`,`campos_invalid`,`campos_invalidDB`)"
@@ -176,25 +177,17 @@ public class InsertarStrings {
 
   }
 
-//  public String idc() {
-//    int idvol = idVolumen + 1;//sumarle uno al ultimovolumen
-//    Idc i = v.getIdc();
-//    PapelesPorIDC p = v.getPapeles();
-//    String insertar = "INSERT INTO `reporteocr_1`.`idc`("
-//            + "`idVolumen`,`idSede`,`nombre_idc`,`papeles`,`pap_validos`"
-//            + ",`pap_invalidos`,`cant_caratulas`,`imagenes`,`anversos`"
-//            + ",`reversos`,`estado`)VALUES("
-//            + idvol + ", "
-//            + idSede + ", '"
-//            + i.getNombre() + "', '"
-//            + p.getPapeles() + "', '"
-//            + i.getValidos() + "', '"
-//            + i.getInvalidos() + "', '"
-//            + p.getCaratulas() + "', '"
-//            + p.getImagenes() + "', '"
-//            + p.getAnversos() + "', '"
-//            + p.getReversos() + "', '"
-//            + p.getEstado() + "');\n";
-//    return insertar;
-//  }
+  public String volumen() {
+    String insertar = "INSERT INTO `reporteocr_1`.`volumen`"
+            + "(`idSede`,`volumen`,`cantidad_idcs`,`fecha_reporte`)VALUES('"
+            + idSede + "', '"
+            + v.getVol_nombre() + "', '"
+            + v.getCantidad_idc() + "', '"
+            + v.getFecha_reporte() + "');\n";
+    return insertar;
+  }
+
+  public String setIDC() {
+    return new InsertarIDC().insertarEnIDc(idVolumen, v, idSede);
+  }
 }

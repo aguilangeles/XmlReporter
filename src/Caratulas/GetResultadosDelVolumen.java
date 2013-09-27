@@ -39,7 +39,7 @@ public class GetResultadosDelVolumen {
 
     papelesCampos = new GetPapelesYCamporForSede(pathname, idcName, caratulaMeta.isIsEjercicio(), contador, idSede);
     //
-    idc = papelesCampos.getIdece();
+    idc = GetPapelesYCamporForSede.getIdece();
 
     GetPapeles papeles = new GetPapeles(pathname, caratulaMeta.isIsEjercicio());
 
@@ -76,21 +76,5 @@ public class GetResultadosDelVolumen {
 
   public int getReversos() {
     return papelIDC.getReversos();
-  }
-
-  public int getCampos() {
-    return papelesCampos.getSize();
-  }
-
-  public int getCvalidos() {
-    return papelesCampos.getValid();
-  }
-
-  public int getCinvalidos() {
-    return papelesCampos.getInvalid();
-  }
-
-  public int getCinvalidDb() {
-    return papelesCampos.getInvalidDB();
   }
 }

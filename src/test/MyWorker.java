@@ -5,6 +5,7 @@
 package test;
 
 /*import Campos.PorcentajePapeles;*/
+import Campos.GetPapelesYCamporForSede;
 import Caratulas.GetResultadosDelVolumen;
 import Entidades.Total;
 import Entidades.Volumen;
@@ -33,7 +34,6 @@ import javax.swing.SwingWorker;
  */
 public class MyWorker extends SwingWorker<Void, Integer> {
 
-  private JButton iniciar;
   private JButton finalizar;
   private JTextArea progreso;
   private String pathname;
@@ -50,15 +50,14 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   private GetSede gsede;
   private Volumen vol;
 
-  public MyWorker(JButton iniciar, JButton finalizar, JTextArea progreso,
-          String pathname, JLabel conectadoA, File[] listOfFiles) {
-    this.iniciar = iniciar;
+  public MyWorker(JButton finalizar, JTextArea progreso, String pathname,
+          JLabel conectadoA, File[] listOfFiles) {
     this.finalizar = finalizar;
     this.progreso = progreso;
     this.pathname = pathname;
     this.conectadoA = conectadoA;
     this.listOfFiles = listOfFiles;
-    // traera una lista de los idc ordenados ascendentemente
+    // traera una lista de los setIDC ordenados ascendentemente
 
     this.directorio = new Directorios(pathname, listOfFiles);
     this.getNombre = directorio.getIdcMaps();
@@ -73,25 +72,23 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   @Override
   protected Void doInBackground() throws UnsupportedEncodingException, IOException, SQLException {
     conexion.isConexion();
-    //todo refactor conexion;
     GetLastID lastId = new GetLastID(conexion);
-
     int contador = 0;
 
     int idVolumen = lastId.getLastIdFromTable("volumen");
     int idIdc = lastId.getLastIdFromTable("idc");
 
     InsertarStrings insertResultados = null;
-    Iterator it = getNombre.keySet().iterator();
 
+    Iterator it = getNombre.keySet().iterator();
     while (it.hasNext())
       {
       contador++;
       Object key = it.next();
-
       String rutaProcesada = (String) getRuta.get(key);
       String idcName = (String) getNombre.get(key);
       //
+
       GetResultadosDelVolumen resultados = new GetResultadosDelVolumen(rutaProcesada,
               idcName, contador, gsede.getVolumen(), gsede.getSigla(),
               directorio.getQuatyIDC(), gsede.getIdsede());
@@ -108,14 +105,14 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       imagenes += resultados.getImagenes();
       anversos += resultados.getAnversos();
       reversos += resultados.getReversos();
-      campos += resultados.getCampos();
-      cvalidos += resultados.getCvalidos();
-      cinvalidos += resultados.getCinvalidos();
-      cinvalidDb += resultados.getCinvalidDb();
-      //
+      campos += GetPapelesYCamporForSede.getSize();
+      cvalidos += GetPapelesYCamporForSede.getValid();
+      cinvalidos += GetPapelesYCamporForSede.getInvalid();
+      cinvalidDb += GetPapelesYCamporForSede.getInvalidDB();
+
       progreso.setText("\n\t" + "Analizando el idc:\n" + idcName);
-      //
-      InsertarIDC insertarIDC = new InsertarIDC(idVolumen, vol, gsede.getIdsede());
+      
+      conexion.executeUpdate(insertResultados.setIDC());
       conexion.executeUpdate(insertResultados.caratulas());
       if (vol.getIdSede() == 1)
         {
@@ -131,21 +128,23 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       }
 
     InsertarVolumen volumen = new InsertarVolumen(vol, gsede.getIdsede());
-
     Total totales = new Total(papelTotal, validos, invalidos, imagenes,
             anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
 
     InsertarTotales insertarTotales = new InsertarTotales(idVolumen, gsede.getIdsede(), idIdc, totales);
-    //
     conexion.desconectar();
     return null;
   }
 
   @Override
   protected void done() {
-    String resultado = "";
-    String finalizado = "\nReporte Finalizado. "
-            + "\nDatos ingresados en:\n" //            + conexion.getInfo() + ""
-            ;
+    if (!isCancelled())
+      {
+      String resultado = "";
+      String finalizado = "\nReporte Finalizado. "
+              + "\nDatos ingresados en:\n" //            + conexion.getInfo() + ""
+              ;
+      progreso.setText(finalizado);
+      }
   }
 }

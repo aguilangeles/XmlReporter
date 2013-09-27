@@ -13,10 +13,12 @@ import javax.swing.JOptionPane;
  * @author aguilangeles@gmail.com
  */
 public class GetSede {
+
   private String nombreCompleto;
   private String sigla;
-  private  String volumen;
+  private String volumen;
   private String endString;
+
   private static String path;
   private static int idsede;
   private static int orden;
