@@ -22,6 +22,7 @@ public class InformeReporte extends javax.swing.JFrame {
    */
   public InformeReporte() {
     initComponents();
+    setResizable(false);
     VersionEImageIcon versionEImageIcon = new helper.VersionEImageIcon(this);
     principal.setBackground(versionEImageIcon.newColor());
   }
@@ -55,6 +56,7 @@ public class InformeReporte extends javax.swing.JFrame {
 
     jbBuscar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
     jbBuscar.setText("Informar");
+    jbBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
     jbBuscar.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         jbBuscarActionPerformed(evt);
@@ -63,6 +65,7 @@ public class InformeReporte extends javax.swing.JFrame {
 
     jBCerrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
     jBCerrar.setText("Cerrar");
+    jBCerrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
     jBCerrar.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         jBCerrarActionPerformed(evt);
@@ -74,6 +77,7 @@ public class InformeReporte extends javax.swing.JFrame {
 
     jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
     jButton1.setText("Ver DB");
+    jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
     jButton1.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         jButton1ActionPerformed(evt);
