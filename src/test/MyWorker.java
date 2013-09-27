@@ -10,6 +10,7 @@ import Entidades.Total;
 import Entidades.Volumen;
 import Inserciones.Conexion;
 import Inserciones.GetLastID;
+import Inserciones.InsertarIDC;
 import Inserciones.InsertarStrings;
 import Inserciones.InsertarTotales;
 import Inserciones.InsertarVolumen;
@@ -114,7 +115,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       //
       progreso.setText("\n\t" + "Analizando el idc:\n" + idcName);
       //
-      conexion.executeUpdate(insertResultados.idc());
+      InsertarIDC insertarIDC = new InsertarIDC(idVolumen, vol, gsede.getIdsede());
       conexion.executeUpdate(insertResultados.caratulas());
       if (vol.getIdSede() == 1)
         {
@@ -131,7 +132,6 @@ public class MyWorker extends SwingWorker<Void, Integer> {
 
     InsertarVolumen volumen = new InsertarVolumen(vol, gsede.getIdsede());
 
-    //
     Total totales = new Total(papelTotal, validos, invalidos, imagenes,
             anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
 

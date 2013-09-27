@@ -36,29 +36,6 @@ public class InsertarStrings {
     this.contador = contador;
   }
 
-//  public String totales(Total t) {
-//    int id = idVolumen + 1;
-//    String ret = "INSERT INTO `reporteocr_1`.`totales`(`idVolumen`,`idSede`"
-//            + ",`papeles`,`pap_validos`,`pap_invalidos`,`imagenes`,`anversos`"
-//            + ",`reversos`,`campos`,`campos_valid`,`campos_invalid`"
-//            + ",`campos_invalidDb`,`estado_validacion`)VALUES("
-//            + id + ", "
-//            + idSede + ", "
-//            + t.getPapeles() + ", "
-//            + t.getValidos() + ", "
-//            + t.getInvalidos() + ", "
-//            + t.getImagenes() + ", "
-//            + t.getAnversos() + ", "
-//            + t.getReversos() + ", "
-//            + t.getCampos() + ", "
-//            + t.getcValidos() + ", "
-//            + t.getcInvalidos() + ", "
-//            + t.getcInvalidDB() + ", '"
-//            + "no- Validado'"
-//            + ");\n";
-//    return ret;
-//  }
-
   public String campos() {
     int id = idIdc + contador;// generar la constante de id, para sumarle los acontecimientos
     CamposPorSedes s = v.getIdc().getCampoSede();
@@ -199,35 +176,25 @@ public class InsertarStrings {
 
   }
 
-  public String volumen() {
-    String insertar = "INSERT INTO `reporteocr_1`.`volumen`"
-            + "(`idSede`,`volumen`,`cantidad_idcs`,`fecha_reporte`)VALUES('"
-            + idSede + "', '"
-            + v.getVol_nombre() + "', '"
-            + v.getCantidad_idc() + "', '"
-            + v.getFecha_reporte() + "');\n";
-    return insertar;
-  }
-
-  public String idc() {
-    int idvol = idVolumen + 1;//sumarle uno al ultimovolumen
-    Idc i = v.getIdc();
-    PapelesPorIDC p = v.getPapeles();
-    String insertar = "INSERT INTO `reporteocr_1`.`idc`("
-            + "`idVolumen`,`idSede`,`nombre_idc`,`papeles`,`pap_validos`"
-            + ",`pap_invalidos`,`cant_caratulas`,`imagenes`,`anversos`"
-            + ",`reversos`,`estado`)VALUES("
-            + idvol + ", "
-            + idSede + ", '"
-            + i.getNombre() + "', '"
-            + p.getPapeles() + "', '"
-            + i.getValidos() + "', '"
-            + i.getInvalidos() + "', '"
-            + p.getCaratulas() + "', '"
-            + p.getImagenes() + "', '"
-            + p.getAnversos() + "', '"
-            + p.getReversos() + "', '"
-            + p.getEstado() + "');\n";
-    return insertar;
-  }
+//  public String idc() {
+//    int idvol = idVolumen + 1;//sumarle uno al ultimovolumen
+//    Idc i = v.getIdc();
+//    PapelesPorIDC p = v.getPapeles();
+//    String insertar = "INSERT INTO `reporteocr_1`.`idc`("
+//            + "`idVolumen`,`idSede`,`nombre_idc`,`papeles`,`pap_validos`"
+//            + ",`pap_invalidos`,`cant_caratulas`,`imagenes`,`anversos`"
+//            + ",`reversos`,`estado`)VALUES("
+//            + idvol + ", "
+//            + idSede + ", '"
+//            + i.getNombre() + "', '"
+//            + p.getPapeles() + "', '"
+//            + i.getValidos() + "', '"
+//            + i.getInvalidos() + "', '"
+//            + p.getCaratulas() + "', '"
+//            + p.getImagenes() + "', '"
+//            + p.getAnversos() + "', '"
+//            + p.getReversos() + "', '"
+//            + p.getEstado() + "');\n";
+//    return insertar;
+//  }
 }
