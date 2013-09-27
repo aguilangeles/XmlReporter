@@ -12,7 +12,7 @@ import Entidades.Volumen;
 import Inserciones.Conexion;
 import Inserciones.GetLastID;
 import Inserciones.InsertarIDC;
-import Inserciones.InsertarStrings;
+import Inserciones.Inserciones;
 import Inserciones.InsertarTotales;
 import Inserciones.InsertarVolumen;
 import clases.GetSede;
@@ -23,6 +23,8 @@ import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.SortedMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
@@ -57,8 +59,6 @@ public class MyWorker extends SwingWorker<Void, Integer> {
     this.pathname = pathname;
     this.conectadoA = conectadoA;
     this.listOfFiles = listOfFiles;
-    // traera una lista de los setIDC ordenados ascendentemente
-
     this.directorio = new Directorios(pathname, listOfFiles);
     this.getNombre = directorio.getIdcMaps();
     this.getRuta = directorio.getPathsMaps();
@@ -70,69 +70,77 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   }
 
   @Override
-  protected Void doInBackground() throws UnsupportedEncodingException, IOException, SQLException {
-    conexion.isConexion();
-    GetLastID lastId = new GetLastID(conexion);
-    int contador = 0;
-
-    int idVolumen = lastId.getLastIdFromTable("volumen");
-    int idIdc = lastId.getLastIdFromTable("idc");
-
-    InsertarStrings insertResultados = null;
-
-    Iterator it = getNombre.keySet().iterator();
-    while (it.hasNext())
+  protected Void doInBackground() {
+    try
       {
-      contador++;
-      Object key = it.next();
-      String rutaProcesada = (String) getRuta.get(key);
-      String idcName = (String) getNombre.get(key);
-      //
-
-      GetResultadosDelVolumen resultados = new GetResultadosDelVolumen(rutaProcesada,
-              idcName, contador, gsede.getVolumen(), gsede.getSigla(),
-              directorio.getQuatyIDC(), gsede.getIdsede());
-      //
-
-      vol = resultados.getVolumen();
-
-      //
-      insertResultados = new InsertarStrings(vol, idVolumen, vol.getIdSede(), idIdc, contador);
-
-      papelTotal += resultados.getPapelTotal();
-      validos += resultados.getValidos();
-      invalidos += resultados.getInvalidos();
-      imagenes += resultados.getImagenes();
-      anversos += resultados.getAnversos();
-      reversos += resultados.getReversos();
-      campos += GetPapelesYCamporForSede.getSize();
-      cvalidos += GetPapelesYCamporForSede.getValid();
-      cinvalidos += GetPapelesYCamporForSede.getInvalid();
-      cinvalidDb += GetPapelesYCamporForSede.getInvalidDB();
-
-      progreso.setText("\n\t" + "Analizando el idc:\n" + idcName);
-      
-      conexion.executeUpdate(insertResultados.setIDC());
-      conexion.executeUpdate(insertResultados.caratulas());
-      if (vol.getIdSede() == 1)
+      if (conexion.isConexion())
         {
-        conexion.executeUpdate(insertResultados.setCaratulasForGnd());
-        conexion.executeUpdate(insertResultados.gnd_metadatos());
-        } else if (vol.getIdSede() == 2)
-        {
-        conexion.executeUpdate(insertResultados.setCaratulasforOSN());
+        GetLastID lastId = new GetLastID(conexion);
+        int contador = 0;
 
-        conexion.executeUpdate(insertResultados.osn_metadatos());
+        int idVolumen = lastId.getLastIdFromTable("volumen");
+        int idIdc = lastId.getLastIdFromTable("idc");
+
+        Inserciones insertResultados = null;
+
+        Iterator it = getNombre.keySet().iterator();
+        while (it.hasNext())
+          {
+          contador++;
+          Object key = it.next();
+          String rutaProcesada = (String) getRuta.get(key);
+          String idcName = (String) getNombre.get(key);
+          //
+
+          GetResultadosDelVolumen resultados = new GetResultadosDelVolumen(rutaProcesada,
+                  idcName, contador, gsede.getVolumen(), gsede.getSigla(),
+                  directorio.getQuatyIDC(), gsede.getIdsede());
+          //
+
+          vol = resultados.getVolumen();
+
+          //
+          insertResultados = new Inserciones(vol, idVolumen, idIdc, contador);
+
+          papelTotal += resultados.getPapelTotal();
+          validos += resultados.getValidos();
+          invalidos += resultados.getInvalidos();
+          imagenes += resultados.getImagenes();
+          anversos += resultados.getAnversos();
+          reversos += resultados.getReversos();
+          campos += GetPapelesYCamporForSede.getSize();
+          cvalidos += GetPapelesYCamporForSede.getValid();
+          cinvalidos += GetPapelesYCamporForSede.getInvalid();
+          cinvalidDb += GetPapelesYCamporForSede.getInvalidDB();
+
+          progreso.setText("\n\t" + "Analizando el idc:\n" + idcName);
+
+          conexion.executeUpdate(insertResultados.setIDC());
+          conexion.executeUpdate(insertResultados.caratulas());
+          if (vol.getIdSede() == 1)
+            {
+            conexion.executeUpdate(insertResultados.setCaratulasForGnd());
+            conexion.executeUpdate(insertResultados.gnd_metadatos());
+            } else if (vol.getIdSede() == 2)
+            {
+            conexion.executeUpdate(insertResultados.setCaratulasforOSN());
+
+            conexion.executeUpdate(insertResultados.osn_metadatos());
+            }
+          conexion.executeUpdate(insertResultados.setCampos());
+          }
+
+        InsertarVolumen volumen = new InsertarVolumen(vol, gsede.getIdsede());
+        Total totales = new Total(papelTotal, validos, invalidos, imagenes,
+                anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
+
+        InsertarTotales insertarTotales = new InsertarTotales(idVolumen, gsede.getIdsede(), idIdc, totales);
+        conexion.desconectar();
         }
-      conexion.executeUpdate(insertResultados.setCampos());
+      } catch (SQLException ex)
+      {
+      Logger.getLogger(MyWorker.class.getName()).log(Level.SEVERE, null, ex);
       }
-
-    InsertarVolumen volumen = new InsertarVolumen(vol, gsede.getIdsede());
-    Total totales = new Total(papelTotal, validos, invalidos, imagenes,
-            anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
-
-    InsertarTotales insertarTotales = new InsertarTotales(idVolumen, gsede.getIdsede(), idIdc, totales);
-    conexion.desconectar();
     return null;
   }
 
