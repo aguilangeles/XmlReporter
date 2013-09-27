@@ -130,7 +130,7 @@ public class GetPapelesYCamporForSede {
 //  }
 
   private Object setCamposBySede(MetaParser metaParser, ReporteXMLMetas reporteMeta, Meta meta) {
-    SetCamposBySede setCamposBySede = new SetCamposBySede(metaParser, reporteMeta, meta, idSede);
+    GetCampoBySede setCamposBySede = new GetCampoBySede(metaParser, reporteMeta, meta, idSede);
     return setCamposBySede.getObject();
   }
 

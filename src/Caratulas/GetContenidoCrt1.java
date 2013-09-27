@@ -47,10 +47,6 @@ public class GetContenidoCrt1 {
     return contenidoGnd;
   }
 
-  public Object getObject() {
-    return object;
-  }
-
   private void setContenidoForSede(int idSede, ReporteXMlCaratula reporteCaratula) {
     if (idSede == 2)
       {
@@ -59,5 +55,9 @@ public class GetContenidoCrt1 {
       {
       object = getContenidoGND();
       }
+  }
+
+  public Object getObject() {
+    return object;
   }
 }

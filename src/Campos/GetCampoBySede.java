@@ -12,11 +12,9 @@ import parsers.ReporteXMLMetas;
  *
  * @author aguilangeles@gmail.com
  */
-class SetCamposBySede {
-
+class GetCampoBySede {
   private Object object;
-
-  public SetCamposBySede(MetaParser metaParser, ReporteXMLMetas reporteMeta, Meta meta, int idsede) {
+  public GetCampoBySede(MetaParser metaParser, ReporteXMLMetas reporteMeta, Meta meta, int idsede) {
     this.object = setCamposBySede(metaParser, reporteMeta, meta, idsede);
   }
 
@@ -37,5 +35,5 @@ class SetCamposBySede {
   public Object getObject() {
     return object;
   }
-  
+
 }
