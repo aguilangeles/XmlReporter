@@ -4,6 +4,8 @@
  */
 package Inserciones;
 
+import ArchivoConfig.ReadProperties;
+import ArchivoConfig.UserDataBase;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
@@ -12,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 
 /**
  *
@@ -27,8 +28,9 @@ public class Conexion {
   public Statement declaracion;
   public ResultSet resultado;
   public PreparedStatement prepareStatement;
-  private JLabel  infoJLabel;
-  private String url, user, passw, info, server;
+  private JLabel infoJLabel;
+  //private String url, user, passw, info, server;
+  private ReadProperties us = new ReadProperties();
 
   public Conexion(JLabel infoJLabel) {
     this.infoJLabel = infoJLabel;
@@ -40,13 +42,12 @@ public class Conexion {
   public boolean isConexion() throws SQLException {
     try
       {
-      Properties properties = new Properties();
-      properties.load(new FileInputStream(PATH));
-      String urlShort = properties.getProperty("db.url");
-      String database = properties.getProperty("db.database");
-      url = "jdbc:mysql://" + urlShort + "/" + database;
-      user = properties.getProperty("db.user");
-      passw = properties.getProperty("db.passW");
+      UserDataBase useDb = us.getUser();
+      String urlShort = useDb.getUrl();
+      String database = useDb.getBase();
+      String url = "jdbc:mysql://" + urlShort + "/" + database;
+      String user = useDb.getUsuario();
+      String passw = useDb.getPassword();
       Class.forName(DRIVER);
       conexion = DriverManager.getConnection(url, user, passw);
       return true;
@@ -54,10 +55,6 @@ public class Conexion {
       {
       JOptionPane.showMessageDialog(null, ex.getMessage(),
               "Class not found ex", JOptionPane.ERROR_MESSAGE);
-      return false;
-      } catch (IOException ex)
-      {
-      Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
       return false;
       }
   }

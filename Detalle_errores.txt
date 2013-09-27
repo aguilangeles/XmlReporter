@@ -1983,3 +1983,68 @@ Ruta: GND#201111L08V01#GEN_00000001#SL000063
 Descripcion: No posee Meta
 
 
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000044
+Descripcion: Es ejercicio
+
+
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000046
+Descripcion: Es ejercicio
+
+
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000048
+Descripcion: Es ejercicio
+
+
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000049
+Descripcion: No posee Meta
+
+
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000050
+Descripcion: Es ejercicio
+
+
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000052
+Descripcion: No posee Meta
+
+
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000053
+Descripcion: No posee Meta
+
+
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000054
+Descripcion: Es ejercicio
+
+
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000055
+Descripcion: No posee Meta
+
+
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000060
+Descripcion: No posee Meta
+
+
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000061
+Descripcion: No posee Meta
+
+
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000062
+Descripcion: No posee Meta
+
+
+Fecha: 27-09-2013 14:42
+Ruta: GND#201111L08V01#GEN_00000001#SL000063
+Descripcion: No posee Meta
+
+
