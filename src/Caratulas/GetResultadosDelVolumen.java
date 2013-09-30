@@ -37,7 +37,8 @@ public class GetResultadosDelVolumen {
 
     GetCrtForSede caratulasSedes = caratulaMeta.getSedesCrt();
 
-    papelesCampos = new GetPapelesYCamporForSede(pathname, idcName, caratulaMeta.isIsEjercicio(), contador, idSede);
+   String path= pathname.replace("Carat.xml", "Meta.xml");
+    papelesCampos = new GetPapelesYCamporForSede(path, idcName, caratulaMeta.isIsEjercicio(), contador, idSede);
     //
     idc = GetPapelesYCamporForSede.getIdece();
 

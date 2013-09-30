@@ -39,7 +39,8 @@ public class GetPapelesYCamporForSede {
   private static Escritor error = new Escritor("Detalle_errores.txt");
 
   public GetPapelesYCamporForSede(String ruta, String idcName, boolean ejercicio, int contador, int idSede) {
-    this.ruta = ruta.replace("Carat.xml", "Meta.xml");
+    this.ruta = ruta;
+    System.out.println(this.ruta);
     this.idcName = idcName;
     this.ejercicio = ejercicio;
     this.idSede = idSede;

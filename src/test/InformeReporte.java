@@ -5,6 +5,7 @@
 package test;
 
 import ArchivoConfig.IngresoBaseDeDatos;
+import helper.Directorios;
 import helper.VersionEImageIcon;
 import java.io.File;
 import javax.swing.JOptionPane;
@@ -16,6 +17,7 @@ import javax.swing.JOptionPane;
 public class InformeReporte extends javax.swing.JFrame {
 
   private MyWorker reporte;
+  private Directorios directorios;
 
   /**
    * Creates new form InformeReporte
@@ -163,9 +165,8 @@ public class InformeReporte extends javax.swing.JFrame {
       {
       File[] listOfFiles = folder.listFiles(filefilter);
       reporte = new MyWorker(jBCerrar,
-              getPathname(), listOfFiles, infoJLabel);
+              getPathname(), listOfFiles, infoJLabel, folder);
       this.reporte.execute();
-
       } else
       {
       JOptionPane.showMessageDialog(jTRuta, "El archivo especificado no existe",
@@ -173,6 +174,24 @@ public class InformeReporte extends javax.swing.JFrame {
       jTRuta.setText("");
       }
   }
+
+//  private void findFiles(File file) {
+//
+//    int contador = 0;
+//    File[] files = file.listFiles();
+//    for (int i = 0; i < files.length; i++)
+//      {
+//      String name = files[i].getName();
+//      boolean isNotImg = files[i].getAbsolutePath().endsWith("Borradas") ? true : false;
+//      boolean isNotBorrada = files[i].getAbsolutePath().endsWith("Imagenes") ? true : false;
+//      if (files[i].isDirectory() && !isNotImg && !isNotBorrada)
+//        {
+//        findFiles(files[i]);
+//        contador++;
+//        directorios = new Directorios(name, contador);
+//        }
+//      }
+//  }
   /**
    * @param args the command line arguments
    */

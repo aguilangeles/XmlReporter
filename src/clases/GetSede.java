@@ -18,7 +18,6 @@ public class GetSede {
   private String sigla;
   private String volumen;
   private String endString;
-
   private static String path;
   private static int idsede;
   private static int orden;
@@ -37,7 +36,7 @@ public class GetSede {
     if (this.sigla.equals("GND"))
       {
       GetSede.idsede = 1;
-      } else
+      } else if(this.sigla.equals("OSN"))
       {
       GetSede.idsede = 2;
       }

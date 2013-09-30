@@ -5,7 +5,6 @@
 package Caratulas;
 
 import clases.XmlMapeo;
-import java.io.IOException;
 import java.util.List;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

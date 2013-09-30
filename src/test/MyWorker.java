@@ -11,15 +11,12 @@ import Entidades.Total;
 import Entidades.Volumen;
 import Inserciones.Conexion;
 import Inserciones.GetLastID;
-import Inserciones.InsertarIDC;
 import Inserciones.Inserciones;
 import Inserciones.InsertarTotales;
 import Inserciones.InsertarVolumen;
 import clases.GetSede;
 import helper.Directorios;
 import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.SortedMap;
@@ -27,7 +24,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
 
 /**
@@ -43,6 +39,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   private JLabel infoJLabel;
   //
   private File[] listOfFiles;
+  private File folder;
   private Conexion conexion;
 //  private Total t;
   private Directorios directorio;
@@ -53,18 +50,18 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   private GetSede gsede;
   private Volumen vol;
 
-  public MyWorker(JButton finalizar, String pathname, File[] listOfFiles, JLabel infoJLabel) {
+  public MyWorker(JButton finalizar, String pathname, File[] listOfFiles, JLabel infoJLabel, File folder) {
     this.finalizar = finalizar;
 //    this.progreso = progreso;
-    this.infoJLabel=infoJLabel;
+    this.infoJLabel = infoJLabel;
     this.pathname = pathname;
-    this.conectadoA = conectadoA;
     this.listOfFiles = listOfFiles;
     this.directorio = new Directorios(pathname, listOfFiles);
     this.getNombre = directorio.getIdcMaps();
     this.getRuta = directorio.getPathsMaps();
     this.gsede = directorio.getIdentificarSede();
     this.conexion = new Conexion(infoJLabel);
+    this.folder = folder;
   }
 
   public MyWorker() {
