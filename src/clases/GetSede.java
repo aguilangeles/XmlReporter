@@ -19,40 +19,34 @@ public class GetSede {
   private String volumen;
   private String endString;
   private static String path;
-  private static int idsede;
+  private int idsede;
   private static int orden;
 
-  public GetSede(String nombreCompleto, String sigla, String volumen, String pathname, String endStrin) {
+  public GetSede(String nombreCompleto, String sigla, String volumen, String pathname, String endStrin, int idsede) {
     this.nombreCompleto = nombreCompleto;
     this.sigla = sigla;
     this.volumen = volumen;
     this.endString = endStrin;
     path = newPathname(pathname, nombreCompleto);
-    setIdSede();
+    this.idsede = idsede;
     numeroOrden();
   }
 
-  private void setIdSede() {
-    if (this.sigla.equals("GND"))
-      {
-      GetSede.idsede = 1;
-      } else if(this.sigla.equals("OSN"))
-      {
-      GetSede.idsede = 2;
-      }
+  private void numeroOrden() {
+    orden = ignoreLetters(endString);
   }
 
-  private void numeroOrden() {
-    switch (getIdsede())
+  private int ignoreLetters(String astring) {
+    String rt = "";
+    for (int i = 0; i < astring.length(); i++)
       {
-      case 2:
-        orden = Integer.parseInt(endString);
-        break;
-      case 1:
-        String sinSl = endString.substring(2);
-        orden = Integer.parseInt(sinSl);
-        break;
+      if (!Character.isLetter(astring.charAt(i)))
+        {
+        rt += astring.charAt(i);
+        }
       }
+    return Integer.parseInt(rt);
+
   }
 
   public String getNombreCompleto() {

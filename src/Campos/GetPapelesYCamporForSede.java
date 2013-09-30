@@ -40,7 +40,6 @@ public class GetPapelesYCamporForSede {
 
   public GetPapelesYCamporForSede(String ruta, String idcName, boolean ejercicio, int contador, int idSede) {
     this.ruta = ruta;
-    System.out.println(this.ruta);
     this.idcName = idcName;
     this.ejercicio = ejercicio;
     this.idSede = idSede;

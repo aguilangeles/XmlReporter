@@ -163,9 +163,10 @@ public class InformeReporte extends javax.swing.JFrame {
     };
     if (folder.exists())
       {
+
       File[] listOfFiles = folder.listFiles(filefilter);
       reporte = new MyWorker(jBCerrar,
-              getPathname(), listOfFiles, infoJLabel, folder);
+              getPathname(), listOfFiles, infoJLabel, folder, filefilter);
       this.reporte.execute();
       } else
       {
@@ -174,24 +175,6 @@ public class InformeReporte extends javax.swing.JFrame {
       jTRuta.setText("");
       }
   }
-
-//  private void findFiles(File file) {
-//
-//    int contador = 0;
-//    File[] files = file.listFiles();
-//    for (int i = 0; i < files.length; i++)
-//      {
-//      String name = files[i].getName();
-//      boolean isNotImg = files[i].getAbsolutePath().endsWith("Borradas") ? true : false;
-//      boolean isNotBorrada = files[i].getAbsolutePath().endsWith("Imagenes") ? true : false;
-//      if (files[i].isDirectory() && !isNotImg && !isNotBorrada)
-//        {
-//        findFiles(files[i]);
-//        contador++;
-//        directorios = new Directorios(name, contador);
-//        }
-//      }
-//  }
   /**
    * @param args the command line arguments
    */

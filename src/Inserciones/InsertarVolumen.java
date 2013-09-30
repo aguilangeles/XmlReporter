@@ -36,7 +36,6 @@ public class InsertarVolumen {
                 + volumen.getVol_nombre() + "', '"
                 + volumen.getCantidad_idc() + "', '"
                 + volumen.getFecha_reporte() + "');";
-          System.out.println(insertar);
         conexion.executeUpdate(insertar);
         conexion.desconectar();
         }

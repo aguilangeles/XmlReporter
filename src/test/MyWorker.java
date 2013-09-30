@@ -17,6 +17,7 @@ import Inserciones.InsertarVolumen;
 import clases.GetSede;
 import helper.Directorios;
 import java.io.File;
+import java.io.FileFilter;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.SortedMap;
@@ -49,19 +50,21 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   private SortedMap getRuta;
   private GetSede gsede;
   private Volumen vol;
+  private FileFilter filefilter;
 
-  public MyWorker(JButton finalizar, String pathname, File[] listOfFiles, JLabel infoJLabel, File folder) {
+  public MyWorker(JButton finalizar, String pathname, File[] listOfFiles, JLabel infoJLabel, File folder, FileFilter filefilter) {
     this.finalizar = finalizar;
+    this.folder = folder;
+    this.filefilter = filefilter;
 //    this.progreso = progreso;
     this.infoJLabel = infoJLabel;
     this.pathname = pathname;
     this.listOfFiles = listOfFiles;
-    this.directorio = new Directorios(pathname, listOfFiles);
+    this.directorio = new Directorios(pathname, listOfFiles, filefilter, folder);
     this.getNombre = directorio.getIdcMaps();
     this.getRuta = directorio.getPathsMaps();
     this.gsede = directorio.getIdentificarSede();
     this.conexion = new Conexion(infoJLabel);
-    this.folder = folder;
   }
 
   public MyWorker() {
