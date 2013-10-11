@@ -164,6 +164,7 @@ public class InformeReporte extends javax.swing.JFrame {
       {
 
       File[] listOfFiles = folder.listFiles(filefilter);
+
       reporte = new MyWorker(jBCerrar,
               getPathname(), listOfFiles, infoJLabel, folder, filefilter);
       this.reporte.execute();

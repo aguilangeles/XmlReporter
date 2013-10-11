@@ -6,12 +6,7 @@ package Inserciones;
 
 import ArchivoConfig.ReadProperties;
 import ArchivoConfig.UserDataBase;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.*;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 

@@ -90,6 +90,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
           contador++;
           Object key = it.next();
           String rutaProcesada = (String) getRuta.get(key);
+            System.out.println(rutaProcesada);
           String idcName = (String) getNombre.get(key);
           //
 
