@@ -151,7 +151,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       {
       String resultado = "";
       String finalizado = "\nReporte Finalizado. "
-              + "\nDatos ingresados en:\n" //            + conexion.getInfo() + ""
+              + "\nDatos ingresados en:\n Reporteocr_1" //            + conexion.getInfo() + ""
               ;
       infoJLabel.setText(finalizado);
       }
