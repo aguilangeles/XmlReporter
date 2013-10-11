@@ -17,7 +17,7 @@ public final class InsertarIDC {
   private static int id = 1;
 
   public static String insertarEnIDc(int idVolumen, Volumen v, int idSede) {
-    id += idVolumen;//sumarle uno al ultimovolumen
+     //sumarle uno al ultimovolumen
     Idc getIdc = v.getIdc();
     PapelesPorIDC papelesporIdc = v.getPapeles();
     String insertar = "INSERT INTO `reporteocr_1`.`idc`("
@@ -33,7 +33,7 @@ public final class InsertarIDC {
             + ",`reversos`"
             + ",`estado`)"
             + "VALUES("
-            + id
+            + idVolumen
             + ", " + idSede
             + ", '" + getIdc.getNombre()
             + "', '" + papelesporIdc.getPapeles()

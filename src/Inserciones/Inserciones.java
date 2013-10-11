@@ -51,6 +51,7 @@ public class Inserciones {
   }
 
   public String setIDC() {
-    return InsertarIDC.insertarEnIDc(idVolumen, volumen, idSede);
+    int idvol =idVolumen+1;
+    return InsertarIDC.insertarEnIDc(idvol, volumen, idSede);
   }
 }
