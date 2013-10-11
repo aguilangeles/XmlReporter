@@ -37,6 +37,7 @@ public class Directorios {
     File[] files = file.listFiles(filefilter);
     for (int i = 0; i < files.length; i++)
       {
+        System.out.println(files[i]);
       boolean isNotImg = files[i].getAbsolutePath().endsWith("Borradas") ? true : false;
       boolean isNotBorrada = files[i].getAbsolutePath().endsWith("Imagenes") ? true : false;
       if (files[i].isDirectory() && !isNotImg && !isNotBorrada)
