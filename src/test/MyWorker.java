@@ -112,7 +112,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
           cinvalidos += GetPapelesYCamporForSede.getInvalid();
           cinvalidDb += GetPapelesYCamporForSede.getInvalidDB();
 
-          infoJLabel.setText("\n\t" + "Analizando el idc:\n" + idcName);
+          infoJLabel.setText("\n\t" + "Analizando el idc: \n" + idcName);
 
           conexion.executeUpdate(insertResultados.setIDC());
           conexion.executeUpdate(insertResultados.caratulas());
@@ -150,31 +150,26 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       String finalizado = "\nReporte Finalizado. "
               + "\nDatos ingresados en:\n Reporteocr_1";
       infoJLabel.setText(finalizado);
-//      int selection = JOptionPane.showOptionDialog(null, "Seleccione opcion",
-      //"Reporte Finalizado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-//              null, new Object[]
-//        {
-//        "Nuevo Reporte", "Cerrar"
-//        }, "Nuevo Reporte");
-//      if (selection != -1)
-//        {
-//        int getoption = selection + 1;
-//        switch (getoption)
-//          {
-//          case 1:
-//            System.exit(0);
-//            SwingUtilities.invokeLater(new Runnable() {
-//              @Override
-//              public void run() {
-//                new InformeReporte().setVisible(true);
-//              }
-//            });
-//            break;
-//          case 2:
-//            System.exit(0);
-//            break;
-//          }
-//        }
+      int selection = JOptionPane.showOptionDialog(null, "Seleccione opcion",
+      "Reporte Finalizado\n"
+            , JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+              null, new Object[]
+        {
+        "Nuevo Reporte", "Salir"
+        }, "Nuevo Reporte");
+      if (selection != -1)
+        {
+        int getoption = selection + 1;
+        switch (getoption)
+          {
+          case 1:
+            jtRuta.setText("");
+            break;
+          case 2:
+            System.exit(0);
+            break;
+          }
+        }
       }
   }
 }
