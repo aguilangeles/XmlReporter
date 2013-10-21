@@ -23,7 +23,6 @@ public class GetResultadosDelVolumen {
 
   public GetResultadosDelVolumen(String pathname, String idcName, int contador,
           String nombreVolumen, String siglaSede, int cantidadIDC, int idSede) {
-
     this.volumen = setValuesFromVolumen(pathname, idcName, contador, nombreVolumen,
             siglaSede, cantidadIDC, idSede);
   }

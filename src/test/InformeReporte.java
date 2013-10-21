@@ -54,6 +54,7 @@ public class InformeReporte extends javax.swing.JFrame {
     jLabel1.setText("Ingrese la Ubicación del Volúmen a reportar");
 
     jTRuta.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+    jTRuta.setText("c:/angeles/testeo/");
 
     jbBuscar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
     jbBuscar.setText("Informar");
@@ -136,7 +137,7 @@ public class InformeReporte extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-      listarFiles();
+      listarFiles(getPathname());
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
@@ -144,7 +145,6 @@ public class InformeReporte extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCerrarActionPerformed
 
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    // TODO add your handling code here:
     new IngresoBaseDeDatos().setVisible(true);
   }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -152,8 +152,8 @@ public class InformeReporte extends javax.swing.JFrame {
     return jTRuta.getText().trim();
   }
 
-  private void listarFiles() {
-    File folder = new File(getPathname());
+  private void listarFiles(String name) {
+    File folder = new File(name);
     java.io.FileFilter filefilter = new java.io.FileFilter() {
       @Override
       public boolean accept(File file) {
@@ -162,17 +162,13 @@ public class InformeReporte extends javax.swing.JFrame {
     };
     if (folder.exists())
       {
-
       File[] listOfFiles = folder.listFiles(filefilter);
-
-      reporte = new MyWorker(jBCerrar,
-              getPathname(), listOfFiles, infoJLabel, folder, filefilter);
+      reporte = new MyWorker(name, listOfFiles, folder, filefilter, infoJLabel, jTRuta, this);
       this.reporte.execute();
       } else
       {
       JOptionPane.showMessageDialog(jTRuta, "El archivo especificado no existe",
               "Archivo no encontrado", JOptionPane.ERROR_MESSAGE);
-      jTRuta.setText("");
       }
   }
   /**

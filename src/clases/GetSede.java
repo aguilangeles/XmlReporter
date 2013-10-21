@@ -18,7 +18,7 @@ public class GetSede {
   private String sigla;
   private String volumen;
   private String endString;
-  private static String path;
+  private  String path;
   private int idsede;
   private static int orden;
 
@@ -27,7 +27,8 @@ public class GetSede {
     this.sigla = sigla;
     this.volumen = volumen;
     this.endString = endStrin;
-    path = newPathname(pathname, nombreCompleto);
+    this.path = newPathname(pathname, nombreCompleto);
+//    System.out.println("\t"+nombreCompleto+", "+ path);
     this.idsede = idsede;
     numeroOrden();
   }
@@ -73,7 +74,7 @@ public class GetSede {
     return path;
   }
 
-  private static String newPathname(String apath, String filegetname) {
+  private  String newPathname(String apath, String filegetname) {
     String ret = "";
     try
       {

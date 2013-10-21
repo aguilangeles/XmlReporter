@@ -26,6 +26,7 @@ public class Directorios {
 
   public Directorios(String pathname, File[] listOfFiles, FileFilter filefilter, File folder) {
     this.pathname = pathname;
+    System.out.println(this.pathname);
     this.filefilter = filefilter;
     findFiles(folder);
   }
@@ -37,7 +38,6 @@ public class Directorios {
     File[] files = file.listFiles(filefilter);
     for (int i = 0; i < files.length; i++)
       {
-        System.out.println(files[i]);
       boolean isNotImg = files[i].getAbsolutePath().endsWith("Borradas") ? true : false;
       boolean isNotBorrada = files[i].getAbsolutePath().endsWith("Imagenes") ? true : false;
       if (files[i].isDirectory() && !isNotImg && !isNotBorrada)
@@ -59,7 +59,7 @@ public class Directorios {
             idsede = 1;
             } else if (isOSN)
             {
-            sigla = "osn";
+            sigla = "OSN";
             idsede = 2;
             }
           }

@@ -24,8 +24,13 @@ import java.util.SortedMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import xmlocrstatsparaosn.Main;
 
 /**
  *
@@ -33,16 +38,14 @@ import javax.swing.SwingWorker;
  */
 public class MyWorker extends SwingWorker<Void, Integer> {
 
-  private JButton finalizar;
-//  private JTextArea progreso;
   private String pathname;
   private JLabel conectadoA;
   private JLabel infoJLabel;
-  //
   private File[] listOfFiles;
   private File folder;
   private Conexion conexion;
-//  private Total t;
+  private JTextField jtRuta;
+  private JFrame frame;
   private Directorios directorio;
   int papelTotal = 0, validos = 0, invalidos = 0, imagenes = 0, anversos = 0,
           reversos = 0, campos = 0, cvalidos = 0, cinvalidos = 0, cinvalidDb = 0;
@@ -52,22 +55,21 @@ public class MyWorker extends SwingWorker<Void, Integer> {
   private Volumen vol;
   private FileFilter filefilter;
 
-  public MyWorker(JButton finalizar, String pathname, File[] listOfFiles, JLabel infoJLabel, File folder, FileFilter filefilter) {
-    this.finalizar = finalizar;
-    this.folder = folder;
-    this.filefilter = filefilter;
-//    this.progreso = progreso;
-    this.infoJLabel = infoJLabel;
+  public MyWorker(String pathname, File[] listOfFiles, File folder, FileFilter filefilter, JLabel infoJLabel, JTextField jtRuta, JFrame frame) {
     this.pathname = pathname;
     this.listOfFiles = listOfFiles;
-    this.directorio = new Directorios(pathname, listOfFiles, filefilter, folder);
+    this.folder = folder;
+    this.filefilter = filefilter;
+    this.infoJLabel = infoJLabel;
+    this.jtRuta = jtRuta;
+    this.frame = frame;
+
+    this.directorio = new Directorios(this.pathname, this.listOfFiles, this.filefilter, this.folder);
+
     this.getNombre = directorio.getIdcMaps();
     this.getRuta = directorio.getPathsMaps();
     this.gsede = directorio.getIdentificarSede();
-    this.conexion = new Conexion(infoJLabel);
-  }
-
-  public MyWorker() {
+    conexion = new Conexion(infoJLabel);
   }
 
   @Override
@@ -90,18 +92,14 @@ public class MyWorker extends SwingWorker<Void, Integer> {
           contador++;
           Object key = it.next();
           String rutaProcesada = (String) getRuta.get(key);
-            System.out.println(rutaProcesada);
           String idcName = (String) getNombre.get(key);
-          //
 
           GetResultadosDelVolumen resultados = new GetResultadosDelVolumen(rutaProcesada,
                   idcName, contador, gsede.getVolumen(), gsede.getSigla(),
                   directorio.getQuatyIDC(), gsede.getIdsede());
-          //
 
           vol = resultados.getVolumen();
 
-          //
           insertResultados = new Inserciones(vol, idVolumen, idIdc, contador);
 
           papelTotal += resultados.getPapelTotal();
@@ -135,10 +133,9 @@ public class MyWorker extends SwingWorker<Void, Integer> {
         InsertarVolumen volumen = new InsertarVolumen(vol, gsede.getIdsede());
         Total totales = new Total(papelTotal, validos, invalidos, imagenes,
                 anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
-
         InsertarTotales insertarTotales = new InsertarTotales(idVolumen, gsede.getIdsede(), idIdc, totales);
-        conexion.desconectar();
         }
+      conexion.desconectar();
       } catch (SQLException ex)
       {
       Logger.getLogger(MyWorker.class.getName()).log(Level.SEVERE, null, ex);
@@ -152,9 +149,33 @@ public class MyWorker extends SwingWorker<Void, Integer> {
       {
       String resultado = "";
       String finalizado = "\nReporte Finalizado. "
-              + "\nDatos ingresados en:\n Reporteocr_1" //            + conexion.getInfo() + ""
-              ;
+              + "\nDatos ingresados en:\n Reporteocr_1";
       infoJLabel.setText(finalizado);
+//      int selection = JOptionPane.showOptionDialog(null, "Seleccione opcion",
+      //"Reporte Finalizado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+//              null, new Object[]
+//        {
+//        "Nuevo Reporte", "Cerrar"
+//        }, "Nuevo Reporte");
+//      if (selection != -1)
+//        {
+//        int getoption = selection + 1;
+//        switch (getoption)
+//          {
+//          case 1:
+//            System.exit(0);
+//            SwingUtilities.invokeLater(new Runnable() {
+//              @Override
+//              public void run() {
+//                new InformeReporte().setVisible(true);
+//              }
+//            });
+//            break;
+//          case 2:
+//            System.exit(0);
+//            break;
+//          }
+//        }
       }
   }
 }

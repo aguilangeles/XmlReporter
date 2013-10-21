@@ -24,7 +24,6 @@ public class Conexion {
   public ResultSet resultado;
   public PreparedStatement prepareStatement;
   private JLabel infoJLabel;
-  //private String url, user, passw, info, server;
   private ReadProperties us = new ReadProperties();
 
   public Conexion(JLabel infoJLabel) {
@@ -80,7 +79,6 @@ public class Conexion {
       if (ex.getMessage().contains("Duplicate entry"))
         {
         String msj = ex.getMessage();
-
         String sep = msj.substring(17);
         infoJLabel.setText("\nEntrada duplicada:\n" + sep + "\n");
         } else if (ex.getMessage().contains("Update Cannot add or "
