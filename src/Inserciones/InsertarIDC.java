@@ -16,7 +16,7 @@ public final class InsertarIDC {
 
   private static int id = 1;
 
-  public static String insertarEnIDc(int idVolumen, Volumen v, int idSede) {
+  public  String insertarEnIDc(int idVolumen, Volumen v, int idSede) {
      //sumarle uno al ultimovolumen
     Idc getIdc = v.getIdc();
     PapelesPorIDC papelesporIdc = v.getPapeles();
@@ -46,5 +46,6 @@ public final class InsertarIDC {
             + "', '" + papelesporIdc.getEstado()
             + "');\n";
     return insertar;
+
   }
 }

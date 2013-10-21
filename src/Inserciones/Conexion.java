@@ -78,6 +78,7 @@ public class Conexion {
       {
       if (ex.getMessage().contains("Duplicate entry"))
         {
+          System.out.println(ex.getMessage());
         String msj = ex.getMessage();
         String sep = msj.substring(17);
         infoJLabel.setText("\nEntrada duplicada:\n" + sep + "\n");

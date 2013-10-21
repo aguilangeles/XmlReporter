@@ -97,7 +97,6 @@ public class MyWorker extends SwingWorker<Void, Integer> {
           GetResultadosDelVolumen resultados = new GetResultadosDelVolumen(rutaProcesada,
                   idcName, contador, gsede.getVolumen(), gsede.getSigla(),
                   directorio.getQuatyIDC(), gsede.getIdsede());
-
           vol = resultados.getVolumen();
 
           insertResultados = new Inserciones(vol, idVolumen, idIdc, contador);

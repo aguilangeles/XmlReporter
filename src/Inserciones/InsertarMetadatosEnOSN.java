@@ -16,7 +16,7 @@ public class InsertarMetadatosEnOSN {
   public InsertarMetadatosEnOSN() {
   }
 
-  public static String setmetadatos(int idIdc, int contador, int idSede, Volumen v) {
+  public  String setmetadatos(int idIdc, int contador, int idSede, Volumen v) {
     int id = idIdc + contador;
     OSN_sede s = (OSN_sede) v.getIdc().getCampoSede().getObject();
     String ret = "INSERT INTO `reporteocr_1`.`osn_metadatos`"

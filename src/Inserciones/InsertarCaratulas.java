@@ -19,7 +19,7 @@ public class InsertarCaratulas {
   public InsertarCaratulas() {
   }
 
-  public static String setcaratulas(int idIdc, int contador, int idVolumen, Volumen v, int idSede) {
+  public  String setcaratulas(int idIdc, int contador, int idVolumen, Volumen v, int idSede) {
     int id = idIdc + contador;
     int idvol = idVolumen + 1;
     GetCrtForSede c = v.getCrt_sedes();

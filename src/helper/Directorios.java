@@ -16,8 +16,8 @@ import java.util.TreeMap;
  */
 public class Directorios {
 
-  private static SortedMap pathsMap = new TreeMap();
-  private static SortedMap idcMaps = new TreeMap();
+  private  SortedMap pathsMap = new TreeMap();
+  private  SortedMap idcMaps = new TreeMap();
   private int quantIDC = 0;
   private GetSede identificarSede;
   private FileFilter filefilter;
