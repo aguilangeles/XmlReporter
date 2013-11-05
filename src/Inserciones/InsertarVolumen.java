@@ -39,9 +39,9 @@ public class InsertarVolumen {
                 + volumen.getCantidad_idc() + "', '"
                 + volumen.getFecha_reporte() + "');";
         conexion.executeUpdate(insertar);
-        System.out.println("=====================");
-        System.out.println(insertar);
-        System.out.println("=====================");
+//        System.out.println("=====================");
+//        System.out.println(insertar);
+//        System.out.println("=====================");
         conexion.desconectar();
         }
       } catch (SQLException ex)

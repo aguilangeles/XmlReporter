@@ -37,7 +37,7 @@ public class GetListFroCrtStatus {
         if (campo.getValue().equalsIgnoreCase(c1) && campo != null)
           {
           ret = metadato.toString();
-          System.out.println("\t" + ret);
+          //System.out.println("\t" + ret+" c \t "+ caratula.getIdIDC());
           listaValorC1.add(ret);
           }
         }

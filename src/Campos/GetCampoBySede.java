@@ -13,6 +13,7 @@ import parsers.ReporteXMLMetas;
  * @author aguilangeles@gmail.com
  */
 class GetCampoBySede {
+
   private Object object;
 
   public GetCampoBySede(MetaParser metaParser, ReporteXMLMetas reporteMeta,
@@ -31,11 +32,11 @@ class GetCampoBySede {
       Campos_GND gnd = new Campos_GND(metaParser, reporteMeta, meta);
       retObject = gnd.getGnd();
       }
+//    System.out.println(retObject);
     return retObject;
   }
 
   public Object getObject() {
     return object;
   }
-
 }

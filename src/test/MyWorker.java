@@ -94,6 +94,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
                   idcName, contador, gsede.getVolumen(), gsede.getSigla(),
                   directorio.getQuatyIDC(), gsede.getIdsede());
           vol = resultados.getVolumen();
+//            System.out.println("resultados \t" +resultados);
 
           insertResultados = new Inserciones(vol, idVolumen, idIdc, contador);
 
@@ -112,6 +113,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
 
           conexion.executeUpdate(insertResultados.setIDC());
           conexion.executeUpdate(insertResultados.caratulas());
+//          /*no son las caratulas*/
           if (vol.getIdSede() == 1)
             {
             conexion.executeUpdate(insertResultados.setCaratulasForGnd());
@@ -122,28 +124,29 @@ public class MyWorker extends SwingWorker<Void, Integer> {
             conexion.executeUpdate(insertResultados.osn_metadatos());
             }
           conexion.executeUpdate(insertResultados.setCampos());
+//          System.out.println("VOLUMEN " + vol + "\t");
           }
 
         //fin while
-        String insertar = "INSERT INTO `reporteocr_1`.`volumen`"
-                + "(`idSede`"
-                + ",`volumen`"
-                + ",`cantidad_idcs`"
-                + ",`fecha_reporte`)"
-                + "VALUES('"
-                + vol.getIdSede() + "', '"
-                + vol.getVol_nombre() + "', '"
-                + vol.getCantidad_idc() + "', '"
-                + vol.getFecha_reporte() + "');";
-        System.out.println("insertando en base de datos" + papelTotal);
-        System.out.println(insertar);
-         new InsertarVolumen().setVolumen(vol, gsede.getIdsede());
-        //InsertarVolumen volumen = new InsertarVolumen(vol, gsede.getIdsede());
+//        String insertar = "INSERT INTO `reporteocr_1`.`volumen`"
+//                + "(`idSede`"
+//                + ",`volumen`"
+//                + ",`cantidad_idcs`"
+//                + ",`fecha_reporte`)"
+//                + "VALUES('"
+//                + vol.getIdSede() + "', '"
+//                + vol.getVol_nombre() + "', '"
+//                + vol.getCantidad_idc() + "', '"
+//                + vol.getFecha_reporte() + "');";
+//        System.out.println("insertando en base de datos" + papelTotal);
+//        System.out.println(insertar);
+        new InsertarVolumen().setVolumen(vol, gsede.getIdsede());
 
-           Total totales = new Total(papelTotal, validos, invalidos, imagenes,
-                 anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
+
+        Total totales = new Total(papelTotal, validos, invalidos, imagenes,
+                anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
         //System.out.println(totales);
-            InsertarTotales insertarTotales = new InsertarTotales(idVolumen, gsede.getIdsede(), idIdc, totales);
+        InsertarTotales insertarTotales = new InsertarTotales(idVolumen, gsede.getIdsede(), idIdc, totales);
         }//fin conexion
       System.out.println("se acabo");
       } catch (SQLException ex)

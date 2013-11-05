@@ -23,6 +23,7 @@ public class GetResultadosDelVolumen {
 
   public GetResultadosDelVolumen(String pathname, String idcName, int contador,
           String nombreVolumen, String siglaSede, int cantidadIDC, int idSede) {
+//    System.out.println(idcName);
     this.volumen = setValuesFromVolumen(pathname, idcName, contador, nombreVolumen,
             siglaSede, cantidadIDC, idSede);
   }
@@ -39,7 +40,9 @@ public class GetResultadosDelVolumen {
     String path = pathname.replace("Carat.xml", "Meta.xml");
     papelesCampos = new GetPapelesYCamporForSede(path, idcName, caratulaMeta.isIsEjercicio(), contador, idSede);
     //
+    //icd llega null en el 2461
     idc = GetPapelesYCamporForSede.getIdece();
+    System.out.println(idc);
 
     GetPapeles papeles = new GetPapeles(pathname, caratulaMeta.isIsEjercicio());
 
@@ -77,4 +80,10 @@ public class GetResultadosDelVolumen {
   public int getReversos() {
     return papelIDC.getReversos();
   }
+
+  @Override
+  public String toString() {
+    return "GetResultadosDelVolumen{" + "volumen=" + volumen + ", idc=" + idc + ", papelIDC=" + papelIDC + ", papelesCampos=" + papelesCampos + '}';
+  }
+
 }

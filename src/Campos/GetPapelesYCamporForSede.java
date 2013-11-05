@@ -81,7 +81,6 @@ public class GetPapelesYCamporForSede {
 
       } catch (SAXException ex)
       {
-      System.out.println("--");
       Logger.getLogger(GetPapelesYCamporForSede.class.getName()).log(Level.SEVERE, null, ex);
       }
     return setidc;
@@ -106,7 +105,6 @@ public class GetPapelesYCamporForSede {
   public static Idc getIdece() {
     return idece;
   }
-
 
   private Object setCamposBySede(MetaParser metaParser, ReporteXMLMetas reporteMeta, Meta meta) {
     GetCampoBySede setCamposBySede = new GetCampoBySede(metaParser, reporteMeta, meta, idSede);
