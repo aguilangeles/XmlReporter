@@ -64,6 +64,7 @@ public class InsertarTotales {
                 + "no - Validado'"
                 + ");\n";
         conexion.executeUpdate(insertar);
+          System.out.println(insertar);
         conexion.desconectar();
         }
       } catch (SQLException ex)

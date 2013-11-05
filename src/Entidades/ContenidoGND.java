@@ -71,6 +71,9 @@ public class ContenidoGND {
   }
 
   public String getUnidad() {
+//    System.out.println(unidad);
+//    String ret = (unidad.equals(""))?"Sin valor asignado": unidad;
+//    System.out.println("\t"+ret);
     return unidad;
   }
 
@@ -85,6 +88,6 @@ public class ContenidoGND {
             + ", " + anio
             + ", " + mes
             + ", " + liquidacion
-            + ", " + unidad;
+            + ", " + getUnidad();
   }
 }

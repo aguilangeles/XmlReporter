@@ -4,54 +4,61 @@ import helper.XmlHelper;
 import org.w3c.dom.Node;
 
 /**
-
+ *
  */
 public class Campo {
-    private String name;
-    private String value;
-    private String status;
 
-    public String getName() {
-        return name;
-    }
+  private String name;
+  private String value;
+  private String status;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setValue(String value) {
-        this.value = value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    public String getStatus() {
-        return status;
-    }
+  public void setValue(String value) {
+    this.value = value;
+  }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+  public String getStatus() {
+    return status;
+  }
 
-    public Campo() {
-    }
-    public Campo(String name, String value, String status) {
-        this.name = name;
-        this.value = value;
-        this.status = status;
-    }
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
-    public Campo(Node campo){
-        this.name = XmlHelper.getNodeAttr("Name", campo);
-        this.value = XmlHelper.getNodeAttr("Value", campo);
-        this.status = XmlHelper.getNodeAttr("Status", campo);
-    }
+  public Campo() {
+  }
 
-    @Override
-    public String toString() {
-        return value +","+
-                ((!"".equals(status))? status:' ');
-    }
+  public Campo(String name, String value, String status) {
+    this.name = name;
+    this.value = value;
+    this.status = status;
+  }
+
+  public Campo(Node campo) {
+    this.name = XmlHelper.getNodeAttr("Name", campo);
+    this.value = XmlHelper.getNodeAttr("Value", campo);
+    this.status = XmlHelper.getNodeAttr("Status", campo);
+  }
+
+  @Override
+  public String toString() {
+    return ((!"".equals(value)) ? value : ' ') + ","
+            + ((!"".equals(status)) ? status : ' ');
+  }
+//  @Override
+//  public String toString() {
+//    return value + ","
+//            + ((!"".equals(status)) ? status : ' ');
+//  }
 }

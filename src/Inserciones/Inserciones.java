@@ -27,7 +27,6 @@ public class Inserciones {
   }
 
   public String setCampos() {
-
     return new InsertarCampos().campos(idIdc, contador, volumen, idSede);
   }
 

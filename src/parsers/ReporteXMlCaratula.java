@@ -4,9 +4,7 @@
  */
 package parsers;
 
-import clases.Campo;
 import clases.Caratula;
-import clases.Metadato;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

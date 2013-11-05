@@ -23,14 +23,11 @@ import java.util.Iterator;
 import java.util.SortedMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
-import xmlocrstatsparaosn.Main;
 
 /**
  *
@@ -93,7 +90,6 @@ public class MyWorker extends SwingWorker<Void, Integer> {
           Object key = it.next();
           String rutaProcesada = (String) getRuta.get(key);
           String idcName = (String) getNombre.get(key);
-
           GetResultadosDelVolumen resultados = new GetResultadosDelVolumen(rutaProcesada,
                   idcName, contador, gsede.getVolumen(), gsede.getSigla(),
                   directorio.getQuatyIDC(), gsede.getIdsede());
@@ -123,22 +119,39 @@ public class MyWorker extends SwingWorker<Void, Integer> {
             } else if (vol.getIdSede() == 2)
             {
             conexion.executeUpdate(insertResultados.setCaratulasforOSN());
-
             conexion.executeUpdate(insertResultados.osn_metadatos());
             }
           conexion.executeUpdate(insertResultados.setCampos());
           }
 
-        InsertarVolumen volumen = new InsertarVolumen(vol, gsede.getIdsede());
-        Total totales = new Total(papelTotal, validos, invalidos, imagenes,
-                anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
-        InsertarTotales insertarTotales = new InsertarTotales(idVolumen, gsede.getIdsede(), idIdc, totales);
-        }
-      conexion.desconectar();
+        //fin while
+        String insertar = "INSERT INTO `reporteocr_1`.`volumen`"
+                + "(`idSede`"
+                + ",`volumen`"
+                + ",`cantidad_idcs`"
+                + ",`fecha_reporte`)"
+                + "VALUES('"
+                + vol.getIdSede() + "', '"
+                + vol.getVol_nombre() + "', '"
+                + vol.getCantidad_idc() + "', '"
+                + vol.getFecha_reporte() + "');";
+        System.out.println("insertando en base de datos" + papelTotal);
+        System.out.println(insertar);
+         new InsertarVolumen().setVolumen(vol, gsede.getIdsede());
+        //InsertarVolumen volumen = new InsertarVolumen(vol, gsede.getIdsede());
+
+           Total totales = new Total(papelTotal, validos, invalidos, imagenes,
+                 anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
+        //System.out.println(totales);
+            InsertarTotales insertarTotales = new InsertarTotales(idVolumen, gsede.getIdsede(), idIdc, totales);
+        }//fin conexion
+      System.out.println("se acabo");
       } catch (SQLException ex)
       {
       Logger.getLogger(MyWorker.class.getName()).log(Level.SEVERE, null, ex);
       }
+    System.out.println("desconecto");
+    conexion.desconectar();
     return null;
   }
 
@@ -151,8 +164,7 @@ public class MyWorker extends SwingWorker<Void, Integer> {
               + "\nDatos ingresados en:\n Reporteocr_1";
       infoJLabel.setText(finalizado);
       int selection = JOptionPane.showOptionDialog(null, "Seleccione opcion",
-      "Reporte Finalizado\n"
-            , JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+              "Reporte Finalizado\n", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
               null, new Object[]
         {
         "Nuevo Reporte", "Salir"

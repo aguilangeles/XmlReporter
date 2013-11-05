@@ -24,22 +24,25 @@ public class GetListFroCrtStatus {
   }
 
   public List<String> getStatusFromCrt(List<String> listaC1) {
-       List<String> listaValorC1 = new ArrayList();
-        String ret = "";
-        Iterator<Caratula> it = caratulaList.iterator();
-        while (it.hasNext()) {
-            Caratula caratula = it.next();
-            Metadato metadato = caratula.getMetadato();
-            Campo campo = metadato.getCampoByName("Id");
-         for (String c1 : listaC1)
-           {
-           if (campo.getValue().equalsIgnoreCase(c1) && campo != null) {
-               ret = metadato.toString();
-               listaValorC1.add(ret);
-           }
-           }
+    List<String> listaValorC1 = new ArrayList();
+    String ret = "";
+    Iterator<Caratula> it = caratulaList.iterator();
+    while (it.hasNext())
+      {
+      Caratula caratula = it.next();
+      Metadato metadato = caratula.getMetadato();
+      Campo campo = metadato.getCampoByName("Id");
+      for (String c1 : listaC1)
+        {
+        if (campo.getValue().equalsIgnoreCase(c1) && campo != null)
+          {
+          ret = metadato.toString();
+          System.out.println("\t" + ret);
+          listaValorC1.add(ret);
+          }
         }
-        return listaValorC1;
+      }
+    return listaValorC1;
 
-    }
+  }
 }

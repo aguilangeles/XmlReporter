@@ -40,6 +40,8 @@ public class GetContenidoCrt1 {
         String anio = split[2];
         String mes = split[3];
         String liquidacion = split[4];
+//        System.out.println(split[5]);
+
         String unidad = split[5];
         contenidoGnd = new ContenidoGND(id, caja, anio, mes, liquidacion, unidad);
         }

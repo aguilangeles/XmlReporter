@@ -15,13 +15,15 @@ import java.util.logging.Logger;
  */
 public class InsertarVolumen {
 
-  private Conexion conexion = new Conexion();
-
-  public InsertarVolumen(Volumen volumen, int idSede) {
-    setVolumen(volumen, idSede);
+//  public InsertarVolumen(Volumen volumen, int idSede) {
+//    setVolumen(volumen, idSede);
+//  }
+  public InsertarVolumen() {
+    //   setVolumen(volumen, idSede);
   }
 
-  private void setVolumen(Volumen volumen, int idSede) {
+  public void setVolumen(Volumen volumen, int idSede) {
+    Conexion conexion = new Conexion();
     try
       {
       if (conexion.isConexion())
@@ -37,10 +39,14 @@ public class InsertarVolumen {
                 + volumen.getCantidad_idc() + "', '"
                 + volumen.getFecha_reporte() + "');";
         conexion.executeUpdate(insertar);
+        System.out.println("=====================");
+        System.out.println(insertar);
+        System.out.println("=====================");
         conexion.desconectar();
         }
       } catch (SQLException ex)
       {
+      System.out.println(ex.getMessage());
       Logger.getLogger(InsertarVolumen.class.getName()).log(Level.SEVERE, null, ex);
       }
   }
