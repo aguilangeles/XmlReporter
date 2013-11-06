@@ -26,7 +26,7 @@ public class Directorios {
 
   public Directorios(String pathname, File[] listOfFiles, FileFilter filefilter, File folder) {
     this.pathname = pathname;
-    System.out.println(this.pathname);
+  //  System.out.println(this.pathname);
     this.filefilter = filefilter;
     findFiles(folder);
   }
@@ -69,7 +69,6 @@ public class Directorios {
         idcMaps.put(id, identificarSede.getNombreCompleto());
         }
       }
-
   }
 
   public SortedMap getIdcMaps() {

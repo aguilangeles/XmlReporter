@@ -47,7 +47,6 @@ public class GetSede {
         }
       }
     return Integer.parseInt(rt);
-
   }
 
   public String getNombreCompleto() {
