@@ -9,6 +9,7 @@ import Entidades.GetCrtForSede;
 import Entidades.Idc;
 import Entidades.PapelesPorIDC;
 import Entidades.Volumen;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,20 +37,24 @@ public class GetResultadosDelVolumen {
     CaratulasMetadata caratulaMeta = new CaratulasMetadata(pathname, idSede);
 
     GetCrtForSede caratulasSedes = caratulaMeta.getSedesCrt();
-   // System.out.println("Carat\t"+caratulasSedes);
+    // System.out.println("Carat\t"+caratulasSedes);
     String path = pathname.replace("Carat.xml", "Meta.xml");
     papelesCampos = new GetPapelesYCamporForSede(path, idcName, caratulaMeta.isIsEjercicio(), contador, idSede);
     //
-    //icd llega null en el 2461
     idc = GetPapelesYCamporForSede.getIdece();
-    System.out.println(idc);
-
+    if (idc == null)
+      {
+      JOptionPane.showMessageDialog(null, "Error en archivo Meta.xml correspondiente a \n" + idcName
+              + "\nNo se pueden cargar los datos correspondientes al idc."
+              + "\nControle el xml."
+              + "\nEl programa deberá cerrarse", "Error en la lectura del xml", JOptionPane.ERROR_MESSAGE);
+      }
     GetPapeles papeles = new GetPapeles(pathname, caratulaMeta.isIsEjercicio());
 
     papelIDC = papeles.getPapelesPorIdc();
 
     setvolumen = new Volumen(contador, nombreVolumen, cantidadIDC, idc, papelIDC, caratulasSedes, idSede);
-   // System.out.println(setvolumen);
+    // System.out.println(setvolumen);
     return setvolumen;
   }
 
@@ -85,5 +90,4 @@ public class GetResultadosDelVolumen {
   public String toString() {
     return "GetResultadosDelVolumen{" + "volumen=" + volumen + ", idc=" + idc + ", papelIDC=" + papelIDC + ", papelesCampos=" + papelesCampos + '}';
   }
-
 }
