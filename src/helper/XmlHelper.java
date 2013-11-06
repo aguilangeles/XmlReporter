@@ -7,16 +7,12 @@ package helper;
  * Taken from the Eric Bruno's article at http://www.drdobbs.com/jvm/easy-dom-parsing-in-java/231002580
  */
 
-import com.sun.org.apache.xerces.internal.parsers.DOMParser;
-import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.enhydra.xml.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.w3c.dom.Element;
 
 public class XmlHelper {
 
