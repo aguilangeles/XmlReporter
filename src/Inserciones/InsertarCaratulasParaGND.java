@@ -16,7 +16,7 @@ public class InsertarCaratulasParaGND {
   public InsertarCaratulasParaGND() {
   }
 
-  public  String gnd_crt(int idIdc, int contador, Volumen v, int idSede) {
+  public String gnd_crt(int idIdc, int contador, Volumen v, int idSede) {
     int id = idIdc + contador;
     ContenidoGND g = (ContenidoGND) v.getCrt_sedes().getC1().getObject();
     String ret = "INSERT INTO `reporteocr_1`.`gnd_crt`"
@@ -43,6 +43,7 @@ public class InsertarCaratulasParaGND {
             + "', '" + v.getCrt_sedes().getC3()
             + "', '" + v.getCrt_sedes().getC4()
             + "');\n";
+//    System.out.println(ret);
     return ret;
   }
 }

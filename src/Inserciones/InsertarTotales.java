@@ -8,6 +8,7 @@ import Entidades.Total;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,7 +34,8 @@ public class InsertarTotales {
       {
       if (conexion.isConexion())
         {
-        id += idVolumen;
+        int id = idVolumen+1;
+//        id += idVolumen;
         String insertar = "INSERT INTO `reporteocr_1`.`totales`"
                 + "(`idVolumen`"
                 + ",`idSede`"
@@ -63,7 +65,8 @@ public class InsertarTotales {
                 + total.getcInvalidDB() + ", '"
                 + "no - Validado'"
                 + ");\n";
-        conexion.executeUpdate(insertar);
+        boolean tot = conexion.executeUpdate(insertar);
+        alerta("TOTALES ", tot);
           System.out.println(insertar);
         conexion.desconectar();
         }
@@ -73,4 +76,14 @@ public class InsertarTotales {
       Logger.getLogger(InsertarTotales.class.getName()).log(Level.SEVERE, null, ex);
       }
   }
+
+  private void alerta(String string, boolean bool) {
+
+    if (!bool)
+      {
+      JOptionPane.showMessageDialog(null, string + "false " + bool, "no se realizo la insercion", JOptionPane.ERROR_MESSAGE);
+      System.out.println(string + "false " + bool);
+      }
+  }
+
 }

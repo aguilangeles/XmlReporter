@@ -69,27 +69,33 @@ public class Conexion {
       }
   }
 
-  public void executeUpdate(String sql) {
+  public boolean executeUpdate(String sql) {
+    boolean exec = false;
     try
       {
       prepareStatement = conexion.prepareStatement(sql);
       int filasAfectadas = prepareStatement.executeUpdate();
+      exec = true;
+
       } catch (SQLException ex)
       {
       if (ex.getMessage().contains("Duplicate entry"))
         {
-          System.out.println(ex.getMessage());
+        System.out.println(ex.getMessage());
         String msj = ex.getMessage();
         String sep = msj.substring(17);
         infoJLabel.setText("\nEntrada duplicada:\n" + sep + "\n");
+        exec = false;
         } else if (ex.getMessage().contains("Update Cannot add or "
               + "update a child row: a foreign key constraint fails"))
         {
         JOptionPane.showMessageDialog(null, ex.getMessage());
         infoJLabel.setText("\n" + ex.getMessage() + "\n");
         String error = "error en resultados/executeUpdate" + ex.getMessage();
+        exec = false;
         }
       }
+    return exec;
   }
 
   public boolean desconectar() {

@@ -32,6 +32,7 @@ public class GetContenidoCrt1 {
     for (int i = 0; i < caratulasC1.size(); i++)
       {
       String metadato = caratulasC1.get(i);
+//      System.out.println("metadato\t" + metadato);
       String[] split = metadato.split(", ");
       for (int m = 0; m < split.length; m++)
         {
@@ -40,9 +41,9 @@ public class GetContenidoCrt1 {
         String anio = split[2];
         String mes = split[3];
         String liquidacion = split[4];
+        String unidad = split[5];
 //        System.out.println(split[5]);
 
-        String unidad = split[5];
         contenidoGnd = new ContenidoGND(id, caja, anio, mes, liquidacion, unidad);
         }
       }
