@@ -18,7 +18,6 @@ public class InsertarTotales {
 
   private Conexion conexion = new Conexion();
   private int idVolumen;
-  private static int id = 1;
   private int idSede;
   private int idIdc;
 
@@ -34,8 +33,7 @@ public class InsertarTotales {
       {
       if (conexion.isConexion())
         {
-        int id = idVolumen+1;
-//        id += idVolumen;
+        int ide = idVolumen + 1;
         String insertar = "INSERT INTO `reporteocr_1`.`totales`"
                 + "(`idVolumen`"
                 + ",`idSede`"
@@ -51,7 +49,7 @@ public class InsertarTotales {
                 + ",`campos_invalidDb`"
                 + ",`estado_validacion`)"
                 + "VALUES("
-                + id + ", "
+                + ide + ", "
                 + idSede + ", "
                 + total.getPapeles() + ", "
                 + total.getValidos() + ", "
@@ -66,8 +64,8 @@ public class InsertarTotales {
                 + "no - Validado'"
                 + ");\n";
         boolean tot = conexion.executeUpdate(insertar);
-        alerta("TOTALES ", tot);
-          System.out.println(insertar);
+        alerta("Totales ", tot);
+//        System.out.println(insertar);
         conexion.desconectar();
         }
       } catch (SQLException ex)
@@ -78,12 +76,9 @@ public class InsertarTotales {
   }
 
   private void alerta(String string, boolean bool) {
-
     if (!bool)
       {
-      JOptionPane.showMessageDialog(null, string + "false " + bool, "no se realizo la insercion", JOptionPane.ERROR_MESSAGE);
-      System.out.println(string + "false " + bool);
+      JOptionPane.showMessageDialog(null, "Tabla " + string + bool, "No se realizo la insercion en la base de datos", JOptionPane.ERROR_MESSAGE);
       }
   }
-
 }

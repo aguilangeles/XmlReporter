@@ -8,6 +8,7 @@ import Entidades.Volumen;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,11 +16,7 @@ import java.util.logging.Logger;
  */
 public class InsertarVolumen {
 
-//  public InsertarVolumen(Volumen volumen, int idSede) {
-//    setVolumen(volumen, idSede);
-//  }
   public InsertarVolumen() {
-    //   setVolumen(volumen, idSede);
   }
 
   public void setVolumen(Volumen volumen, int idSede) {
@@ -38,16 +35,24 @@ public class InsertarVolumen {
                 + volumen.getVol_nombre() + "', '"
                 + volumen.getCantidad_idc() + "', '"
                 + volumen.getFecha_reporte() + "');";
-        conexion.executeUpdate(insertar);
-//        System.out.println("=====================");
-//        System.out.println(insertar);
-//        System.out.println("=====================");
+        boolean vol = conexion.executeUpdate(insertar);
+        alerta("Volumen", vol);
         conexion.desconectar();
         }
       } catch (SQLException ex)
       {
       System.out.println(ex.getMessage());
       Logger.getLogger(InsertarVolumen.class.getName()).log(Level.SEVERE, null, ex);
+      }
+  }
+
+  private void alerta(String string, boolean bool) {
+    if (!bool)
+      {
+      JOptionPane.showMessageDialog(null, "Tabla "
+              + string + bool,
+              "No se realizo la insercion en la base de datos",
+              JOptionPane.ERROR_MESSAGE);
       }
   }
 }

@@ -112,24 +112,28 @@ public class MyWorker extends SwingWorker<Void, Integer> {
 //
           boolean setidc = conexion.executeUpdate(insertResultados.setIDC());
 
-          alerta("set idc ", setidc);
+          alerta("Idc ", setidc);
           //
           boolean carat = conexion.executeUpdate(insertResultados.caratulas());
-          alerta("caratulas ", carat);
+          alerta("Caratulas ", carat);
 //          /*no son las caratulas*/
           if (vol.getIdSede() == 1)
             {
             boolean crtgnd = conexion.executeUpdate(insertResultados.setCaratulasForGnd());
-            alerta("crt gnd ", crtgnd);
+            alerta("Crt Gna ", crtgnd);
             boolean gnd_meta = conexion.executeUpdate(insertResultados.gnd_metadatos());
-            alerta("gnd meta ", gnd_meta);
+            alerta("Gna Meta ", gnd_meta);
             } else if (vol.getIdSede() == 2)
             {
-            conexion.executeUpdate(insertResultados.setCaratulasforOSN());
-            conexion.executeUpdate(insertResultados.osn_metadatos());
+            boolean crtosn = conexion.executeUpdate(insertResultados.setCaratulasforOSN());
+            alerta("Crt Osn ", crtosn);
+
+            boolean osn_meta = conexion.executeUpdate(insertResultados.osn_metadatos());
+            alerta("Osn Meta ", osn_meta);
+
             }
           boolean campos = conexion.executeUpdate(insertResultados.setCampos());
-          alerta("campos ", campos);
+          alerta("Campos ", campos);
           }
 
         new InsertarVolumen().setVolumen(vol, gsede.getIdsede());
@@ -137,25 +141,23 @@ public class MyWorker extends SwingWorker<Void, Integer> {
 
         Total totales = new Total(papelTotal, validos, invalidos, imagenes,
                 anversos, reversos, campos, cvalidos, cinvalidos, cinvalidDb);
-        System.out.println(totales);
+       // System.out.println(totales);
         InsertarTotales insertarTotales = new InsertarTotales(idVolumen, gsede.getIdsede(), idIdc, totales);
         }//fin conexion
-      System.out.println("se acabo");
+     // System.out.println("se acabo");
       } catch (SQLException ex)
       {
       Logger.getLogger(MyWorker.class.getName()).log(Level.SEVERE, null, ex);
       }
-    System.out.println("desconecto");
+    //System.out.println("desconecto");
     conexion.desconectar();
     return null;
   }
 
   private void alerta(String string, boolean bool) {
-
     if (!bool)
       {
-      JOptionPane.showMessageDialog(null, string + "false " + bool, "no se realizo la insercion", JOptionPane.ERROR_MESSAGE);
-      System.out.println(string + "false " + bool);
+      JOptionPane.showMessageDialog(null, "Tabla " + string + bool, "No se realizo la insercion en la base de datos", JOptionPane.ERROR_MESSAGE);
       }
   }
 
