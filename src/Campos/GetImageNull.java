@@ -4,7 +4,7 @@
  */
 package Campos;
 
-import Entidades.GND_sede;
+import Entidades.GNA_sede;
 import Entidades.OSN_sede;
 import clases.Meta;
 import helper.MensajeTxt;
@@ -31,7 +31,7 @@ public class GetImageNull {
         object = o;
         break;
       case 1:
-        GND_sede g = new GND_sede(0, 0, 0, 0, 0, 0);
+        GNA_sede g = new GNA_sede(0, 0, 0, 0, 0, 0);
         object = g;
         break;
       }
@@ -51,7 +51,7 @@ public class GetImageNull {
         object = o;
         break;
       case 1:
-        GND_sede g = new GND_sede(0, 0, 0, 0, 0, 0);
+        GNA_sede g = new GNA_sede(0, 0, 0, 0, 0, 0);
         object = g;
         break;
       }

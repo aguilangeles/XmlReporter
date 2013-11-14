@@ -29,8 +29,8 @@ class GetCampoBySede {
       retObject = osn.getOsn();
       } else if (idsede == 1)
       {
-      Campos_GND gnd = new Campos_GND(metaParser, reporteMeta, meta);
-      retObject = gnd.getGnd();
+      Campos_GNA gnd = new Campos_GNA(metaParser, reporteMeta, meta);
+      retObject = gnd.getGna();
       }
 //    System.out.println(retObject);
     return retObject;

@@ -4,22 +4,22 @@
  */
 package Inserciones;
 
-import Entidades.GND_sede;
+import Entidades.GNA_sede;
 import Entidades.Volumen;
 
 /**
  *
  * @author aguilangeles@gmail.com
  */
-public class InsertaraMetadatosEnGND {
+public class InsertaraMetadatosEnGNA {
 
-  public InsertaraMetadatosEnGND() {
+  public InsertaraMetadatosEnGNA() {
   }
     public   String setmetadatos(int idIdc, int contador, int idSede, Volumen v) {
     //sin verificar hasta que ingrese datos GDN
     int id = idIdc + contador;
-    GND_sede g = (GND_sede) v.getIdc().getCampoSede().getObject();
-    String ret = "INSERT INTO `reporteocr_1`.`gnd_metadatos`"
+    GNA_sede g = (GNA_sede) v.getIdc().getCampoSede().getObject();
+    String ret = "INSERT INTO `reporteocr_1`.`gna_metadatos`"
             + "(`idSede`"
             + ",`idIdc`"
             + ",`grado_valid`"

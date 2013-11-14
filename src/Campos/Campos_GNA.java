@@ -4,7 +4,7 @@
  */
 package Campos;
 
-import Entidades.GND_sede;
+import Entidades.GNA_sede;
 import clases.Campo;
 import clases.Meta;
 import java.util.List;
@@ -15,7 +15,7 @@ import parsers.ReporteXMLMetas;
  *
  * @author MUTNPROD003
  */
-public class Campos_GND {
+public class Campos_GNA {
   /*NO ESTA ENTRANDO A ESTE LUGAR*/
 
   private final String valid = "Valid";
@@ -26,16 +26,16 @@ public class Campos_GND {
   private ReporteXMLMetas reporteMeta;
   private final MetaParser metaParser;
   private final Meta meta;
-  private GND_sede gnd;
+  private GNA_sede gna;
 
-  public Campos_GND(MetaParser metaParser, ReporteXMLMetas reporte, Meta meta) {
+  public Campos_GNA(MetaParser metaParser, ReporteXMLMetas reporte, Meta meta) {
     this.metaParser = metaParser;
     this.reporteMeta = reporte;
     this.meta = meta;
     setResultados();
   }
 
-  private GND_sede setResultados() {
+  private GNA_sede setResultados() {
     int gradoValid = 0;
     int gradoInvalid = 0;
     int gradoInvalidDB = 0;
@@ -70,10 +70,10 @@ public class Campos_GND {
             }
           }
         }
-      gnd = new GND_sede(gradoValid, gradoInvalid, gradoInvalidDB,
+      gna = new GNA_sede(gradoValid, gradoInvalid, gradoInvalidDB,
               codEstValid, codEstInvalid, codEstInvalidDB);
       }
-    return gnd;
+    return gna;
   }
 
   private int porEstadoyNombre(String nombreOriginal, String nombre, String valor) {
@@ -81,7 +81,7 @@ public class Campos_GND {
             getcantidad(reporteMeta, nombreOriginal, nombre, valor);
   }
 
-  public GND_sede getGnd() {
-    return gnd;
+  public GNA_sede getGna() {
+    return gna;
   }
 }

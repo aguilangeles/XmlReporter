@@ -8,7 +8,7 @@ package Entidades;
  *
  * @author MUTNPROD003
  */
-public class GND_sede {
+public class GNA_sede {
     private int grado_valid;
     private int grado_invalid;
     private int grado_invalidDB;
@@ -16,7 +16,7 @@ public class GND_sede {
     private int codEst_invalid;
     private int codEst_invalidDB;
 
-    public GND_sede(int grado_valid, int grado_invalid, int grado_invalidDB, int codEst_valid, int codEst_invalid, int codEst_invalidDB) {
+    public GNA_sede(int grado_valid, int grado_invalid, int grado_invalidDB, int codEst_valid, int codEst_invalid, int codEst_invalidDB) {
         this.grado_valid = grado_valid;
         this.grado_invalid = grado_invalid;
         this.grado_invalidDB = grado_invalidDB;
@@ -25,7 +25,7 @@ public class GND_sede {
         this.codEst_invalidDB = codEst_invalidDB;
     }
 
-    public GND_sede() {
+    public GNA_sede() {
     }
 
     public int getGrado_valid() {

@@ -11,15 +11,15 @@ import Entidades.Volumen;
  *
  * @author aguilangeles@gmail.com
  */
-public class InsertarCaratulasParaGND {
+public class InsertarCaratulasParaGNA {
 
-  public InsertarCaratulasParaGND() {
+  public InsertarCaratulasParaGNA() {
   }
 
-  public String gnd_crt(int idIdc, int contador, Volumen v, int idSede) {
+  public String gna_crt(int idIdc, int contador, Volumen v, int idSede) {
     int id = idIdc + contador;
     ContenidoGND g = (ContenidoGND) v.getCrt_sedes().getC1().getObject();
-    String ret = "INSERT INTO `reporteocr_1`.`gnd_crt`"
+    String ret = "INSERT INTO `reporteocr_1`.`gna_crt`"
             + "(`idSede`,"
             + "`idIdc`"
             + ",`id_c1`"

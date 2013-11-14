@@ -31,7 +31,7 @@ public class Inserciones {
   }
 
   public String setCaratulasForGnd() {
-    return new  InsertarCaratulasParaGND().gnd_crt(idIdc, contador, volumen, idSede);
+    return new  InsertarCaratulasParaGNA().gna_crt(idIdc, contador, volumen, idSede);
   }
 
   public String setCaratulasforOSN() {
@@ -39,7 +39,7 @@ public class Inserciones {
   }
 
   public String gnd_metadatos() {
-    return new InsertaraMetadatosEnGND().setmetadatos(idIdc, contador, idSede, volumen);
+    return new InsertaraMetadatosEnGNA().setmetadatos(idIdc, contador, idSede, volumen);
   }
 
   public String osn_metadatos() {
