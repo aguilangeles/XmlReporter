@@ -31,7 +31,7 @@ public class GetImageNull {
         object = o;
         break;
       case 1:
-        GNA_sede g = new GNA_sede(0, 0, 0, 0, 0, 0);
+        GNA_sede g = new GNA_sede(0, 0, 0, 0, 0, 0, 0, 0, 0);
         object = g;
         break;
       }
@@ -51,7 +51,7 @@ public class GetImageNull {
         object = o;
         break;
       case 1:
-        GNA_sede g = new GNA_sede(0, 0, 0, 0, 0, 0);
+        GNA_sede g = new GNA_sede(0, 0, 0, 0, 0, 0, 0, 0, 0);
         object = g;
         break;
       }

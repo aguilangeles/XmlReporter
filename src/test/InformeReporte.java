@@ -54,6 +54,7 @@ public class InformeReporte extends javax.swing.JFrame {
     jLabel1.setText("Ingrese la Ubicación del Volúmen a reportar");
 
     jTRuta.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+    jTRuta.setText("\\\\gnanas001\\GNA\\Ideceados\\Linea 00\\V201012V0000003");
 
     jbBuscar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
     jbBuscar.setText("Informar");
