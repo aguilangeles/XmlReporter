@@ -23,6 +23,7 @@ public class Campos_GNA {
   private final String invaliddb = "InvalidDB";
   private final String grado = "Grado";
   private final String codEst = "CodEst";
+  private final String nombre = "Nombre";
   private ReporteXMLMetas reporteMeta;
   private final MetaParser metaParser;
   private final Meta meta;
@@ -42,12 +43,9 @@ public class Campos_GNA {
     int codEstValid = 0;
     int codEstInvalid = 0;
     int codEstInvalidDB = 0;
-    int digitoValid = 0;
-    int digitoInvalid = 0;
-    int anioValid = 0;
-    int anioInvalid = 0;
-    int bimestreValid = 0;
-    int bimestreInvalid = 0;
+    int nombreValid = 0;
+    int nombreInvalid = 0;
+    int nombreInvalidDB = 0;
     List<String> nombreCampoList = reporteMeta.getNombresCampos();
     List<String> nombreList = reporteMeta.getListaCampos();
     for (int x = 0; x < nombreCampoList.size(); x++)
@@ -64,9 +62,12 @@ public class Campos_GNA {
             gradoValid += porEstadoyNombre(nombreOriginal, grado, valid);
             gradoInvalid += porEstadoyNombre(nombreOriginal, grado, invalid);
             gradoInvalidDB += porEstadoyNombre(nombreOriginal, grado, invaliddb);
-            codEstValid += porEstadoyNombre(nombreOriginal, codEst, invalid);
-            codEstInvalid += porEstadoyNombre(nombreOriginal, codEst, valid);
+            codEstValid += porEstadoyNombre(nombreOriginal, codEst, valid);
+            codEstInvalid += porEstadoyNombre(nombreOriginal, codEst, invalid);
             codEstInvalidDB += porEstadoyNombre(nombreOriginal, codEst, invaliddb);
+//            nombreValid += porEstadoyNombre(nombreOriginal, nombre, invalid);
+//            codEstInvalid += porEstadoyNombre(nombreOriginal, codEst, valid);
+//            codEstInvalidDB += porEstadoyNombre(nombreOriginal, codEst, invaliddb);
             }
           }
         }

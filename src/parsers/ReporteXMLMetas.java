@@ -129,6 +129,7 @@ public class ReporteXMLMetas {
     this.listaCampos.add("Id Imagen");
     this.listaCampos.add("Grado");
     this.listaCampos.add("CodEst");
+    this.listaCampos.add("Nombre");//ojo
     this.listaCampos.add("Distrito");
     this.listaCampos.add("Partida");
     this.listaCampos.add("SubCuenta");
