@@ -68,11 +68,11 @@ public class Campos_GNA {
             nombreValid += porEstadoyNombre(nombreOriginal, nombre, valid);
             codEstInvalid += porEstadoyNombre(nombreOriginal, nombre, invalid);
             codEstInvalidDB += porEstadoyNombre(nombreOriginal, nombre, invaliddb);
-            }
+      }
           }
         }
-      gna = new GNA_sede(gradoValid, gradoInvalid, gradoInvalidDB,
-              codEstValid, codEstInvalid, codEstInvalidDB, nombreValid, nombreInvalid, nombreInvalidDB);
+    gna = new GNA_sede(gradoValid, gradoInvalid, gradoInvalidDB,
+            codEstValid, codEstInvalid, codEstInvalidDB, nombreValid, nombreInvalid, nombreInvalidDB);
       }
     return gna;
   }
@@ -85,4 +85,4 @@ public class Campos_GNA {
   public GNA_sede getGna() {
     return gna;
   }
-}
+      }

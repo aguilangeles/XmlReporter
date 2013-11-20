@@ -256,7 +256,21 @@ public class ReporteXMLMetas {
       }
     return ret;
   }
-
+//    public List<Campo> getCamposByNameAndStatus(String nombre,String status){
+//
+//        List <Campo> campos = new ArrayList();
+//        Image image;
+//        Iterator<Meta> it = metas.iterator();
+//        while (it.hasNext()) {
+//            Meta meta = it.next();
+//            image = meta.getImage();
+//            if (image != null) {
+//                Campo campo = image.getCampoByName(nombre);
+//                if(campo!=null&& campo.getStatus().equalsIgnoreCase(status))campos.add(campo);
+//            }
+//        }
+//        return campos;
+//    }
   private void setDistinctStatuses() {
     this.statuses = new ArrayList();
     String nombreStatus = "";
