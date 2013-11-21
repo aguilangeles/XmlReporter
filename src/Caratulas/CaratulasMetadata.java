@@ -88,6 +88,7 @@ public class CaratulasMetadata {
       {
       System.out.println(ex.getMessage());
       }
+    System.out.println("subtipo " + subtipo);
     return sedesCrt;
   }
 

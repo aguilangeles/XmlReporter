@@ -86,6 +86,7 @@ public class GetResultadosDelVolumen {
 
   @Override
   public String toString() {
-    return "GetResultadosDelVolumen{" + "volumen=" + volumen + ", idc=" + idc + ", papelIDC=" + papelIDC + ", papelesCampos=" + papelesCampos + '}';
+    return "GetResultadosDelVolumen{" + "volumen=" + volumen + ", idc="
+            + idc + ", papelIDC=" + papelIDC + ", papelesCampos=" + papelesCampos + '}';
   }
 }

@@ -65,6 +65,7 @@ public class InsertarCaratulas {
             + "', '" + c.getC3()
             + "', '" + c.getC4()
             + "');\n ";
+    System.out.println("\t"+ret);
     return ret;
   }
 }
