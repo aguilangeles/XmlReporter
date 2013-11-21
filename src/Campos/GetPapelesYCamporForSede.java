@@ -24,23 +24,23 @@ import txt.Escritor;
  */
 public class GetPapelesYCamporForSede {
 
-  private static String v = "valid";
-  private static String iv = "invalid";
-  private static String idb = "invalidDB";
-  private static String grado = "Grado";
-  private static String codEst = "CodEst";
-  private static String nombre = "Nombre";
-  private static int gradov;
-  private static int gradoi;
-  private static int gradoibd;
-  private static int codv;
-  private static int codi;
-  private static int codibd;
-  private static int n;
-  private static int namev;
-  private static int nameid;
-  private static int namei;
-  private static int campcant;
+//  private static String v = "valid";
+//  private static String iv = "invalid";
+//  private static String idb = "invalidDB";
+//  private static String grado = "Grado";
+//  private static String codEst = "CodEst";
+//  private static String nombre = "Nombre";
+//  private static int gradov;
+//  private static int gradoi;
+//  private static int gradoibd;
+//  private static int codv;
+//  private static int codi;
+//  private static int codibd;
+//  private static int n;
+//  private static int namev;
+//  private static int nameid;
+//  private static int namei;
+//  private static int campcant;
   private boolean ejercicio;
   private String ruta;
   private Object object;
@@ -62,7 +62,7 @@ public class GetPapelesYCamporForSede {
     this.ejercicio = ejercicio;
     this.idSede = idSede;
     idece = setIdc();
-    imprimir();
+//    imprimir();
   }
 
   private Idc setIdc() {
@@ -90,12 +90,12 @@ public class GetPapelesYCamporForSede {
             valid = reporteMeta.getCampoStatus("valid");
             invalid = reporteMeta.getCampoStatus("invalid");
             invalidDB = reporteMeta.getCampoStatus("invalidDB");
+//            setMetaImageContents(meta, idSede);//servia para controlar
             }
 
           setMetaImageNull(meta, error, ejercicio, idSede);
           CamposPorSedes camposForSedes = new CamposPorSedes(idcName, object, size, valid, invalid, invalidDB);
           setidc = new Idc(idcName, pvv, piv, camposForSedes);
-          setMetaImageContents(meta, idSede);
           }
         }
       } catch (SAXException ex)
@@ -139,44 +139,43 @@ public class GetPapelesYCamporForSede {
       }//fin if
   }
 
-  private void setMetaImageContents(Meta meta, int idsede) {
-    if (meta.getImage() != null)
-      {
-      ;
-      gradov = setCampoByNameAndStatus(meta, gradov, grado, v);
-      gradoi = setCampoByNameAndStatus(meta, gradoi, grado, iv);
-      gradoibd = setCampoByNameAndStatus(meta, gradoibd, grado, idb);
-      codv = setCampoByNameAndStatus(meta, codv, codEst, v);
-      codi = setCampoByNameAndStatus(meta, codi, codEst, iv);
-      codibd = setCampoByNameAndStatus(meta, codibd, codEst, idb);
-      namev = setCampoByNameAndStatus(meta, namev, nombre, v);
-      namei = setCampoByNameAndStatus(meta, namei, nombre, iv);
-      nameid = setCampoByNameAndStatus(meta, nameid, nombre, idb);
-      campcant += (meta.getImage().getCantidadDeCampos());
-      }
+//  private void setMetaImageContents(Meta meta, int idsede) {
+//    if (meta.getImage() != null)
+//      {
+//      gradov = setCampoByNameAndStatus(meta, gradov, grado, v);
+//      gradoi = setCampoByNameAndStatus(meta, gradoi, grado, iv);
+//      gradoibd = setCampoByNameAndStatus(meta, gradoibd, grado, idb);
+//      codv = setCampoByNameAndStatus(meta, codv, codEst, v);
+//      codi = setCampoByNameAndStatus(meta, codi, codEst, iv);
+//      codibd = setCampoByNameAndStatus(meta, codibd, codEst, idb);
+//      namev = setCampoByNameAndStatus(meta, namev, nombre, v);
+//      namei = setCampoByNameAndStatus(meta, namei, nombre, iv);
+//      nameid = setCampoByNameAndStatus(meta, nameid, nombre, idb);
+//      campcant += (meta.getImage().getCantidadDeCampos());
+//      }
+//
+//  }
+//
+//  private void imprimir() {
+//    System.out.println("ruta\t" + ruta);
+//    System.out.println("grado v \t" + gradov);
+//    System.out.println("grado i \t" + gradoi);
+//    System.out.println("grado id \t" + gradoibd);
+//    System.out.println("cod est v \t" + codv);
+//    System.out.println("cod est i \t" + codi);
+//    System.out.println("cod est idb \t" + codibd);
+//    System.out.println("nombre v \t" + namev);
+//    System.out.println("nombre i \t" + namei);
+//    System.out.println("nombre idb \t" + nameid);
+//    System.out.println("cantidad de campos \t" + campcant);
+//  }
 
-  }
-
-  private void imprimir() {
-    System.out.println("ruta\t" + ruta);
-    System.out.println("grado v \t" + gradov);
-    System.out.println("grado i \t" + gradoi);
-    System.out.println("grado id \t" + gradoibd);
-    System.out.println("cod est v \t" + codv);
-    System.out.println("cod est i \t" + codi);
-    System.out.println("cod est idb \t" + codibd);
-    System.out.println("nombre v \t" + namev);
-    System.out.println("nombre i \t" + namei);
-    System.out.println("nombre idb \t" + nameid);
-    System.out.println("cantidad de campos \t" + campcant);
-  }
-
-  private static int setCampoByNameAndStatus(Meta meta, int contadorCampos, String nombre, String estado) {
-    Campo campo = (meta.getImage().getCampoByNameandStatus(nombre, estado));
-    if (campo != null)
-      {
-      contadorCampos += meta.getImage().getCantidadCamposByNameandStatus(nombre, estado);
-      }
-    return contadorCampos;
-  }
+//  private static int setCampoByNameAndStatus(Meta meta, int contadorCampos, String nombre, String estado) {
+//    Campo campo = (meta.getImage().getCampoByNameandStatus(nombre, estado));
+//    if (campo != null)
+//      {
+//      contadorCampos += meta.getImage().getCantidadCamposByNameandStatus(nombre, estado);
+//      }
+//    return contadorCampos;
+//  }
 }

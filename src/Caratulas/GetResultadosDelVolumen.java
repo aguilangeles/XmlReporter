@@ -24,7 +24,6 @@ public class GetResultadosDelVolumen {
 
   public GetResultadosDelVolumen(String pathname, String idcName, int contador,
           String nombreVolumen, String siglaSede, int cantidadIDC, int idSede) {
-//    System.out.println(idcName);
     this.volumen = setValuesFromVolumen(pathname, idcName, contador, nombreVolumen,
             siglaSede, cantidadIDC, idSede);
   }
@@ -37,8 +36,8 @@ public class GetResultadosDelVolumen {
     CaratulasMetadata caratulaMeta = new CaratulasMetadata(pathname, idSede);
 
     GetCrtForSede caratulasSedes = caratulaMeta.getSedesCrt();
-    // System.out.println("Carat\t"+caratulasSedes);
     String path = pathname.replace("Carat.xml", "Meta.xml");
+
     papelesCampos = new GetPapelesYCamporForSede(path, idcName, caratulaMeta.isIsEjercicio(), contador, idSede);
     //
     idc = GetPapelesYCamporForSede.getIdece();
@@ -54,7 +53,6 @@ public class GetResultadosDelVolumen {
     papelIDC = papeles.getPapelesPorIdc();
 
     setvolumen = new Volumen(contador, nombreVolumen, cantidadIDC, idc, papelIDC, caratulasSedes, idSede);
-    // System.out.println(setvolumen);
     return setvolumen;
   }
 

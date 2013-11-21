@@ -32,7 +32,6 @@ class GetCampoBySede {
       Campos_GNA gnd = new Campos_GNA(metaParser, reporteMeta, meta);
       retObject = gnd.getGna();
       }
-//    System.out.println(retObject);
     return retObject;
   }
 
