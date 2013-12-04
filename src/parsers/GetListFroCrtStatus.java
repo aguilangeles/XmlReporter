@@ -4,9 +4,6 @@
  */
 package parsers;
 
-import clases.Campo;
-import clases.Caratula;
-import clases.Metadato;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -37,7 +34,6 @@ public class GetListFroCrtStatus {
         if (campo.getValue().equalsIgnoreCase(c1) && campo != null)
           {
           ret = metadato.toString();
-          //System.out.println("\t" + ret+" c \t "+ caratula.getIdIDC());
           listaValorC1.add(ret);
           }
         }

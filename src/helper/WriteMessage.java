@@ -4,8 +4,6 @@
  */
 package helper;
 
-import txt.Escritor;
-
 /**
  * Escribe un mensaje general si el meta no tiene contenido.
  *
@@ -20,7 +18,7 @@ public class WriteMessage {
   public WriteMessage(String ruta, String mensaje) {
     this.ruta = ruta;
     this.mensaje = mensaje;
-    Escritor informe = new Escritor("Describe_errores.txt");
+    Logger informe = new Logger("Describe_errores.txt");
     write(informe);
   }
 
@@ -28,14 +26,14 @@ public class WriteMessage {
   }
 
 
-  private void write(Escritor informe) {
+  private void write(Logger informe) {
     MensajeTxt msg = new MensajeTxt(ruta, mensaje);
     informe.salida(msg);
     ubicacion = informe.getUbicacion();
   }
 
   public void writeNewLog(String pathFile,String ruta, String mensaje) {
-    Escritor escritor = new Escritor(pathFile);
+    Logger escritor = new Logger(pathFile);
     MensajeTxt msg = new MensajeTxt(ruta, mensaje);
     escritor.salida(msg);
     ubicacion = escritor.getUbicacion();

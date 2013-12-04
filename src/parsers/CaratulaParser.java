@@ -4,7 +4,6 @@
  */
 package parsers;
 
-import clases.Caratula;
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import helper.XmlHelper;
 import java.io.IOException;

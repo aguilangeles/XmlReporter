@@ -1,6 +1,5 @@
 package parsers;
 
-import clases.Meta;
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import helper.XmlHelper;
 import java.io.IOException;
@@ -27,23 +26,15 @@ public class MetaParser {
   private NamedNodeMap metas;
   private ReporteXMLMetas reporte;
 
-  public MetaParser(String fileLocation) throws SAXException {
-    try
-      {
+  public MetaParser(String fileLocation) throws SAXException, IOException {
       this.fileLocation = fileLocation;
 
       parser.parse(this.fileLocation);
-
       this.doc = parser.getDocument();
       this.root = doc.getChildNodes();
       this.xmlMeta = XmlHelper.getNode("XmlMetas", root);
       this.metas = XmlHelper.getNodesByName("Meta", xmlMeta.getChildNodes());
       this.reporte = new ReporteXMLMetas(this.metas);
-      } catch (IOException ex)
-      {
-      JOptionPane.showMessageDialog(null, ex.getMessage(), "El xml Meta no existe", JOptionPane.ERROR_MESSAGE);
-      System.exit(0);
-      }
   }
 
   public DOMParser getParser() {

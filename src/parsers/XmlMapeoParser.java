@@ -1,11 +1,8 @@
 package parsers;
 
-import clases.XmlMapeo;
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import helper.XmlHelper;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -26,21 +23,14 @@ public class XmlMapeoParser {
   private NamedNodeMap mapeoLists;
   private ReporteXMLMapeo reporte;
 
-  public XmlMapeoParser(String fileLocation) throws SAXException {
-    try
-      {
-      this.fileLocation = fileLocation;
-      parser.parse(this.fileLocation);
-      this.doc = parser.getDocument();
-      this.root = doc.getChildNodes();
-      this.xmlMapeoNode = XmlHelper.getNode("XmlMapeo", root);
-      this.mapeoLists = XmlHelper.getNodesByName("MapeoList", xmlMapeoNode.getChildNodes());
-      this.reporte = new ReporteXMLMapeo(this.mapeoLists);
-      } catch (IOException ex)
-      {
-      JOptionPane.showMessageDialog(null, ex.getMessage(), "El xml Mapeo no se encuentra", JOptionPane.ERROR_MESSAGE);
-      System.exit(0);
-      }
+  public XmlMapeoParser(String fileLocation) throws SAXException, IOException {
+    this.fileLocation = fileLocation;
+    parser.parse(this.fileLocation);
+    this.doc = parser.getDocument();
+    this.root = doc.getChildNodes();
+    this.xmlMapeoNode = XmlHelper.getNode("XmlMapeo", root);
+    this.mapeoLists = XmlHelper.getNodesByName("MapeoList", xmlMapeoNode.getChildNodes());
+    this.reporte = new ReporteXMLMapeo(this.mapeoLists);
   }
 
   public DOMParser getParser() {
