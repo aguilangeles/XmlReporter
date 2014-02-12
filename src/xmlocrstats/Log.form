@@ -93,7 +93,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="c:/angeles/testeo/gnd1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jbBuscar">

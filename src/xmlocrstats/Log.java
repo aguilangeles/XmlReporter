@@ -59,7 +59,6 @@ public class Log extends javax.swing.JFrame {
         jLabel1.setText("Ingrese la Ubicación del Volúmen a reportar");
 
         jTRuta.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTRuta.setText("c:/angeles/testeo/gnd1");
 
         jbBuscar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jbBuscar.setText("Informar");
