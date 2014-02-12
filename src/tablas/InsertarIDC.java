@@ -14,7 +14,6 @@ import entidad.Volumen;
  */
 public final class InsertarIDC {
 
-  private static int id = 1;
 
   public  String insertarEnIDc(int idVolumen, Volumen v, int idSede) {
      //sumarle uno al ultimovolumen
