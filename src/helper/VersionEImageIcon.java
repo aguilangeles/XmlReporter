@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  */
 public final class VersionEImageIcon extends JFrame {
 
-  public static final String VERSION = "XMLOCRSTATS_1.0.09";
+  public static final String VERSION = "XMLOCRSTATS_1.0.10";
 
   public VersionEImageIcon() {
   }
