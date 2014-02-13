@@ -8,10 +8,6 @@ import helper.ExceptionMessage;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import tablas.InsertarVolumen;
 
 /**
  * Lee el archivo de configuracion.
@@ -31,7 +27,7 @@ public class ReadProperties {
       String url = p.getProperty("url");
       String base = p.getProperty("database");
       String usuario = p.getProperty("user");
-      String password = p.getProperty("passW");
+      String password = p.getProperty("password");
       user = new UserDataBase(url, base, usuario, password);
       } catch (IOException ex)
       {
