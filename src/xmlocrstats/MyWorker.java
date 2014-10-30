@@ -58,14 +58,17 @@ public class MyWorker extends SwingWorker<Void, Integer> {
 
     @Override
     protected Void doInBackground() {
+        System.out.println("hola worker ");
         StringInsert stringInsert;
         int contador = 0;
         try {
             if (conexion.isConexion()) {
+                System.out.println("entro en conexion");
                 GetLastID lastId = new GetLastID(conexion);
 
                 int idVolumen = lastId.getLastIdFromTable("volumen");
                 int idIdc = lastId.getLastIdFromTable("idc");
+                System.out.println(idIdc);
 
                 Iterator it = getNombre.keySet().iterator();
                 while (it.hasNext()) {
